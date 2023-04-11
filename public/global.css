@@ -1,0 +1,81 @@
+:root {
+	position: relative;
+	width: 100vh;
+	height: 100vh;
+	font-size: 16px;
+	--black: #262420;
+	--white: #f5f3e6;
+	--light-gray: #e1dfd4;
+	--header-brown: #63594b;
+	--header-brown-dark: #51493d;
+	--bg-beige: #e7e2bc;
+	--bagel-yellow: #f0c975;
+	--bagel-red: #c43b33;
+}
+
+@font-face {
+	font-family: litoland_italic;
+	src: url(./media/litoland-italic.otf);
+}
+
+@font-face {
+	font-family: litoland_regular;
+	src: url(./media/litoland-regular.otf);
+}
+
+html * {
+   font-family: litoland_italic, "Helvetica Neue", sans-serif !important;
+   box-sizing: border-box;
+}
+
+body, .content {
+	background-color: var(--bg-beige);
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.button1-1 {
+	-webkit-appearance: none;
+	appearance: none;
+    background: url("./icons/button1-1.svg");
+	background-repeat: no-repeat; 
+	background-position: center;
+	color: var(--white);
+	cursor: pointer;
+	width: 5.8rem;
+	height: 3rem;
+	border-width: 0;
+	font-size: 110%;
+	padding-bottom: 3%;
+}
+
+.button1-2 {
+	-webkit-appearance: none;
+	appearance: none;
+    background: url("./icons/button1-2.svg");
+	background-repeat: no-repeat; 
+	background-position: center;
+	color: var(--white);
+	cursor: pointer;
+	width: 6rem;
+	height: 3rem;
+	border-width: 0;
+	font-size: 110%;
+	padding-bottom: 3%;
+}
+
+.button2 {
+	-webkit-appearance: none;
+	appearance: none;
+    background: url("./icons/button2.svg");
+	background-repeat: no-repeat; 
+	background-position: center;
+	cursor: pointer;
+	width: 5rem;
+	height: 3rem;
+	border-width: 0;
+	font-size: 100%;
+}
