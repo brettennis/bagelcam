@@ -3,8 +3,6 @@
 import Slider from "./Slider.svelte";
 import RadioOptions from "./RadioOptions.svelte";
 
-// let cv = require('opencv.js');
-
 const wt = 320;
 const ht = 240;
 
@@ -35,8 +33,12 @@ $: colorB_rgb = hextorgb(colorB_hex);
 $: colorC_rgb = hextorgb(colorC_hex);
 
 // -----------------
+// hextorgb
+//
 // compute rgb from hex returned by color pickers
+// returns [r,g,b]
 // -----------------
+
 function hextorgb(hexval) {
     let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexval);
     return result ? {
@@ -54,6 +56,7 @@ let ghost_A = false;
 let ghost_mode = 1;
 let ghost_amount = 0;
 let ghost_delay = 0;
+let ghost_accum = [];
 
 let pixel_A = false;
 let pixel_chunkSize = 3;
@@ -76,6 +79,32 @@ let avg = 0;
 let poster_A = false;
 let poster_threshold = 1;
 let poster_maxvalue = 1;
+
+// -----------------
+// Queue
+// 
+// FIFO queue for use in ghost effect
+// -----------------
+
+class Queue {
+    constructor() {
+        this.frames = {};
+        this.front = 0;
+        this.back = 0;
+    }
+    enqueue(frame) {
+        this.frames[this.back] = frame;
+        this.back++;
+    }
+    dequeue() {
+        const frame = this.frames[this.front];
+        delete this.frames[this.front];
+        this.front++;
+        return frame;
+    }
+}
+
+let queue = new Queue()
 
 // -----------------
 // init
