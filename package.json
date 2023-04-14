@@ -19,7 +19,7 @@
     "svelte": "^3.55.0"
   },
   "dependencies": {
-    "opencv.js": "^1.2.1",
+    "@techstark/opencv-js": "^4.7.0-release.1",
     "sirv-cli": "^2.0.0"
   }
 }
