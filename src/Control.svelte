@@ -1,3 +1,7 @@
+<svelte:head>
+	<script src="https://docs.opencv.org/3.4.0/opencv.js"></script>
+</svelte:head>
+
 <script>
     
 import Slider from "./Slider.svelte";
@@ -76,7 +80,7 @@ $: mThreshold = movey_threshold * movey_threshold;
 let prev;
 let avg = 0;
 
-let poster_A = false;
+let poster_A = true;
 let poster_threshold = 1;
 let poster_maxvalue = 1;
 
@@ -116,11 +120,11 @@ const init = async () => {
 
     console.log("yeah")
 
-    // try {
+    try {
         v_out_ctx = v_out.getContext('2d');
         v_temp_ctx = v_temp.getContext('2d', {willReadFrequently: true});
-        // ocv_mat_src = new cv.Mat(ht, wt, cv.CV_8UC4);
-        // ocv_mat_dst = new cv.Mat(ht, wt, cv.CV_8UC1);
+        ocv_mat_src = new cv.Mat(ht, wt, cv.CV_8UC4);
+        ocv_mat_dst = new cv.Mat(ht, wt, cv.CV_8UC1);
         streaming = true;
         loading = true;
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -134,9 +138,9 @@ const init = async () => {
         prev = v_temp_ctx.getImageData(0, 0, wt, ht);
 
         v_in.addEventListener("play", computeFrame);
-    // } catch (error) {
-    //     alert("An error occurred!\n" + error);
-    // }
+    } catch (error) {
+        alert("An error occurred!\n" + error);
+    }
 };
 
 // -----------------
@@ -146,88 +150,95 @@ const init = async () => {
 // -----------------
 
 function computeFrame() {
-    // if (!streaming) { ocv_mat_src.delete(); ocv_mat_dst.delete(); return; }
+    if (!streaming) { ocv_mat_src.delete(); ocv_mat_dst.delete(); return; }
     let begin = Date.now();
-    v_temp_ctx.drawImage(v_in, 0, 0, wt, ht);
+    // v_temp_ctx.drawImage(v_in, 0, 0, wt, ht);
 
-    if (pixel_A) {
-        // for each row
-        for (let y = 0; y < ht; y += pixel_chunkSize){
-            // for each col
-            for (let x = 0; x < wt; x += pixel_chunkSize) {
-                pixel_corner = v_temp_ctx.getImageData(x,y,1,1).data;
-                v_temp_ctx.fillStyle = "rgb("+pixel_corner[0]+","+pixel_corner[1]+","+pixel_corner[2]+")";
-                v_temp_ctx.fillRect(x,y,pixel_chunkSize,pixel_chunkSize);
-            }
-        }
-    }
+    // if (pixel_A) {
+    //     // for each row
+    //     for (let y = 0; y < ht; y += pixel_chunkSize){
+    //         // for each col
+    //         for (let x = 0; x < wt; x += pixel_chunkSize) {
+    //             pixel_corner = v_temp_ctx.getImageData(x,y,1,1).data;
+    //             v_temp_ctx.fillStyle = "rgb("+pixel_corner[0]+","+pixel_corner[1]+","+pixel_corner[2]+")";
+    //             v_temp_ctx.fillRect(x,y,pixel_chunkSize,pixel_chunkSize);
+    //         }
+    //     }
+    // }
 
-    frame = v_temp_ctx.getImageData(0, 0, wt, ht);
+    // frame = v_temp_ctx.getImageData(0, 0, wt, ht);
 
-    for (let i = 0; i < frame.data.length/4; i++) {
+    // for (let i = 0; i < frame.data.length/4; i++) {
 
-        let r = frame.data[i * 4 + 0];
-        let g = frame.data[i * 4 + 1];
-        let b = frame.data[i * 4 + 2];
+    //     let r = frame.data[i * 4 + 0];
+    //     let g = frame.data[i * 4 + 1];
+    //     let b = frame.data[i * 4 + 2];
 
-        if (movey_A) {
-            if ( (distSq(r,g,b,
-                        prev.data[i * 4 + 0], 
-                        prev.data[i * 4 + 1],
-                        prev.data[i * 4 + 2]) > mThreshold)) {
+    //     if (movey_A) {
+    //         if ( (distSq(r,g,b,
+    //                     prev.data[i * 4 + 0], 
+    //                     prev.data[i * 4 + 1],
+    //                     prev.data[i * 4 + 2]) > mThreshold)) {
                 
-                r = colorA_rgb.r;
-                g = colorA_rgb.g;
-                b = colorA_rgb.b;
-            }
-            else {
-                r = colorB_rgb.r;
-                g = colorB_rgb.g;
-                b = colorB_rgb.b;
-            }
-        }
+    //             r = colorA_rgb.r;
+    //             g = colorA_rgb.g;
+    //             b = colorA_rgb.b;
+    //         }
+    //         else {
+    //             r = colorB_rgb.r;
+    //             g = colorB_rgb.g;
+    //             b = colorB_rgb.b;
+    //         }
+    //     }
         
-        if (filter_A) {
+    //     if (filter_A) {
 
-            // find min and max values
-            let min = r;
-            let mid = g;
-            let max = b;
-            if (min > mid) { mid = r; min = g; }
-            if (mid > max)
-            {
-                max = mid;
-                mid = b;
-                if (min > mid) min = b;
-            }
+    //         // find min and max values
+    //         let min = r;
+    //         let mid = g;
+    //         let max = b;
+    //         if (min > mid) { mid = r; min = g; }
+    //         if (mid > max)
+    //         {
+    //             max = mid;
+    //             mid = b;
+    //             if (min > mid) min = b;
+    //         }
 
-            let temp_amt = filter_temp - 50;
-            if (temp_amt > 0) r += temp_amt;
-            else              b += temp_amt;
+    //         let temp_amt = filter_temp - 50;
+    //         if (temp_amt > 0) r += temp_amt;
+    //         else              b += temp_amt;
 
-            let saturate_amt = filter_saturate - 50;
-            if      (r == max) r += saturate_amt;
-            else if (g == max) g += saturate_amt;
-            else if (b == max) b += saturate_amt;
-            if      (r == min) r -= saturate_amt;
-            else if (g == min) g -= saturate_amt;
-            else if (b == min) b -= saturate_amt;
+    //         let saturate_amt = filter_saturate - 50;
+    //         if      (r == max) r += saturate_amt;
+    //         else if (g == max) g += saturate_amt;
+    //         else if (b == max) b += saturate_amt;
+    //         if      (r == min) r -= saturate_amt;
+    //         else if (g == min) g -= saturate_amt;
+    //         else if (b == min) b -= saturate_amt;
 
-            let bright_amt = filter_bright - 50;
-            r += bright_amt;
-            g += bright_amt;
-            b += bright_amt;
+    //         let bright_amt = filter_bright - 50;
+    //         r += bright_amt;
+    //         g += bright_amt;
+    //         b += bright_amt;
 
-        }
+    //     }
 
-        frame.data[i * 4 + 0] = r;
-        frame.data[i * 4 + 1] = g;
-        frame.data[i * 4 + 2] = b;
-    }
+    //     frame.data[i * 4 + 0] = r;
+    //     frame.data[i * 4 + 1] = g;
+    //     frame.data[i * 4 + 2] = b;
+    // }
 
-    if (movey_A) prev = v_temp_ctx.getImageData(0, 0, wt, ht);
+    // if (movey_A) prev = v_temp_ctx.getImageData(0, 0, wt, ht);
 
-    v_out_ctx.putImageData(frame, 0, 0);
+    // v_out_ctx.putImageData(frame, 0, 0);
+
+    v_out_ctx.drawImage(v_in, 0, 0, wt, ht);
+
+    ocv_mat_src.data.set(v_out_ctx.getImageData(0, 0, wt, ht).data);
+    cv.threshold(ocv_mat_src, ocv_mat_dst, poster_threshold, poster_maxvalue, cv.THRESH_BINARY);
+    cv.imshow("v_out", ocv_mat_dst);
+
     delay = 1000/30 - (Date.now() - begin);
     if (iter > 3) {
         //update fps every 3 frames
