@@ -1,6 +1,8 @@
 # BagelCam
 
-BagelCam is a live video manipulator. 
+BagelCam is a live video manipulator.
+
+It is powered by the Javascript Canvas Element and OpenCV.
 
 Try BagelCam at [brettennis.com/bagelcam](https://brettennis.com/bagelcam)
 
