@@ -152,6 +152,8 @@ const init = async () => {
 function computeFrame() {
     if (!streaming) { ocv_mat_src.delete(); ocv_mat_dst.delete(); return; }
     let begin = Date.now();
+    //#region
+
     // v_temp_ctx.drawImage(v_in, 0, 0, wt, ht);
 
     // if (pixel_A) {
@@ -232,6 +234,8 @@ function computeFrame() {
     // if (movey_A) prev = v_temp_ctx.getImageData(0, 0, wt, ht);
 
     // v_out_ctx.putImageData(frame, 0, 0);
+
+    //#endregion
 
     v_out_ctx.drawImage(v_in, 0, 0, wt, ht);
 
@@ -477,7 +481,8 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     justify-content: space-between;
     padding: .5rem;
     margin: 0;
-    height: 20rem;
+    height: 22rem;
+    border-radius: .75rem;
 }
 
 .effect-inner {
@@ -500,8 +505,8 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     font-size: 2rem;
     perspective: 400px;
     position: absolute;
-    width: 8rem;
-    height: 4rem;
+    width: 10rem;
+    height: 2rem;
     cursor: pointer;
 }
 .effect-toggle + .tgl-btn:after, .effect-toggle + .tgl-btn:before {
@@ -524,7 +529,7 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     transform: rotateY(-180deg);
 }
 .effect-toggle + .tgl-btn:before {
-    background: var(--bagel-yellow);
+    background: var(--bagel-yellow-light);
     content: attr(data-tg-off);
 }
 .effect-toggle + .tgl-btn:active:before {
