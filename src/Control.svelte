@@ -1,5 +1,5 @@
 <svelte:head>
-	<script src="https://docs.opencv.org/3.4.0/opencv.js"></script>
+	<script src="https://docs.opencv.org/3.4.0/opencv.js" on:load={init}></script>
 </svelte:head>
 
 <script>
@@ -20,6 +20,7 @@ let v_out_ctx;
 let v_temp = null;
 let v_temp_ctx;
 let ocv_mat_src;
+let ocv_mat_tmp1;
 let ocv_mat_dst;
 let frame;
 
@@ -118,12 +119,11 @@ let queue = new Queue()
 
 const init = async () => {
 
-    console.log("yeah")
-
-    try {
+    // try {
         v_out_ctx = v_out.getContext('2d');
         v_temp_ctx = v_temp.getContext('2d', {willReadFrequently: true});
         ocv_mat_src = new cv.Mat(ht, wt, cv.CV_8UC4);
+        ocv_mat_tmp1 = new cv.Mat(ht, wt, cv.CV_8UC1);
         ocv_mat_dst = new cv.Mat(ht, wt, cv.CV_8UC1);
         streaming = true;
         loading = true;
@@ -138,9 +138,9 @@ const init = async () => {
         prev = v_temp_ctx.getImageData(0, 0, wt, ht);
 
         v_in.addEventListener("play", computeFrame);
-    } catch (error) {
-        alert("An error occurred!\n" + error);
-    }
+    // } catch (error) {
+    //     alert("An error occurred!\n" + error);
+    // }
 };
 
 // -----------------
@@ -150,7 +150,7 @@ const init = async () => {
 // -----------------
 
 function computeFrame() {
-    if (!streaming) { ocv_mat_src.delete(); ocv_mat_dst.delete(); return; }
+    if (!streaming) { ocv_mat_src.delete(); ocv_mat_tmp1.delete(); ocv_mat_dst.delete(); return; }
     let begin = Date.now();
     //#region
 
@@ -240,7 +240,9 @@ function computeFrame() {
     v_out_ctx.drawImage(v_in, 0, 0, wt, ht);
 
     ocv_mat_src.data.set(v_out_ctx.getImageData(0, 0, wt, ht).data);
+    // cv.cvtColor(ocv_mat_src, ocv_mat_tmp1, cv.COLOR_RGBA2GRAY);
     cv.threshold(ocv_mat_src, ocv_mat_dst, poster_threshold, poster_maxvalue, cv.THRESH_BINARY);
+
     cv.imshow("v_out", ocv_mat_dst);
 
     delay = 1000/30 - (Date.now() - begin);
@@ -258,7 +260,7 @@ function doPopout() {
 
 function doTrade() {
     viewport_showInput = !viewport_showInput;
-    console.log(viewport_showInput);
+    // console.log(viewport_showInput);
 }
 
 // used for movey
@@ -305,6 +307,8 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                 <button class="button1-1" on:click={doPopout}>Popout</button>
                 <button class="button1-2" on:click={doTrade}>Trade</button>
             </div>
+
+            <img src="images/blake.JPG" alt="blake" style="height:4rem;width:5rem;">
 
             {#if streaming}
             <p class="fps">FPS: {fps}</p>
@@ -432,15 +436,15 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                 id="eff-poster-threshold"
                 label="threshold"
                 minval={0}
-                maxval={100}
-                defval={50}/>
+                maxval={250}
+                defval={0}/>
             <Slider 
                 bind:sliderValue={poster_maxvalue}
                 id="eff-poster-maxvalue"
                 label="max value"
                 minval={0}
-                maxval={100}
-                defval={50}/>
+                maxval={255}
+                defval={255}/>
         </div>
     </div>
 
