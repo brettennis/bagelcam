@@ -16,7 +16,9 @@ let iter = 0;
 
 let v_in;
 let v_out = null;
+let v_out_ocv = null;
 let v_out_ctx;
+let v_out_ctx_ocv;
 let v_temp = null;
 let v_temp_ctx;
 let ocv_mat_src;
@@ -121,6 +123,7 @@ const init = async () => {
 
     // try {
         v_out_ctx = v_out.getContext('2d');
+        v_out_ctx_ocv = v_out.getContext('2d');
         v_temp_ctx = v_temp.getContext('2d', {willReadFrequently: true});
         ocv_mat_src = new cv.Mat(ht, wt, cv.CV_8UC4);
         ocv_mat_tmp1 = new cv.Mat(ht, wt, cv.CV_8UC1);
@@ -154,96 +157,95 @@ function computeFrame() {
     let begin = Date.now();
     //#region
 
-    // v_temp_ctx.drawImage(v_in, 0, 0, wt, ht);
+    v_temp_ctx.drawImage(v_in, 0, 0, wt, ht);
 
-    // if (pixel_A) {
-    //     // for each row
-    //     for (let y = 0; y < ht; y += pixel_chunkSize){
-    //         // for each col
-    //         for (let x = 0; x < wt; x += pixel_chunkSize) {
-    //             pixel_corner = v_temp_ctx.getImageData(x,y,1,1).data;
-    //             v_temp_ctx.fillStyle = "rgb("+pixel_corner[0]+","+pixel_corner[1]+","+pixel_corner[2]+")";
-    //             v_temp_ctx.fillRect(x,y,pixel_chunkSize,pixel_chunkSize);
-    //         }
-    //     }
-    // }
+    if (pixel_A) {
+        // for each row
+        for (let y = 0; y < ht; y += pixel_chunkSize){
+            // for each col
+            for (let x = 0; x < wt; x += pixel_chunkSize) {
+                pixel_corner = v_temp_ctx.getImageData(x,y,1,1).data;
+                v_temp_ctx.fillStyle = "rgb("+pixel_corner[0]+","+pixel_corner[1]+","+pixel_corner[2]+")";
+                v_temp_ctx.fillRect(x,y,pixel_chunkSize,pixel_chunkSize);
+            }
+        }
+    }
 
-    // frame = v_temp_ctx.getImageData(0, 0, wt, ht);
+    frame = v_temp_ctx.getImageData(0, 0, wt, ht);
 
-    // for (let i = 0; i < frame.data.length/4; i++) {
+    for (let i = 0; i < frame.data.length/4; i++) {
 
-    //     let r = frame.data[i * 4 + 0];
-    //     let g = frame.data[i * 4 + 1];
-    //     let b = frame.data[i * 4 + 2];
+        let r = frame.data[i * 4 + 0];
+        let g = frame.data[i * 4 + 1];
+        let b = frame.data[i * 4 + 2];
 
-    //     if (movey_A) {
-    //         if ( (distSq(r,g,b,
-    //                     prev.data[i * 4 + 0], 
-    //                     prev.data[i * 4 + 1],
-    //                     prev.data[i * 4 + 2]) > mThreshold)) {
+        if (movey_A) {
+            if ( (distSq(r,g,b,
+                        prev.data[i * 4 + 0], 
+                        prev.data[i * 4 + 1],
+                        prev.data[i * 4 + 2]) > mThreshold)) {
                 
-    //             r = colorA_rgb.r;
-    //             g = colorA_rgb.g;
-    //             b = colorA_rgb.b;
-    //         }
-    //         else {
-    //             r = colorB_rgb.r;
-    //             g = colorB_rgb.g;
-    //             b = colorB_rgb.b;
-    //         }
-    //     }
+                r = colorA_rgb.r;
+                g = colorA_rgb.g;
+                b = colorA_rgb.b;
+            }
+            else {
+                r = colorB_rgb.r;
+                g = colorB_rgb.g;
+                b = colorB_rgb.b;
+            }
+        }
         
-    //     if (filter_A) {
+        if (filter_A) {
 
-    //         // find min and max values
-    //         let min = r;
-    //         let mid = g;
-    //         let max = b;
-    //         if (min > mid) { mid = r; min = g; }
-    //         if (mid > max)
-    //         {
-    //             max = mid;
-    //             mid = b;
-    //             if (min > mid) min = b;
-    //         }
+            // find min and max values
+            let min = r;
+            let mid = g;
+            let max = b;
+            if (min > mid) { mid = r; min = g; }
+            if (mid > max)
+            {
+                max = mid;
+                mid = b;
+                if (min > mid) min = b;
+            }
 
-    //         let temp_amt = filter_temp - 50;
-    //         if (temp_amt > 0) r += temp_amt;
-    //         else              b += temp_amt;
+            let temp_amt = filter_temp - 50;
+            if (temp_amt > 0) r += temp_amt;
+            else              b += temp_amt;
 
-    //         let saturate_amt = filter_saturate - 50;
-    //         if      (r == max) r += saturate_amt;
-    //         else if (g == max) g += saturate_amt;
-    //         else if (b == max) b += saturate_amt;
-    //         if      (r == min) r -= saturate_amt;
-    //         else if (g == min) g -= saturate_amt;
-    //         else if (b == min) b -= saturate_amt;
+            let saturate_amt = filter_saturate - 50;
+            if      (r == max) r += saturate_amt;
+            else if (g == max) g += saturate_amt;
+            else if (b == max) b += saturate_amt;
+            if      (r == min) r -= saturate_amt;
+            else if (g == min) g -= saturate_amt;
+            else if (b == min) b -= saturate_amt;
 
-    //         let bright_amt = filter_bright - 50;
-    //         r += bright_amt;
-    //         g += bright_amt;
-    //         b += bright_amt;
+            let bright_amt = filter_bright - 50;
+            r += bright_amt;
+            g += bright_amt;
+            b += bright_amt;
 
-    //     }
+        }
 
-    //     frame.data[i * 4 + 0] = r;
-    //     frame.data[i * 4 + 1] = g;
-    //     frame.data[i * 4 + 2] = b;
-    // }
+        frame.data[i * 4 + 0] = r;
+        frame.data[i * 4 + 1] = g;
+        frame.data[i * 4 + 2] = b;
+    }
 
-    // if (movey_A) prev = v_temp_ctx.getImageData(0, 0, wt, ht);
+    if (movey_A) prev = v_temp_ctx.getImageData(0, 0, wt, ht);
 
-    // v_out_ctx.putImageData(frame, 0, 0);
+    v_out_ctx.putImageData(frame, 0, 0);
 
     //#endregion
 
-    v_out_ctx.drawImage(v_in, 0, 0, wt, ht);
-
-    ocv_mat_src.data.set(v_out_ctx.getImageData(0, 0, wt, ht).data);
-    // cv.cvtColor(ocv_mat_src, ocv_mat_tmp1, cv.COLOR_RGBA2GRAY);
-    cv.threshold(ocv_mat_src, ocv_mat_dst, poster_threshold, poster_maxvalue, cv.THRESH_BINARY);
-
-    cv.imshow("v_out", ocv_mat_dst);
+    // v_out_ctx_ocv.drawImage(v_in, 0, 0, wt, ht);
+    // ocv_mat_src.data.set(v_out_ctx_ocv.getImageData(0, 0, wt, ht).data);
+    // if (poster_A) {
+    //     cv.threshold(ocv_mat_src, ocv_mat_dst, poster_threshold, poster_maxvalue, cv.THRESH_BINARY);
+    //     cv.imshow("v_out_ocv", ocv_mat_dst);
+    // } TODO: THIS SHOULD WORK!
 
     delay = 1000/30 - (Date.now() - begin);
     if (iter > 3) {
@@ -296,6 +298,13 @@ function distSq(x1, y1, z1, x2, y2, z2) {
             width={wt} height={ht}
             style="{viewport_showInput ? "display:none" : "display:block"}"/>
 
+        {#if poster_A}
+        <canvas 
+            bind:this={v_out_ocv} id="v_out_ocv" 
+            width={wt} height={ht}
+            style="{viewport_showInput ? "display:none" : "display:block"}"/>
+        {/if}
+        
         <canvas 
             bind:this={v_temp} 
             width={wt} height={ht} 
@@ -307,8 +316,6 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                 <button class="button1-1" on:click={doPopout}>Popout</button>
                 <button class="button1-2" on:click={doTrade}>Trade</button>
             </div>
-
-            <img src="images/blake.JPG" alt="blake" style="height:4rem;width:5rem;">
 
             {#if streaming}
             <p class="fps">FPS: {fps}</p>
@@ -435,13 +442,13 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                 bind:sliderValue={poster_threshold}
                 id="eff-poster-threshold"
                 label="threshold"
-                minval={0}
+                minval={30}
                 maxval={250}
-                defval={0}/>
+                defval={200}/>
             <Slider 
                 bind:sliderValue={poster_maxvalue}
                 id="eff-poster-maxvalue"
-                label="max value"
+                label="opacity"
                 minval={0}
                 maxval={255}
                 defval={255}/>
@@ -475,6 +482,10 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     align-items: center;
     width: 400px;
     height: 310px;
+}
+
+#v_out_ocv {
+    position: absolute;
 }
 
 .effect {
