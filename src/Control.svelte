@@ -1,5 +1,5 @@
 <svelte:head>
-	<script src="https://docs.opencv.org/3.4.0/opencv.js"></script>
+	<script src="https://docs.opencv.org/3.4.0/opencv.js" on:load={init}></script>
 </svelte:head>
 
 <script>
@@ -16,10 +16,13 @@ let iter = 0;
 
 let v_in;
 let v_out = null;
+let v_out_ocv = null;
 let v_out_ctx;
+let v_out_ctx_ocv;
 let v_temp = null;
 let v_temp_ctx;
 let ocv_mat_src;
+let ocv_mat_tmp1;
 let ocv_mat_dst;
 let frame;
 
@@ -118,12 +121,12 @@ let queue = new Queue()
 
 const init = async () => {
 
-    console.log("yeah")
-
-    try {
+    // try {
         v_out_ctx = v_out.getContext('2d');
+        v_out_ctx_ocv = v_out.getContext('2d');
         v_temp_ctx = v_temp.getContext('2d', {willReadFrequently: true});
         ocv_mat_src = new cv.Mat(ht, wt, cv.CV_8UC4);
+        ocv_mat_tmp1 = new cv.Mat(ht, wt, cv.CV_8UC1);
         ocv_mat_dst = new cv.Mat(ht, wt, cv.CV_8UC1);
         streaming = true;
         loading = true;
@@ -138,9 +141,9 @@ const init = async () => {
         prev = v_temp_ctx.getImageData(0, 0, wt, ht);
 
         v_in.addEventListener("play", computeFrame);
-    } catch (error) {
-        alert("An error occurred!\n" + error);
-    }
+    // } catch (error) {
+    //     alert("An error occurred!\n" + error);
+    // }
 };
 
 // -----------------
@@ -150,94 +153,98 @@ const init = async () => {
 // -----------------
 
 function computeFrame() {
-    if (!streaming) { ocv_mat_src.delete(); ocv_mat_dst.delete(); return; }
+    if (!streaming) { ocv_mat_src.delete(); ocv_mat_tmp1.delete(); ocv_mat_dst.delete(); return; }
     let begin = Date.now();
-    // v_temp_ctx.drawImage(v_in, 0, 0, wt, ht);
+    //#region
 
-    // if (pixel_A) {
-    //     // for each row
-    //     for (let y = 0; y < ht; y += pixel_chunkSize){
-    //         // for each col
-    //         for (let x = 0; x < wt; x += pixel_chunkSize) {
-    //             pixel_corner = v_temp_ctx.getImageData(x,y,1,1).data;
-    //             v_temp_ctx.fillStyle = "rgb("+pixel_corner[0]+","+pixel_corner[1]+","+pixel_corner[2]+")";
-    //             v_temp_ctx.fillRect(x,y,pixel_chunkSize,pixel_chunkSize);
-    //         }
-    //     }
-    // }
+    v_temp_ctx.drawImage(v_in, 0, 0, wt, ht);
 
-    // frame = v_temp_ctx.getImageData(0, 0, wt, ht);
+    if (pixel_A) {
+        // for each row
+        for (let y = 0; y < ht; y += pixel_chunkSize){
+            // for each col
+            for (let x = 0; x < wt; x += pixel_chunkSize) {
+                pixel_corner = v_temp_ctx.getImageData(x,y,1,1).data;
+                v_temp_ctx.fillStyle = "rgb("+pixel_corner[0]+","+pixel_corner[1]+","+pixel_corner[2]+")";
+                v_temp_ctx.fillRect(x,y,pixel_chunkSize,pixel_chunkSize);
+            }
+        }
+    }
 
-    // for (let i = 0; i < frame.data.length/4; i++) {
+    frame = v_temp_ctx.getImageData(0, 0, wt, ht);
 
-    //     let r = frame.data[i * 4 + 0];
-    //     let g = frame.data[i * 4 + 1];
-    //     let b = frame.data[i * 4 + 2];
+    for (let i = 0; i < frame.data.length/4; i++) {
 
-    //     if (movey_A) {
-    //         if ( (distSq(r,g,b,
-    //                     prev.data[i * 4 + 0], 
-    //                     prev.data[i * 4 + 1],
-    //                     prev.data[i * 4 + 2]) > mThreshold)) {
+        let r = frame.data[i * 4 + 0];
+        let g = frame.data[i * 4 + 1];
+        let b = frame.data[i * 4 + 2];
+
+        if (movey_A) {
+            if ( (distSq(r,g,b,
+                        prev.data[i * 4 + 0], 
+                        prev.data[i * 4 + 1],
+                        prev.data[i * 4 + 2]) > mThreshold)) {
                 
-    //             r = colorA_rgb.r;
-    //             g = colorA_rgb.g;
-    //             b = colorA_rgb.b;
-    //         }
-    //         else {
-    //             r = colorB_rgb.r;
-    //             g = colorB_rgb.g;
-    //             b = colorB_rgb.b;
-    //         }
-    //     }
+                r = colorA_rgb.r;
+                g = colorA_rgb.g;
+                b = colorA_rgb.b;
+            }
+            else {
+                r = colorB_rgb.r;
+                g = colorB_rgb.g;
+                b = colorB_rgb.b;
+            }
+        }
         
-    //     if (filter_A) {
+        if (filter_A) {
 
-    //         // find min and max values
-    //         let min = r;
-    //         let mid = g;
-    //         let max = b;
-    //         if (min > mid) { mid = r; min = g; }
-    //         if (mid > max)
-    //         {
-    //             max = mid;
-    //             mid = b;
-    //             if (min > mid) min = b;
-    //         }
+            // find min and max values
+            let min = r;
+            let mid = g;
+            let max = b;
+            if (min > mid) { mid = r; min = g; }
+            if (mid > max)
+            {
+                max = mid;
+                mid = b;
+                if (min > mid) min = b;
+            }
 
-    //         let temp_amt = filter_temp - 50;
-    //         if (temp_amt > 0) r += temp_amt;
-    //         else              b += temp_amt;
+            let temp_amt = filter_temp - 50;
+            if (temp_amt > 0) r += temp_amt;
+            else              b += temp_amt;
 
-    //         let saturate_amt = filter_saturate - 50;
-    //         if      (r == max) r += saturate_amt;
-    //         else if (g == max) g += saturate_amt;
-    //         else if (b == max) b += saturate_amt;
-    //         if      (r == min) r -= saturate_amt;
-    //         else if (g == min) g -= saturate_amt;
-    //         else if (b == min) b -= saturate_amt;
+            let saturate_amt = filter_saturate - 50;
+            if      (r == max) r += saturate_amt;
+            else if (g == max) g += saturate_amt;
+            else if (b == max) b += saturate_amt;
+            if      (r == min) r -= saturate_amt;
+            else if (g == min) g -= saturate_amt;
+            else if (b == min) b -= saturate_amt;
 
-    //         let bright_amt = filter_bright - 50;
-    //         r += bright_amt;
-    //         g += bright_amt;
-    //         b += bright_amt;
+            let bright_amt = filter_bright - 50;
+            r += bright_amt;
+            g += bright_amt;
+            b += bright_amt;
 
-    //     }
+        }
 
-    //     frame.data[i * 4 + 0] = r;
-    //     frame.data[i * 4 + 1] = g;
-    //     frame.data[i * 4 + 2] = b;
-    // }
+        frame.data[i * 4 + 0] = r;
+        frame.data[i * 4 + 1] = g;
+        frame.data[i * 4 + 2] = b;
+    }
 
-    // if (movey_A) prev = v_temp_ctx.getImageData(0, 0, wt, ht);
+    if (movey_A) prev = v_temp_ctx.getImageData(0, 0, wt, ht);
 
-    // v_out_ctx.putImageData(frame, 0, 0);
+    v_out_ctx.putImageData(frame, 0, 0);
 
-    v_out_ctx.drawImage(v_in, 0, 0, wt, ht);
+    // #endregion
 
-    ocv_mat_src.data.set(v_out_ctx.getImageData(0, 0, wt, ht).data);
-    cv.threshold(ocv_mat_src, ocv_mat_dst, poster_threshold, poster_maxvalue, cv.THRESH_BINARY);
-    cv.imshow("v_out", ocv_mat_dst);
+    ocv_mat_src.data.set(v_out_ctx_ocv.getImageData(0, 0, wt, ht).data);
+    if (poster_A) {
+        cv.threshold(ocv_mat_src, ocv_mat_dst, poster_threshold, poster_maxvalue, cv.THRESH_BINARY);
+        cv.imshow("v_out_ocv", ocv_mat_dst);
+    }
 
     delay = 1000/30 - (Date.now() - begin);
     if (iter > 3) {
@@ -254,7 +261,7 @@ function doPopout() {
 
 function doTrade() {
     viewport_showInput = !viewport_showInput;
-    console.log(viewport_showInput);
+    // console.log(viewport_showInput);
 }
 
 // used for movey
@@ -290,6 +297,13 @@ function distSq(x1, y1, z1, x2, y2, z2) {
             width={wt} height={ht}
             style="{viewport_showInput ? "display:none" : "display:block"}"/>
 
+        {#if poster_A}
+        <canvas 
+            bind:this={v_out_ocv} id="v_out_ocv" 
+            width={wt} height={ht}
+            style="{viewport_showInput ? "display:none" : "display:block"}"/>
+        {/if}
+        
         <canvas 
             bind:this={v_temp} 
             width={wt} height={ht} 
@@ -427,16 +441,16 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                 bind:sliderValue={poster_threshold}
                 id="eff-poster-threshold"
                 label="threshold"
-                minval={0}
-                maxval={100}
-                defval={50}/>
+                minval={30}
+                maxval={250}
+                defval={200}/>
             <Slider 
                 bind:sliderValue={poster_maxvalue}
                 id="eff-poster-maxvalue"
-                label="max value"
+                label="opacity"
                 minval={0}
-                maxval={100}
-                defval={50}/>
+                maxval={255}
+                defval={255}/>
         </div>
     </div>
 
@@ -469,6 +483,10 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     height: 310px;
 }
 
+#v_out_ocv {
+    position: absolute;
+}
+
 .effect {
     background-color: var(--bagel-yellow);
     display: flex;
@@ -477,7 +495,8 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     justify-content: space-between;
     padding: .5rem;
     margin: 0;
-    height: 20rem;
+    height: 22rem;
+    border-radius: .75rem;
 }
 
 .effect-inner {
@@ -500,8 +519,8 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     font-size: 2rem;
     perspective: 400px;
     position: absolute;
-    width: 8rem;
-    height: 4rem;
+    width: 10rem;
+    height: 2rem;
     cursor: pointer;
 }
 .effect-toggle + .tgl-btn:after, .effect-toggle + .tgl-btn:before {
@@ -524,7 +543,7 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     transform: rotateY(-180deg);
 }
 .effect-toggle + .tgl-btn:before {
-    background: var(--bagel-yellow);
+    background: var(--bagel-yellow-light);
     content: attr(data-tg-off);
 }
 .effect-toggle + .tgl-btn:active:before {

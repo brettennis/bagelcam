@@ -12,7 +12,7 @@ let colorC;
 
 <div>
 
-	<Header />
+	<!-- <Header /> -->
 	
 	<div class="container">
 
