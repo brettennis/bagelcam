@@ -238,14 +238,13 @@ function computeFrame() {
 
     v_out_ctx.putImageData(frame, 0, 0);
 
-    //#endregion
+    // #endregion
 
-    // v_out_ctx_ocv.drawImage(v_in, 0, 0, wt, ht);
-    // ocv_mat_src.data.set(v_out_ctx_ocv.getImageData(0, 0, wt, ht).data);
-    // if (poster_A) {
-    //     cv.threshold(ocv_mat_src, ocv_mat_dst, poster_threshold, poster_maxvalue, cv.THRESH_BINARY);
-    //     cv.imshow("v_out_ocv", ocv_mat_dst);
-    // } TODO: THIS SHOULD WORK!
+    ocv_mat_src.data.set(v_out_ctx_ocv.getImageData(0, 0, wt, ht).data);
+    if (poster_A) {
+        cv.threshold(ocv_mat_src, ocv_mat_dst, poster_threshold, poster_maxvalue, cv.THRESH_BINARY);
+        cv.imshow("v_out_ocv", ocv_mat_dst);
+    }
 
     delay = 1000/30 - (Date.now() - begin);
     if (iter > 3) {
