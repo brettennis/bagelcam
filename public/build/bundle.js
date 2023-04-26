@@ -1705,14 +1705,15 @@ var app = (function () {
     			input = element("input");
     			t2 = space();
     			span = element("span");
+    			attr_dev(h4, "class", "label svelte-9d09vn");
     			add_location(h4, file$2, 7, 4, 75);
     			attr_dev(input, "type", "checkbox");
-    			attr_dev(input, "class", "svelte-1mtkpuo");
-    			add_location(input, file$2, 10, 8, 125);
-    			attr_dev(span, "class", "slider svelte-1mtkpuo");
-    			add_location(span, file$2, 11, 8, 176);
-    			attr_dev(label, "class", "switch svelte-1mtkpuo");
-    			add_location(label, file$2, 9, 4, 94);
+    			attr_dev(input, "class", "svelte-9d09vn");
+    			add_location(input, file$2, 10, 8, 139);
+    			attr_dev(span, "class", "slider svelte-9d09vn");
+    			add_location(span, file$2, 11, 8, 190);
+    			attr_dev(label, "class", "switch svelte-9d09vn");
+    			add_location(label, file$2, 9, 4, 108);
     			add_location(backdrop, file$2, 6, 0, 60);
     		},
     		l: function claim(nodes) {
@@ -2238,7 +2239,7 @@ var app = (function () {
     		/*toggle_opt_binding*/ ctx[46](value);
     	}
 
-    	let toggle_props = { id: "Block" };
+    	let toggle_props = { id: "block" };
 
     	if (/*movey_block*/ ctx[22] !== void 0) {
     		toggle_props.opt = /*movey_block*/ ctx[22];
