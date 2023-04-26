@@ -1684,8 +1684,8 @@ var app = (function () {
     const file$2 = "src/Toggle.svelte";
 
     function create_fragment$2(ctx) {
-    	let backdrop;
-    	let h4;
+    	let div;
+    	let h3;
     	let t0;
     	let t1;
     	let label;
@@ -1697,34 +1697,35 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			backdrop = element("backdrop");
-    			h4 = element("h4");
+    			div = element("div");
+    			h3 = element("h3");
     			t0 = text(/*id*/ ctx[1]);
     			t1 = space();
     			label = element("label");
     			input = element("input");
     			t2 = space();
     			span = element("span");
-    			attr_dev(h4, "class", "label svelte-9d09vn");
-    			add_location(h4, file$2, 7, 4, 75);
+    			attr_dev(h3, "class", "label svelte-1elcrwa");
+    			add_location(h3, file$2, 7, 4, 87);
     			attr_dev(input, "type", "checkbox");
-    			attr_dev(input, "class", "svelte-9d09vn");
-    			add_location(input, file$2, 10, 8, 139);
-    			attr_dev(span, "class", "slider svelte-9d09vn");
-    			add_location(span, file$2, 11, 8, 190);
-    			attr_dev(label, "class", "switch svelte-9d09vn");
-    			add_location(label, file$2, 9, 4, 108);
-    			add_location(backdrop, file$2, 6, 0, 60);
+    			attr_dev(input, "class", "svelte-1elcrwa");
+    			add_location(input, file$2, 10, 8, 151);
+    			attr_dev(span, "class", "slider svelte-1elcrwa");
+    			add_location(span, file$2, 11, 8, 202);
+    			attr_dev(label, "class", "switch svelte-1elcrwa");
+    			add_location(label, file$2, 9, 4, 120);
+    			attr_dev(div, "class", "backdrop svelte-1elcrwa");
+    			add_location(div, file$2, 6, 0, 60);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, backdrop, anchor);
-    			append_dev(backdrop, h4);
-    			append_dev(h4, t0);
-    			append_dev(backdrop, t1);
-    			append_dev(backdrop, label);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, h3);
+    			append_dev(h3, t0);
+    			append_dev(div, t1);
+    			append_dev(div, label);
     			append_dev(label, input);
     			input.checked = /*opt*/ ctx[0];
     			append_dev(label, t2);
@@ -1745,7 +1746,7 @@ var app = (function () {
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(backdrop);
+    			if (detaching) detach_dev(div);
     			mounted = false;
     			dispose();
     		}
@@ -1887,7 +1888,7 @@ var app = (function () {
     			insert_dev(target, button, anchor);
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*init*/ ctx[26], false, false, false, false);
+    				dispose = listen_dev(button, "click", /*init*/ ctx[28], false, false, false, false);
     				mounted = true;
     			}
     		},
@@ -1922,11 +1923,11 @@ var app = (function () {
     			attr_dev(canvas, "width", wt);
     			attr_dev(canvas, "height", ht);
 
-    			attr_dev(canvas, "style", canvas_style_value = /*viewport_showInput*/ ctx[8]
+    			attr_dev(canvas, "style", canvas_style_value = /*viewport_showInput*/ ctx[10]
     			? "display:none"
     			: "display:block");
 
-    			attr_dev(canvas, "class", "svelte-804h0z");
+    			attr_dev(canvas, "class", "svelte-17uyggc");
     			add_location(canvas, file$1, 302, 8, 7656);
     		},
     		m: function mount(target, anchor) {
@@ -1934,7 +1935,7 @@ var app = (function () {
     			/*canvas_binding*/ ctx[33](canvas);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*viewport_showInput*/ 256 && canvas_style_value !== (canvas_style_value = /*viewport_showInput*/ ctx[8]
+    			if (dirty[0] & /*viewport_showInput*/ 1024 && canvas_style_value !== (canvas_style_value = /*viewport_showInput*/ ctx[10]
     			? "display:none"
     			: "display:block")) {
     				attr_dev(canvas, "style", canvas_style_value);
@@ -1967,8 +1968,8 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t0 = text("FPS: ");
-    			t1 = text(/*fps*/ ctx[1]);
-    			attr_dev(p, "class", "fps svelte-804h0z");
+    			t1 = text(/*fps*/ ctx[3]);
+    			attr_dev(p, "class", "fps svelte-17uyggc");
     			add_location(p, file$1, 321, 12, 8264);
     		},
     		m: function mount(target, anchor) {
@@ -1977,7 +1978,7 @@ var app = (function () {
     			append_dev(p, t1);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*fps*/ 2) set_data_dev(t1, /*fps*/ ctx[1]);
+    			if (dirty[0] & /*fps*/ 8) set_data_dev(t1, /*fps*/ ctx[3]);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(p);
@@ -1999,7 +2000,7 @@ var app = (function () {
     	let script;
     	let script_src_value;
     	let t0;
-    	let div15;
+    	let div18;
     	let div2;
     	let t1;
     	let t2;
@@ -2058,45 +2059,52 @@ var app = (function () {
     	let slider5;
     	let updating_sliderValue_5;
     	let t24;
-    	let div10;
+    	let div13;
     	let input3;
     	let t25;
     	let label3;
     	let t26;
-    	let div9;
+    	let div12;
+    	let div11;
     	let toggle;
     	let updating_opt;
     	let t27;
+    	let div9;
+    	let input4;
+    	let t28;
+    	let div10;
+    	let input5;
+    	let t29;
     	let slider6;
     	let updating_sliderValue_6;
-    	let t28;
-    	let div12;
-    	let input4;
-    	let t29;
-    	let label4;
     	let t30;
-    	let div11;
+    	let div15;
+    	let input6;
+    	let t31;
+    	let label4;
+    	let t32;
+    	let div14;
     	let slider7;
     	let updating_sliderValue_7;
-    	let t31;
-    	let div14;
-    	let input5;
-    	let t32;
-    	let label5;
     	let t33;
-    	let div13;
+    	let div17;
+    	let input7;
+    	let t34;
+    	let label5;
+    	let t35;
+    	let div16;
     	let slider8;
     	let updating_sliderValue_8;
-    	let t34;
+    	let t36;
     	let slider9;
     	let updating_sliderValue_9;
     	let current;
     	let mounted;
     	let dispose;
-    	let if_block0 = /*loading*/ ctx[6] && create_if_block_3(ctx);
-    	let if_block1 = !/*streaming*/ ctx[7] && create_if_block_2(ctx);
-    	let if_block2 = /*poster_A*/ ctx[23] && create_if_block_1(ctx);
-    	let if_block3 = /*streaming*/ ctx[7] && create_if_block(ctx);
+    	let if_block0 = /*loading*/ ctx[8] && create_if_block_3(ctx);
+    	let if_block1 = !/*streaming*/ ctx[9] && create_if_block_2(ctx);
+    	let if_block2 = /*poster_A*/ ctx[25] && create_if_block_1(ctx);
+    	let if_block3 = /*streaming*/ ctx[9] && create_if_block(ctx);
 
     	function slider0_sliderValue_binding(value) {
     		/*slider0_sliderValue_binding*/ ctx[36](value);
@@ -2110,8 +2118,8 @@ var app = (function () {
     		defval: 50
     	};
 
-    	if (/*filter_temp*/ ctx[16] !== void 0) {
-    		slider0_props.sliderValue = /*filter_temp*/ ctx[16];
+    	if (/*filter_temp*/ ctx[18] !== void 0) {
+    		slider0_props.sliderValue = /*filter_temp*/ ctx[18];
     	}
 
     	slider0 = new Slider({ props: slider0_props, $$inline: true });
@@ -2129,8 +2137,8 @@ var app = (function () {
     		defval: 50
     	};
 
-    	if (/*filter_saturate*/ ctx[17] !== void 0) {
-    		slider1_props.sliderValue = /*filter_saturate*/ ctx[17];
+    	if (/*filter_saturate*/ ctx[19] !== void 0) {
+    		slider1_props.sliderValue = /*filter_saturate*/ ctx[19];
     	}
 
     	slider1 = new Slider({ props: slider1_props, $$inline: true });
@@ -2148,8 +2156,8 @@ var app = (function () {
     		defval: 50
     	};
 
-    	if (/*filter_bright*/ ctx[18] !== void 0) {
-    		slider2_props.sliderValue = /*filter_bright*/ ctx[18];
+    	if (/*filter_bright*/ ctx[20] !== void 0) {
+    		slider2_props.sliderValue = /*filter_bright*/ ctx[20];
     	}
 
     	slider2 = new Slider({ props: slider2_props, $$inline: true });
@@ -2167,8 +2175,8 @@ var app = (function () {
     		opt4: "Solid"
     	};
 
-    	if (/*ghost_mode*/ ctx[10] !== void 0) {
-    		radiooptions_props.optionChosen = /*ghost_mode*/ ctx[10];
+    	if (/*ghost_mode*/ ctx[12] !== void 0) {
+    		radiooptions_props.optionChosen = /*ghost_mode*/ ctx[12];
     	}
 
     	radiooptions = new RadioOptions({
@@ -2190,8 +2198,8 @@ var app = (function () {
     		defval: 50
     	};
 
-    	if (/*ghost_amount*/ ctx[11] !== void 0) {
-    		slider3_props.sliderValue = /*ghost_amount*/ ctx[11];
+    	if (/*ghost_amount*/ ctx[13] !== void 0) {
+    		slider3_props.sliderValue = /*ghost_amount*/ ctx[13];
     	}
 
     	slider3 = new Slider({ props: slider3_props, $$inline: true });
@@ -2209,8 +2217,8 @@ var app = (function () {
     		defval: 50
     	};
 
-    	if (/*ghost_delay*/ ctx[12] !== void 0) {
-    		slider4_props.sliderValue = /*ghost_delay*/ ctx[12];
+    	if (/*ghost_delay*/ ctx[14] !== void 0) {
+    		slider4_props.sliderValue = /*ghost_delay*/ ctx[14];
     	}
 
     	slider4 = new Slider({ props: slider4_props, $$inline: true });
@@ -2228,8 +2236,8 @@ var app = (function () {
     		defval: 50
     	};
 
-    	if (/*chroma_threshold*/ ctx[20] !== void 0) {
-    		slider5_props.sliderValue = /*chroma_threshold*/ ctx[20];
+    	if (/*chroma_threshold*/ ctx[22] !== void 0) {
+    		slider5_props.sliderValue = /*chroma_threshold*/ ctx[22];
     	}
 
     	slider5 = new Slider({ props: slider5_props, $$inline: true });
@@ -2241,15 +2249,15 @@ var app = (function () {
 
     	let toggle_props = { id: "block" };
 
-    	if (/*movey_block*/ ctx[22] !== void 0) {
-    		toggle_props.opt = /*movey_block*/ ctx[22];
+    	if (/*movey_block*/ ctx[24] !== void 0) {
+    		toggle_props.opt = /*movey_block*/ ctx[24];
     	}
 
     	toggle = new Toggle({ props: toggle_props, $$inline: true });
     	binding_callbacks.push(() => bind(toggle, 'opt', toggle_opt_binding));
 
     	function slider6_sliderValue_binding(value) {
-    		/*slider6_sliderValue_binding*/ ctx[47](value);
+    		/*slider6_sliderValue_binding*/ ctx[49](value);
     	}
 
     	let slider6_props = {
@@ -2260,15 +2268,15 @@ var app = (function () {
     		defval: 40
     	};
 
-    	if (/*movey_threshold*/ ctx[0] !== void 0) {
-    		slider6_props.sliderValue = /*movey_threshold*/ ctx[0];
+    	if (/*movey_threshold*/ ctx[2] !== void 0) {
+    		slider6_props.sliderValue = /*movey_threshold*/ ctx[2];
     	}
 
     	slider6 = new Slider({ props: slider6_props, $$inline: true });
     	binding_callbacks.push(() => bind(slider6, 'sliderValue', slider6_sliderValue_binding));
 
     	function slider7_sliderValue_binding(value) {
-    		/*slider7_sliderValue_binding*/ ctx[49](value);
+    		/*slider7_sliderValue_binding*/ ctx[51](value);
     	}
 
     	let slider7_props = {
@@ -2279,15 +2287,15 @@ var app = (function () {
     		defval: 3
     	};
 
-    	if (/*pixel_chunkSize*/ ctx[14] !== void 0) {
-    		slider7_props.sliderValue = /*pixel_chunkSize*/ ctx[14];
+    	if (/*pixel_chunkSize*/ ctx[16] !== void 0) {
+    		slider7_props.sliderValue = /*pixel_chunkSize*/ ctx[16];
     	}
 
     	slider7 = new Slider({ props: slider7_props, $$inline: true });
     	binding_callbacks.push(() => bind(slider7, 'sliderValue', slider7_sliderValue_binding));
 
     	function slider8_sliderValue_binding(value) {
-    		/*slider8_sliderValue_binding*/ ctx[51](value);
+    		/*slider8_sliderValue_binding*/ ctx[53](value);
     	}
 
     	let slider8_props = {
@@ -2298,15 +2306,15 @@ var app = (function () {
     		defval: 120
     	};
 
-    	if (/*poster_threshold*/ ctx[24] !== void 0) {
-    		slider8_props.sliderValue = /*poster_threshold*/ ctx[24];
+    	if (/*poster_threshold*/ ctx[26] !== void 0) {
+    		slider8_props.sliderValue = /*poster_threshold*/ ctx[26];
     	}
 
     	slider8 = new Slider({ props: slider8_props, $$inline: true });
     	binding_callbacks.push(() => bind(slider8, 'sliderValue', slider8_sliderValue_binding));
 
     	function slider9_sliderValue_binding(value) {
-    		/*slider9_sliderValue_binding*/ ctx[52](value);
+    		/*slider9_sliderValue_binding*/ ctx[54](value);
     	}
 
     	let slider9_props = {
@@ -2317,8 +2325,8 @@ var app = (function () {
     		defval: 150
     	};
 
-    	if (/*poster_maxvalue*/ ctx[25] !== void 0) {
-    		slider9_props.sliderValue = /*poster_maxvalue*/ ctx[25];
+    	if (/*poster_maxvalue*/ ctx[27] !== void 0) {
+    		slider9_props.sliderValue = /*poster_maxvalue*/ ctx[27];
     	}
 
     	slider9 = new Slider({ props: slider9_props, $$inline: true });
@@ -2328,7 +2336,7 @@ var app = (function () {
     		c: function create() {
     			script = element("script");
     			t0 = space();
-    			div15 = element("div");
+    			div18 = element("div");
     			div2 = element("div");
     			if (if_block0) if_block0.c();
     			t1 = space();
@@ -2384,32 +2392,39 @@ var app = (function () {
     			div7 = element("div");
     			create_component(slider5.$$.fragment);
     			t24 = space();
-    			div10 = element("div");
+    			div13 = element("div");
     			input3 = element("input");
     			t25 = space();
     			label3 = element("label");
     			t26 = space();
-    			div9 = element("div");
+    			div12 = element("div");
+    			div11 = element("div");
     			create_component(toggle.$$.fragment);
     			t27 = space();
-    			create_component(slider6.$$.fragment);
-    			t28 = space();
-    			div12 = element("div");
+    			div9 = element("div");
     			input4 = element("input");
-    			t29 = space();
-    			label4 = element("label");
-    			t30 = space();
-    			div11 = element("div");
-    			create_component(slider7.$$.fragment);
-    			t31 = space();
-    			div14 = element("div");
+    			t28 = space();
+    			div10 = element("div");
     			input5 = element("input");
+    			t29 = space();
+    			create_component(slider6.$$.fragment);
+    			t30 = space();
+    			div15 = element("div");
+    			input6 = element("input");
+    			t31 = space();
+    			label4 = element("label");
     			t32 = space();
-    			label5 = element("label");
+    			div14 = element("div");
+    			create_component(slider7.$$.fragment);
     			t33 = space();
-    			div13 = element("div");
-    			create_component(slider8.$$.fragment);
+    			div17 = element("div");
+    			input7 = element("input");
     			t34 = space();
+    			label5 = element("label");
+    			t35 = space();
+    			div16 = element("div");
+    			create_component(slider8.$$.fragment);
+    			t36 = space();
     			create_component(slider9.$$.fragment);
     			if (!src_url_equal(script.src, script_src_value = "https://docs.opencv.org/3.4.0/opencv.js")) attr_dev(script, "src", script_src_value);
     			add_location(script, file$1, 1, 1, 15);
@@ -2417,7 +2432,7 @@ var app = (function () {
     			attr_dev(video, "width", wt);
     			attr_dev(video, "height", ht);
 
-    			attr_dev(video, "style", video_style_value = /*viewport_showInput*/ ctx[8]
+    			attr_dev(video, "style", video_style_value = /*viewport_showInput*/ ctx[10]
     			? "display:block"
     			: "display:none");
 
@@ -2426,7 +2441,7 @@ var app = (function () {
     			attr_dev(canvas0, "width", wt);
     			attr_dev(canvas0, "height", ht);
 
-    			attr_dev(canvas0, "style", canvas0_style_value = /*viewport_showInput*/ ctx[8]
+    			attr_dev(canvas0, "style", canvas0_style_value = /*viewport_showInput*/ ctx[10]
     			? "display:none"
     			: "display:block");
 
@@ -2439,105 +2454,119 @@ var app = (function () {
     			add_location(button0, file$1, 316, 16, 8066);
     			attr_dev(button1, "class", "button1-2");
     			add_location(button1, file$1, 317, 16, 8144);
-    			attr_dev(div0, "class", "button-controller svelte-804h0z");
+    			attr_dev(div0, "class", "button-controller svelte-17uyggc");
     			add_location(div0, file$1, 315, 12, 8018);
-    			attr_dev(div1, "class", "controller svelte-804h0z");
+    			attr_dev(div1, "class", "controller svelte-17uyggc");
     			add_location(div1, file$1, 313, 8, 7980);
-    			attr_dev(div2, "class", "viewport svelte-804h0z");
+    			attr_dev(div2, "class", "viewport svelte-17uyggc");
     			set_style(div2, "grid-area", "1 / 1 / 2 / 3");
     			add_location(div2, file$1, 281, 4, 6985);
-    			attr_dev(input0, "class", "effect-toggle svelte-804h0z");
+    			attr_dev(input0, "class", "effect-toggle svelte-17uyggc");
     			attr_dev(input0, "type", "checkbox");
     			attr_dev(input0, "id", "tgl-filter");
     			add_location(input0, file$1, 328, 8, 8422);
-    			attr_dev(label0, "class", "tgl-btn svelte-804h0z");
+    			attr_dev(label0, "class", "tgl-btn svelte-17uyggc");
     			attr_dev(label0, "for", "tgl-filter");
     			attr_dev(label0, "data-tg-off", "filter");
     			attr_dev(label0, "data-tg-on", "filter!");
     			add_location(label0, file$1, 330, 8, 8533);
-    			attr_dev(div3, "class", "effect-inner svelte-804h0z");
+    			attr_dev(div3, "class", "effect-inner svelte-17uyggc");
     			add_location(div3, file$1, 332, 8, 8644);
-    			attr_dev(div4, "class", "effect svelte-804h0z");
+    			attr_dev(div4, "class", "effect svelte-17uyggc");
     			attr_dev(div4, "id", "eff-filter");
     			set_style(div4, "grid-area", "2 / 1 / 3 / 3");
     			add_location(div4, file$1, 327, 4, 8344);
-    			attr_dev(input1, "class", "effect-toggle svelte-804h0z");
+    			attr_dev(input1, "class", "effect-toggle svelte-17uyggc");
     			attr_dev(input1, "type", "checkbox");
     			attr_dev(input1, "id", "tgl-ghost");
     			add_location(input1, file$1, 358, 8, 9457);
-    			attr_dev(label1, "class", "tgl-btn svelte-804h0z");
+    			attr_dev(label1, "class", "tgl-btn svelte-17uyggc");
     			attr_dev(label1, "for", "tgl-ghost");
     			attr_dev(label1, "data-tg-off", "ghost");
     			attr_dev(label1, "data-tg-on", "ghost!");
     			add_location(label1, file$1, 360, 8, 9566);
-    			attr_dev(div5, "class", "effect-inner svelte-804h0z");
+    			attr_dev(div5, "class", "effect-inner svelte-17uyggc");
     			add_location(div5, file$1, 362, 8, 9674);
-    			attr_dev(div6, "class", "effect svelte-804h0z");
+    			attr_dev(div6, "class", "effect svelte-17uyggc");
     			attr_dev(div6, "id", "eff-ghost");
     			set_style(div6, "grid-area", "1 / 3 / 2 / 5");
     			add_location(div6, file$1, 357, 4, 9380);
-    			attr_dev(input2, "class", "effect-toggle svelte-804h0z");
+    			attr_dev(input2, "class", "effect-toggle svelte-17uyggc");
     			attr_dev(input2, "type", "checkbox");
     			attr_dev(input2, "id", "tgl-chroma");
     			add_location(input2, file$1, 388, 8, 10490);
-    			attr_dev(label2, "class", "tgl-btn svelte-804h0z");
+    			attr_dev(label2, "class", "tgl-btn svelte-17uyggc");
     			attr_dev(label2, "for", "tgl-chroma");
     			attr_dev(label2, "data-tg-off", "chroma");
     			attr_dev(label2, "data-tg-on", "chroma!");
     			add_location(label2, file$1, 390, 8, 10601);
-    			attr_dev(div7, "class", "effect-inner svelte-804h0z");
+    			attr_dev(div7, "class", "effect-inner svelte-17uyggc");
     			add_location(div7, file$1, 392, 8, 10712);
-    			attr_dev(div8, "class", "effect svelte-804h0z");
+    			attr_dev(div8, "class", "effect svelte-17uyggc");
     			attr_dev(div8, "id", "eff-chroma");
     			set_style(div8, "grid-area", "2 / 3 / 3 / 4");
     			add_location(div8, file$1, 387, 4, 10412);
-    			attr_dev(input3, "class", "effect-toggle svelte-804h0z");
+    			attr_dev(input3, "class", "effect-toggle svelte-17uyggc");
     			attr_dev(input3, "type", "checkbox");
     			attr_dev(input3, "id", "tgl-movey");
     			add_location(input3, file$1, 404, 8, 11082);
-    			attr_dev(label3, "class", "tgl-btn svelte-804h0z");
+    			attr_dev(label3, "class", "tgl-btn svelte-17uyggc");
     			attr_dev(label3, "for", "tgl-movey");
     			attr_dev(label3, "data-tg-off", "movey");
     			attr_dev(label3, "data-tg-on", "movey!");
     			add_location(label3, file$1, 406, 8, 11191);
-    			attr_dev(div9, "class", "effect-inner svelte-804h0z");
-    			add_location(div9, file$1, 408, 8, 11299);
-    			attr_dev(div10, "class", "effect svelte-804h0z");
-    			attr_dev(div10, "id", "eff-movey");
-    			set_style(div10, "grid-area", "2 / 4 / 3 / 5");
-    			add_location(div10, file$1, 403, 4, 11005);
-    			attr_dev(input4, "class", "effect-toggle svelte-804h0z");
-    			attr_dev(input4, "type", "checkbox");
-    			attr_dev(input4, "id", "tgl-pixel");
-    			add_location(input4, file$1, 423, 8, 11756);
-    			attr_dev(label4, "class", "tgl-btn svelte-804h0z");
+    			attr_dev(input4, "type", "color");
+    			attr_dev(input4, "id", "colorpickerA");
+    			attr_dev(input4, "class", "svelte-17uyggc");
+    			add_location(input4, file$1, 415, 20, 11574);
+    			attr_dev(div9, "class", "color-container svelte-17uyggc");
+    			add_location(div9, file$1, 413, 16, 11484);
+    			attr_dev(input5, "type", "color");
+    			attr_dev(input5, "id", "colorpickerA");
+    			attr_dev(input5, "class", "svelte-17uyggc");
+    			add_location(input5, file$1, 422, 20, 11838);
+    			attr_dev(div10, "class", "color-container svelte-17uyggc");
+    			add_location(div10, file$1, 420, 16, 11748);
+    			attr_dev(div11, "class", "movey-container svelte-17uyggc");
+    			add_location(div11, file$1, 409, 12, 11338);
+    			attr_dev(div12, "class", "effect-inner svelte-17uyggc");
+    			add_location(div12, file$1, 408, 8, 11299);
+    			attr_dev(div13, "class", "effect svelte-17uyggc");
+    			attr_dev(div13, "id", "eff-movey");
+    			set_style(div13, "grid-area", "2 / 4 / 3 / 5");
+    			add_location(div13, file$1, 403, 4, 11005);
+    			attr_dev(input6, "class", "effect-toggle svelte-17uyggc");
+    			attr_dev(input6, "type", "checkbox");
+    			attr_dev(input6, "id", "tgl-pixel");
+    			add_location(input6, file$1, 439, 8, 12357);
+    			attr_dev(label4, "class", "tgl-btn svelte-17uyggc");
     			attr_dev(label4, "for", "tgl-pixel");
     			attr_dev(label4, "data-tg-off", "pixel");
     			attr_dev(label4, "data-tg-on", "pixel!");
-    			add_location(label4, file$1, 425, 8, 11865);
-    			attr_dev(div11, "class", "effect-inner svelte-804h0z");
-    			add_location(div11, file$1, 427, 8, 11973);
-    			attr_dev(div12, "class", "effect svelte-804h0z");
-    			attr_dev(div12, "id", "eff-pixel");
-    			set_style(div12, "grid-area", "1 / 5 / 2 / 6");
-    			add_location(div12, file$1, 422, 4, 11679);
-    			attr_dev(input5, "class", "effect-toggle svelte-804h0z");
-    			attr_dev(input5, "type", "checkbox");
-    			attr_dev(input5, "id", "tgl-poster");
-    			add_location(input5, file$1, 439, 8, 12342);
-    			attr_dev(label5, "class", "tgl-btn svelte-804h0z");
+    			add_location(label4, file$1, 441, 8, 12466);
+    			attr_dev(div14, "class", "effect-inner svelte-17uyggc");
+    			add_location(div14, file$1, 443, 8, 12574);
+    			attr_dev(div15, "class", "effect svelte-17uyggc");
+    			attr_dev(div15, "id", "eff-pixel");
+    			set_style(div15, "grid-area", "1 / 5 / 2 / 6");
+    			add_location(div15, file$1, 438, 4, 12280);
+    			attr_dev(input7, "class", "effect-toggle svelte-17uyggc");
+    			attr_dev(input7, "type", "checkbox");
+    			attr_dev(input7, "id", "tgl-poster");
+    			add_location(input7, file$1, 455, 8, 12943);
+    			attr_dev(label5, "class", "tgl-btn svelte-17uyggc");
     			attr_dev(label5, "for", "tgl-poster");
     			attr_dev(label5, "data-tg-off", "poster");
     			attr_dev(label5, "data-tg-on", "poster!");
-    			add_location(label5, file$1, 441, 8, 12453);
-    			attr_dev(div13, "class", "effect-inner svelte-804h0z");
-    			add_location(div13, file$1, 443, 8, 12564);
-    			attr_dev(div14, "class", "effect svelte-804h0z");
-    			attr_dev(div14, "id", "eff-poster");
-    			set_style(div14, "grid-area", "2 / 5 / 3 / 6");
-    			add_location(div14, file$1, 438, 4, 12264);
-    			attr_dev(div15, "class", "backdrop svelte-804h0z");
-    			add_location(div15, file$1, 279, 0, 6957);
+    			add_location(label5, file$1, 457, 8, 13054);
+    			attr_dev(div16, "class", "effect-inner svelte-17uyggc");
+    			add_location(div16, file$1, 459, 8, 13165);
+    			attr_dev(div17, "class", "effect svelte-17uyggc");
+    			attr_dev(div17, "id", "eff-poster");
+    			set_style(div17, "grid-area", "2 / 5 / 3 / 6");
+    			add_location(div17, file$1, 454, 4, 12865);
+    			attr_dev(div18, "class", "backdrop svelte-17uyggc");
+    			add_location(div18, file$1, 279, 0, 6957);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2545,8 +2574,8 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			append_dev(document.head, script);
     			insert_dev(target, t0, anchor);
-    			insert_dev(target, div15, anchor);
-    			append_dev(div15, div2);
+    			insert_dev(target, div18, anchor);
+    			append_dev(div18, div2);
     			if (if_block0) if_block0.m(div2, null);
     			append_dev(div2, t1);
     			if (if_block1) if_block1.m(div2, null);
@@ -2569,10 +2598,10 @@ var app = (function () {
     			append_dev(div0, button1);
     			append_dev(div1, t10);
     			if (if_block3) if_block3.m(div1, null);
-    			append_dev(div15, t11);
-    			append_dev(div15, div4);
+    			append_dev(div18, t11);
+    			append_dev(div18, div4);
     			append_dev(div4, input0);
-    			input0.checked = /*filter_A*/ ctx[15];
+    			input0.checked = /*filter_A*/ ctx[17];
     			append_dev(div4, t12);
     			append_dev(div4, label0);
     			append_dev(div4, t13);
@@ -2582,10 +2611,10 @@ var app = (function () {
     			mount_component(slider1, div3, null);
     			append_dev(div3, t15);
     			mount_component(slider2, div3, null);
-    			append_dev(div15, t16);
-    			append_dev(div15, div6);
+    			append_dev(div18, t16);
+    			append_dev(div18, div6);
     			append_dev(div6, input1);
-    			input1.checked = /*ghost_A*/ ctx[9];
+    			input1.checked = /*ghost_A*/ ctx[11];
     			append_dev(div6, t17);
     			append_dev(div6, label1);
     			append_dev(div6, t18);
@@ -2595,66 +2624,77 @@ var app = (function () {
     			mount_component(slider3, div5, null);
     			append_dev(div5, t20);
     			mount_component(slider4, div5, null);
-    			append_dev(div15, t21);
-    			append_dev(div15, div8);
+    			append_dev(div18, t21);
+    			append_dev(div18, div8);
     			append_dev(div8, input2);
-    			input2.checked = /*chroma_A*/ ctx[19];
+    			input2.checked = /*chroma_A*/ ctx[21];
     			append_dev(div8, t22);
     			append_dev(div8, label2);
     			append_dev(div8, t23);
     			append_dev(div8, div7);
     			mount_component(slider5, div7, null);
-    			append_dev(div15, t24);
-    			append_dev(div15, div10);
-    			append_dev(div10, input3);
-    			input3.checked = /*movey_A*/ ctx[21];
-    			append_dev(div10, t25);
-    			append_dev(div10, label3);
-    			append_dev(div10, t26);
-    			append_dev(div10, div9);
-    			mount_component(toggle, div9, null);
-    			append_dev(div9, t27);
-    			mount_component(slider6, div9, null);
-    			append_dev(div15, t28);
-    			append_dev(div15, div12);
-    			append_dev(div12, input4);
-    			input4.checked = /*pixel_A*/ ctx[13];
-    			append_dev(div12, t29);
-    			append_dev(div12, label4);
-    			append_dev(div12, t30);
+    			append_dev(div18, t24);
+    			append_dev(div18, div13);
+    			append_dev(div13, input3);
+    			input3.checked = /*movey_A*/ ctx[23];
+    			append_dev(div13, t25);
+    			append_dev(div13, label3);
+    			append_dev(div13, t26);
+    			append_dev(div13, div12);
     			append_dev(div12, div11);
-    			mount_component(slider7, div11, null);
+    			mount_component(toggle, div11, null);
+    			append_dev(div11, t27);
+    			append_dev(div11, div9);
+    			append_dev(div9, input4);
+    			set_input_value(input4, /*colorA_hex*/ ctx[0]);
+    			append_dev(div11, t28);
+    			append_dev(div11, div10);
+    			append_dev(div10, input5);
+    			set_input_value(input5, /*colorB_hex*/ ctx[1]);
+    			append_dev(div12, t29);
+    			mount_component(slider6, div12, null);
+    			append_dev(div18, t30);
+    			append_dev(div18, div15);
+    			append_dev(div15, input6);
+    			input6.checked = /*pixel_A*/ ctx[15];
     			append_dev(div15, t31);
+    			append_dev(div15, label4);
+    			append_dev(div15, t32);
     			append_dev(div15, div14);
-    			append_dev(div14, input5);
-    			input5.checked = /*poster_A*/ ctx[23];
-    			append_dev(div14, t32);
-    			append_dev(div14, label5);
-    			append_dev(div14, t33);
-    			append_dev(div14, div13);
-    			mount_component(slider8, div13, null);
-    			append_dev(div13, t34);
-    			mount_component(slider9, div13, null);
+    			mount_component(slider7, div14, null);
+    			append_dev(div18, t33);
+    			append_dev(div18, div17);
+    			append_dev(div17, input7);
+    			input7.checked = /*poster_A*/ ctx[25];
+    			append_dev(div17, t34);
+    			append_dev(div17, label5);
+    			append_dev(div17, t35);
+    			append_dev(div17, div16);
+    			mount_component(slider8, div16, null);
+    			append_dev(div16, t36);
+    			mount_component(slider9, div16, null);
     			current = true;
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(script, "load", /*init*/ ctx[26], false, false, false, false),
+    					listen_dev(script, "load", /*init*/ ctx[28], false, false, false, false),
     					listen_dev(button0, "click", doPopout, false, false, false, false),
-    					listen_dev(button1, "click", /*doTrade*/ ctx[27], false, false, false, false),
+    					listen_dev(button1, "click", /*doTrade*/ ctx[29], false, false, false, false),
     					listen_dev(input0, "change", /*input0_change_handler*/ ctx[35]),
     					listen_dev(input1, "change", /*input1_change_handler*/ ctx[39]),
     					listen_dev(input2, "change", /*input2_change_handler*/ ctx[43]),
     					listen_dev(input3, "change", /*input3_change_handler*/ ctx[45]),
-    					listen_dev(input4, "change", /*input4_change_handler*/ ctx[48]),
-    					listen_dev(input5, "change", /*input5_change_handler*/ ctx[50])
+    					listen_dev(input4, "input", /*input4_input_handler*/ ctx[47]),
+    					listen_dev(input5, "input", /*input5_input_handler*/ ctx[48]),
+    					listen_dev(input6, "change", /*input6_change_handler*/ ctx[50]),
+    					listen_dev(input7, "change", /*input7_change_handler*/ ctx[52])
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (/*loading*/ ctx[6]) {
+    			if (/*loading*/ ctx[8]) {
     				if (if_block0) ; else {
     					if_block0 = create_if_block_3(ctx);
     					if_block0.c();
@@ -2665,7 +2705,7 @@ var app = (function () {
     				if_block0 = null;
     			}
 
-    			if (!/*streaming*/ ctx[7]) {
+    			if (!/*streaming*/ ctx[9]) {
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
     				} else {
@@ -2678,19 +2718,19 @@ var app = (function () {
     				if_block1 = null;
     			}
 
-    			if (!current || dirty[0] & /*viewport_showInput*/ 256 && video_style_value !== (video_style_value = /*viewport_showInput*/ ctx[8]
+    			if (!current || dirty[0] & /*viewport_showInput*/ 1024 && video_style_value !== (video_style_value = /*viewport_showInput*/ ctx[10]
     			? "display:block"
     			: "display:none")) {
     				attr_dev(video, "style", video_style_value);
     			}
 
-    			if (!current || dirty[0] & /*viewport_showInput*/ 256 && canvas0_style_value !== (canvas0_style_value = /*viewport_showInput*/ ctx[8]
+    			if (!current || dirty[0] & /*viewport_showInput*/ 1024 && canvas0_style_value !== (canvas0_style_value = /*viewport_showInput*/ ctx[10]
     			? "display:none"
     			: "display:block")) {
     				attr_dev(canvas0, "style", canvas0_style_value);
     			}
 
-    			if (/*poster_A*/ ctx[23]) {
+    			if (/*poster_A*/ ctx[25]) {
     				if (if_block2) {
     					if_block2.p(ctx, dirty);
     				} else {
@@ -2703,7 +2743,7 @@ var app = (function () {
     				if_block2 = null;
     			}
 
-    			if (/*streaming*/ ctx[7]) {
+    			if (/*streaming*/ ctx[9]) {
     				if (if_block3) {
     					if_block3.p(ctx, dirty);
     				} else {
@@ -2716,139 +2756,148 @@ var app = (function () {
     				if_block3 = null;
     			}
 
-    			if (dirty[0] & /*filter_A*/ 32768) {
-    				input0.checked = /*filter_A*/ ctx[15];
+    			if (dirty[0] & /*filter_A*/ 131072) {
+    				input0.checked = /*filter_A*/ ctx[17];
     			}
 
     			const slider0_changes = {};
 
-    			if (!updating_sliderValue && dirty[0] & /*filter_temp*/ 65536) {
+    			if (!updating_sliderValue && dirty[0] & /*filter_temp*/ 262144) {
     				updating_sliderValue = true;
-    				slider0_changes.sliderValue = /*filter_temp*/ ctx[16];
+    				slider0_changes.sliderValue = /*filter_temp*/ ctx[18];
     				add_flush_callback(() => updating_sliderValue = false);
     			}
 
     			slider0.$set(slider0_changes);
     			const slider1_changes = {};
 
-    			if (!updating_sliderValue_1 && dirty[0] & /*filter_saturate*/ 131072) {
+    			if (!updating_sliderValue_1 && dirty[0] & /*filter_saturate*/ 524288) {
     				updating_sliderValue_1 = true;
-    				slider1_changes.sliderValue = /*filter_saturate*/ ctx[17];
+    				slider1_changes.sliderValue = /*filter_saturate*/ ctx[19];
     				add_flush_callback(() => updating_sliderValue_1 = false);
     			}
 
     			slider1.$set(slider1_changes);
     			const slider2_changes = {};
 
-    			if (!updating_sliderValue_2 && dirty[0] & /*filter_bright*/ 262144) {
+    			if (!updating_sliderValue_2 && dirty[0] & /*filter_bright*/ 1048576) {
     				updating_sliderValue_2 = true;
-    				slider2_changes.sliderValue = /*filter_bright*/ ctx[18];
+    				slider2_changes.sliderValue = /*filter_bright*/ ctx[20];
     				add_flush_callback(() => updating_sliderValue_2 = false);
     			}
 
     			slider2.$set(slider2_changes);
 
-    			if (dirty[0] & /*ghost_A*/ 512) {
-    				input1.checked = /*ghost_A*/ ctx[9];
+    			if (dirty[0] & /*ghost_A*/ 2048) {
+    				input1.checked = /*ghost_A*/ ctx[11];
     			}
 
     			const radiooptions_changes = {};
 
-    			if (!updating_optionChosen && dirty[0] & /*ghost_mode*/ 1024) {
+    			if (!updating_optionChosen && dirty[0] & /*ghost_mode*/ 4096) {
     				updating_optionChosen = true;
-    				radiooptions_changes.optionChosen = /*ghost_mode*/ ctx[10];
+    				radiooptions_changes.optionChosen = /*ghost_mode*/ ctx[12];
     				add_flush_callback(() => updating_optionChosen = false);
     			}
 
     			radiooptions.$set(radiooptions_changes);
     			const slider3_changes = {};
 
-    			if (!updating_sliderValue_3 && dirty[0] & /*ghost_amount*/ 2048) {
+    			if (!updating_sliderValue_3 && dirty[0] & /*ghost_amount*/ 8192) {
     				updating_sliderValue_3 = true;
-    				slider3_changes.sliderValue = /*ghost_amount*/ ctx[11];
+    				slider3_changes.sliderValue = /*ghost_amount*/ ctx[13];
     				add_flush_callback(() => updating_sliderValue_3 = false);
     			}
 
     			slider3.$set(slider3_changes);
     			const slider4_changes = {};
 
-    			if (!updating_sliderValue_4 && dirty[0] & /*ghost_delay*/ 4096) {
+    			if (!updating_sliderValue_4 && dirty[0] & /*ghost_delay*/ 16384) {
     				updating_sliderValue_4 = true;
-    				slider4_changes.sliderValue = /*ghost_delay*/ ctx[12];
+    				slider4_changes.sliderValue = /*ghost_delay*/ ctx[14];
     				add_flush_callback(() => updating_sliderValue_4 = false);
     			}
 
     			slider4.$set(slider4_changes);
 
-    			if (dirty[0] & /*chroma_A*/ 524288) {
-    				input2.checked = /*chroma_A*/ ctx[19];
+    			if (dirty[0] & /*chroma_A*/ 2097152) {
+    				input2.checked = /*chroma_A*/ ctx[21];
     			}
 
     			const slider5_changes = {};
 
-    			if (!updating_sliderValue_5 && dirty[0] & /*chroma_threshold*/ 1048576) {
+    			if (!updating_sliderValue_5 && dirty[0] & /*chroma_threshold*/ 4194304) {
     				updating_sliderValue_5 = true;
-    				slider5_changes.sliderValue = /*chroma_threshold*/ ctx[20];
+    				slider5_changes.sliderValue = /*chroma_threshold*/ ctx[22];
     				add_flush_callback(() => updating_sliderValue_5 = false);
     			}
 
     			slider5.$set(slider5_changes);
 
-    			if (dirty[0] & /*movey_A*/ 2097152) {
-    				input3.checked = /*movey_A*/ ctx[21];
+    			if (dirty[0] & /*movey_A*/ 8388608) {
+    				input3.checked = /*movey_A*/ ctx[23];
     			}
 
     			const toggle_changes = {};
 
-    			if (!updating_opt && dirty[0] & /*movey_block*/ 4194304) {
+    			if (!updating_opt && dirty[0] & /*movey_block*/ 16777216) {
     				updating_opt = true;
-    				toggle_changes.opt = /*movey_block*/ ctx[22];
+    				toggle_changes.opt = /*movey_block*/ ctx[24];
     				add_flush_callback(() => updating_opt = false);
     			}
 
     			toggle.$set(toggle_changes);
+
+    			if (dirty[0] & /*colorA_hex*/ 1) {
+    				set_input_value(input4, /*colorA_hex*/ ctx[0]);
+    			}
+
+    			if (dirty[0] & /*colorB_hex*/ 2) {
+    				set_input_value(input5, /*colorB_hex*/ ctx[1]);
+    			}
+
     			const slider6_changes = {};
 
-    			if (!updating_sliderValue_6 && dirty[0] & /*movey_threshold*/ 1) {
+    			if (!updating_sliderValue_6 && dirty[0] & /*movey_threshold*/ 4) {
     				updating_sliderValue_6 = true;
-    				slider6_changes.sliderValue = /*movey_threshold*/ ctx[0];
+    				slider6_changes.sliderValue = /*movey_threshold*/ ctx[2];
     				add_flush_callback(() => updating_sliderValue_6 = false);
     			}
 
     			slider6.$set(slider6_changes);
 
-    			if (dirty[0] & /*pixel_A*/ 8192) {
-    				input4.checked = /*pixel_A*/ ctx[13];
+    			if (dirty[0] & /*pixel_A*/ 32768) {
+    				input6.checked = /*pixel_A*/ ctx[15];
     			}
 
     			const slider7_changes = {};
 
-    			if (!updating_sliderValue_7 && dirty[0] & /*pixel_chunkSize*/ 16384) {
+    			if (!updating_sliderValue_7 && dirty[0] & /*pixel_chunkSize*/ 65536) {
     				updating_sliderValue_7 = true;
-    				slider7_changes.sliderValue = /*pixel_chunkSize*/ ctx[14];
+    				slider7_changes.sliderValue = /*pixel_chunkSize*/ ctx[16];
     				add_flush_callback(() => updating_sliderValue_7 = false);
     			}
 
     			slider7.$set(slider7_changes);
 
-    			if (dirty[0] & /*poster_A*/ 8388608) {
-    				input5.checked = /*poster_A*/ ctx[23];
+    			if (dirty[0] & /*poster_A*/ 33554432) {
+    				input7.checked = /*poster_A*/ ctx[25];
     			}
 
     			const slider8_changes = {};
 
-    			if (!updating_sliderValue_8 && dirty[0] & /*poster_threshold*/ 16777216) {
+    			if (!updating_sliderValue_8 && dirty[0] & /*poster_threshold*/ 67108864) {
     				updating_sliderValue_8 = true;
-    				slider8_changes.sliderValue = /*poster_threshold*/ ctx[24];
+    				slider8_changes.sliderValue = /*poster_threshold*/ ctx[26];
     				add_flush_callback(() => updating_sliderValue_8 = false);
     			}
 
     			slider8.$set(slider8_changes);
     			const slider9_changes = {};
 
-    			if (!updating_sliderValue_9 && dirty[0] & /*poster_maxvalue*/ 33554432) {
+    			if (!updating_sliderValue_9 && dirty[0] & /*poster_maxvalue*/ 134217728) {
     				updating_sliderValue_9 = true;
-    				slider9_changes.sliderValue = /*poster_maxvalue*/ ctx[25];
+    				slider9_changes.sliderValue = /*poster_maxvalue*/ ctx[27];
     				add_flush_callback(() => updating_sliderValue_9 = false);
     			}
 
@@ -2888,7 +2937,7 @@ var app = (function () {
     		d: function destroy(detaching) {
     			detach_dev(script);
     			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(div15);
+    			if (detaching) detach_dev(div18);
     			if (if_block0) if_block0.d();
     			if (if_block1) if_block1.d();
     			/*video_binding*/ ctx[31](null);
@@ -3053,12 +3102,12 @@ var app = (function () {
     		ocv_mat_src = new cv.Mat(ht, wt, cv.CV_8UC4);
     		ocv_mat_tmp1 = new cv.Mat(ht, wt, cv.CV_8UC1);
     		ocv_mat_dst = new cv.Mat(ht, wt, cv.CV_8UC1);
-    		$$invalidate(7, streaming = true);
-    		$$invalidate(6, loading = true);
+    		$$invalidate(9, streaming = true);
+    		$$invalidate(8, loading = true);
     		const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-    		$$invalidate(2, v_in.srcObject = stream, v_in);
+    		$$invalidate(4, v_in.srcObject = stream, v_in);
     		v_in.play();
-    		$$invalidate(6, loading = false);
+    		$$invalidate(8, loading = false);
     		frame = v_temp_ctx.getImageData(0, 0, wt, ht);
     		prev = v_temp_ctx.getImageData(0, 0, wt, ht);
     		v_in.addEventListener("play", computeFrame);
@@ -3164,7 +3213,7 @@ var app = (function () {
 
     		if (iter > 3) {
     			//update fps every 3 frames
-    			$$invalidate(1, fps = parseInt(delay));
+    			$$invalidate(3, fps = parseInt(delay));
 
     			iter = 0;
     		} else iter++;
@@ -3173,7 +3222,7 @@ var app = (function () {
     	}
 
     	function doTrade() {
-    		$$invalidate(8, viewport_showInput = !viewport_showInput);
+    		$$invalidate(10, viewport_showInput = !viewport_showInput);
     	} // console.log(viewport_showInput);
 
     	$$self.$$.on_mount.push(function () {
@@ -3199,124 +3248,134 @@ var app = (function () {
     	function video_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			v_in = $$value;
-    			$$invalidate(2, v_in);
+    			$$invalidate(4, v_in);
     		});
     	}
 
     	function canvas0_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			v_out = $$value;
-    			$$invalidate(3, v_out);
+    			$$invalidate(5, v_out);
     		});
     	}
 
     	function canvas_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			v_out_ocv = $$value;
-    			$$invalidate(4, v_out_ocv);
+    			$$invalidate(6, v_out_ocv);
     		});
     	}
 
     	function canvas1_binding($$value) {
     		binding_callbacks[$$value ? 'unshift' : 'push'](() => {
     			v_temp = $$value;
-    			$$invalidate(5, v_temp);
+    			$$invalidate(7, v_temp);
     		});
     	}
 
     	function input0_change_handler() {
     		filter_A = this.checked;
-    		$$invalidate(15, filter_A);
+    		$$invalidate(17, filter_A);
     	}
 
     	function slider0_sliderValue_binding(value) {
     		filter_temp = value;
-    		$$invalidate(16, filter_temp);
+    		$$invalidate(18, filter_temp);
     	}
 
     	function slider1_sliderValue_binding(value) {
     		filter_saturate = value;
-    		$$invalidate(17, filter_saturate);
+    		$$invalidate(19, filter_saturate);
     	}
 
     	function slider2_sliderValue_binding(value) {
     		filter_bright = value;
-    		$$invalidate(18, filter_bright);
+    		$$invalidate(20, filter_bright);
     	}
 
     	function input1_change_handler() {
     		ghost_A = this.checked;
-    		$$invalidate(9, ghost_A);
+    		$$invalidate(11, ghost_A);
     	}
 
     	function radiooptions_optionChosen_binding(value) {
     		ghost_mode = value;
-    		$$invalidate(10, ghost_mode);
+    		$$invalidate(12, ghost_mode);
     	}
 
     	function slider3_sliderValue_binding(value) {
     		ghost_amount = value;
-    		$$invalidate(11, ghost_amount);
+    		$$invalidate(13, ghost_amount);
     	}
 
     	function slider4_sliderValue_binding(value) {
     		ghost_delay = value;
-    		$$invalidate(12, ghost_delay);
+    		$$invalidate(14, ghost_delay);
     	}
 
     	function input2_change_handler() {
     		chroma_A = this.checked;
-    		$$invalidate(19, chroma_A);
+    		$$invalidate(21, chroma_A);
     	}
 
     	function slider5_sliderValue_binding(value) {
     		chroma_threshold = value;
-    		$$invalidate(20, chroma_threshold);
+    		$$invalidate(22, chroma_threshold);
     	}
 
     	function input3_change_handler() {
     		movey_A = this.checked;
-    		$$invalidate(21, movey_A);
+    		$$invalidate(23, movey_A);
     	}
 
     	function toggle_opt_binding(value) {
     		movey_block = value;
-    		$$invalidate(22, movey_block);
+    		$$invalidate(24, movey_block);
+    	}
+
+    	function input4_input_handler() {
+    		colorA_hex = this.value;
+    		$$invalidate(0, colorA_hex);
+    	}
+
+    	function input5_input_handler() {
+    		colorB_hex = this.value;
+    		$$invalidate(1, colorB_hex);
     	}
 
     	function slider6_sliderValue_binding(value) {
     		movey_threshold = value;
-    		$$invalidate(0, movey_threshold);
+    		$$invalidate(2, movey_threshold);
     	}
 
-    	function input4_change_handler() {
+    	function input6_change_handler() {
     		pixel_A = this.checked;
-    		$$invalidate(13, pixel_A);
+    		$$invalidate(15, pixel_A);
     	}
 
     	function slider7_sliderValue_binding(value) {
     		pixel_chunkSize = value;
-    		$$invalidate(14, pixel_chunkSize);
+    		$$invalidate(16, pixel_chunkSize);
     	}
 
-    	function input5_change_handler() {
+    	function input7_change_handler() {
     		poster_A = this.checked;
-    		$$invalidate(23, poster_A);
+    		$$invalidate(25, poster_A);
     	}
 
     	function slider8_sliderValue_binding(value) {
     		poster_threshold = value;
-    		$$invalidate(24, poster_threshold);
+    		$$invalidate(26, poster_threshold);
     	}
 
     	function slider9_sliderValue_binding(value) {
     		poster_maxvalue = value;
-    		$$invalidate(25, poster_maxvalue);
+    		$$invalidate(27, poster_maxvalue);
     	}
 
     	$$self.$$set = $$props => {
-    		if ('colorA_hex' in $$props) $$invalidate(28, colorA_hex = $$props.colorA_hex);
-    		if ('colorB_hex' in $$props) $$invalidate(29, colorB_hex = $$props.colorB_hex);
+    		if ('colorA_hex' in $$props) $$invalidate(0, colorA_hex = $$props.colorA_hex);
+    		if ('colorB_hex' in $$props) $$invalidate(1, colorB_hex = $$props.colorB_hex);
     		if ('colorC_hex' in $$props) $$invalidate(30, colorC_hex = $$props.colorC_hex);
     	};
 
@@ -3383,48 +3442,48 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('fps' in $$props) $$invalidate(1, fps = $$props.fps);
+    		if ('fps' in $$props) $$invalidate(3, fps = $$props.fps);
     		if ('delay' in $$props) delay = $$props.delay;
     		if ('iter' in $$props) iter = $$props.iter;
-    		if ('v_in' in $$props) $$invalidate(2, v_in = $$props.v_in);
-    		if ('v_out' in $$props) $$invalidate(3, v_out = $$props.v_out);
-    		if ('v_out_ocv' in $$props) $$invalidate(4, v_out_ocv = $$props.v_out_ocv);
+    		if ('v_in' in $$props) $$invalidate(4, v_in = $$props.v_in);
+    		if ('v_out' in $$props) $$invalidate(5, v_out = $$props.v_out);
+    		if ('v_out_ocv' in $$props) $$invalidate(6, v_out_ocv = $$props.v_out_ocv);
     		if ('v_out_ctx' in $$props) v_out_ctx = $$props.v_out_ctx;
     		if ('v_out_ctx_ocv' in $$props) v_out_ctx_ocv = $$props.v_out_ctx_ocv;
-    		if ('v_temp' in $$props) $$invalidate(5, v_temp = $$props.v_temp);
+    		if ('v_temp' in $$props) $$invalidate(7, v_temp = $$props.v_temp);
     		if ('v_temp_ctx' in $$props) v_temp_ctx = $$props.v_temp_ctx;
     		if ('ocv_mat_src' in $$props) ocv_mat_src = $$props.ocv_mat_src;
     		if ('ocv_mat_tmp1' in $$props) ocv_mat_tmp1 = $$props.ocv_mat_tmp1;
     		if ('ocv_mat_dst' in $$props) ocv_mat_dst = $$props.ocv_mat_dst;
     		if ('frame' in $$props) frame = $$props.frame;
-    		if ('loading' in $$props) $$invalidate(6, loading = $$props.loading);
-    		if ('streaming' in $$props) $$invalidate(7, streaming = $$props.streaming);
-    		if ('viewport_showInput' in $$props) $$invalidate(8, viewport_showInput = $$props.viewport_showInput);
-    		if ('colorA_hex' in $$props) $$invalidate(28, colorA_hex = $$props.colorA_hex);
-    		if ('colorB_hex' in $$props) $$invalidate(29, colorB_hex = $$props.colorB_hex);
+    		if ('loading' in $$props) $$invalidate(8, loading = $$props.loading);
+    		if ('streaming' in $$props) $$invalidate(9, streaming = $$props.streaming);
+    		if ('viewport_showInput' in $$props) $$invalidate(10, viewport_showInput = $$props.viewport_showInput);
+    		if ('colorA_hex' in $$props) $$invalidate(0, colorA_hex = $$props.colorA_hex);
+    		if ('colorB_hex' in $$props) $$invalidate(1, colorB_hex = $$props.colorB_hex);
     		if ('colorC_hex' in $$props) $$invalidate(30, colorC_hex = $$props.colorC_hex);
-    		if ('ghost_A' in $$props) $$invalidate(9, ghost_A = $$props.ghost_A);
-    		if ('ghost_mode' in $$props) $$invalidate(10, ghost_mode = $$props.ghost_mode);
-    		if ('ghost_amount' in $$props) $$invalidate(11, ghost_amount = $$props.ghost_amount);
-    		if ('ghost_delay' in $$props) $$invalidate(12, ghost_delay = $$props.ghost_delay);
+    		if ('ghost_A' in $$props) $$invalidate(11, ghost_A = $$props.ghost_A);
+    		if ('ghost_mode' in $$props) $$invalidate(12, ghost_mode = $$props.ghost_mode);
+    		if ('ghost_amount' in $$props) $$invalidate(13, ghost_amount = $$props.ghost_amount);
+    		if ('ghost_delay' in $$props) $$invalidate(14, ghost_delay = $$props.ghost_delay);
     		if ('ghost_accum' in $$props) ghost_accum = $$props.ghost_accum;
-    		if ('pixel_A' in $$props) $$invalidate(13, pixel_A = $$props.pixel_A);
-    		if ('pixel_chunkSize' in $$props) $$invalidate(14, pixel_chunkSize = $$props.pixel_chunkSize);
+    		if ('pixel_A' in $$props) $$invalidate(15, pixel_A = $$props.pixel_A);
+    		if ('pixel_chunkSize' in $$props) $$invalidate(16, pixel_chunkSize = $$props.pixel_chunkSize);
     		if ('pixel_corner' in $$props) pixel_corner = $$props.pixel_corner;
-    		if ('filter_A' in $$props) $$invalidate(15, filter_A = $$props.filter_A);
-    		if ('filter_temp' in $$props) $$invalidate(16, filter_temp = $$props.filter_temp);
-    		if ('filter_saturate' in $$props) $$invalidate(17, filter_saturate = $$props.filter_saturate);
-    		if ('filter_bright' in $$props) $$invalidate(18, filter_bright = $$props.filter_bright);
-    		if ('chroma_A' in $$props) $$invalidate(19, chroma_A = $$props.chroma_A);
-    		if ('chroma_threshold' in $$props) $$invalidate(20, chroma_threshold = $$props.chroma_threshold);
-    		if ('movey_A' in $$props) $$invalidate(21, movey_A = $$props.movey_A);
-    		if ('movey_block' in $$props) $$invalidate(22, movey_block = $$props.movey_block);
-    		if ('movey_threshold' in $$props) $$invalidate(0, movey_threshold = $$props.movey_threshold);
+    		if ('filter_A' in $$props) $$invalidate(17, filter_A = $$props.filter_A);
+    		if ('filter_temp' in $$props) $$invalidate(18, filter_temp = $$props.filter_temp);
+    		if ('filter_saturate' in $$props) $$invalidate(19, filter_saturate = $$props.filter_saturate);
+    		if ('filter_bright' in $$props) $$invalidate(20, filter_bright = $$props.filter_bright);
+    		if ('chroma_A' in $$props) $$invalidate(21, chroma_A = $$props.chroma_A);
+    		if ('chroma_threshold' in $$props) $$invalidate(22, chroma_threshold = $$props.chroma_threshold);
+    		if ('movey_A' in $$props) $$invalidate(23, movey_A = $$props.movey_A);
+    		if ('movey_block' in $$props) $$invalidate(24, movey_block = $$props.movey_block);
+    		if ('movey_threshold' in $$props) $$invalidate(2, movey_threshold = $$props.movey_threshold);
     		if ('prev' in $$props) prev = $$props.prev;
     		if ('avg' in $$props) avg = $$props.avg;
-    		if ('poster_A' in $$props) $$invalidate(23, poster_A = $$props.poster_A);
-    		if ('poster_threshold' in $$props) $$invalidate(24, poster_threshold = $$props.poster_threshold);
-    		if ('poster_maxvalue' in $$props) $$invalidate(25, poster_maxvalue = $$props.poster_maxvalue);
+    		if ('poster_A' in $$props) $$invalidate(25, poster_A = $$props.poster_A);
+    		if ('poster_threshold' in $$props) $$invalidate(26, poster_threshold = $$props.poster_threshold);
+    		if ('poster_maxvalue' in $$props) $$invalidate(27, poster_maxvalue = $$props.poster_maxvalue);
     		if ('queue' in $$props) queue = $$props.queue;
     		if ('colorB_rgb' in $$props) colorB_rgb = $$props.colorB_rgb;
     		if ('colorA_rgb' in $$props) colorA_rgb = $$props.colorA_rgb;
@@ -3437,11 +3496,11 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty[0] & /*colorA_hex*/ 268435456) {
+    		if ($$self.$$.dirty[0] & /*colorA_hex*/ 1) {
     			colorA_rgb = hextorgb(colorA_hex);
     		}
 
-    		if ($$self.$$.dirty[0] & /*colorB_hex*/ 536870912) {
+    		if ($$self.$$.dirty[0] & /*colorB_hex*/ 2) {
     			colorB_rgb = hextorgb(colorB_hex);
     		}
 
@@ -3449,12 +3508,14 @@ var app = (function () {
     			colorC_rgb = hextorgb(colorC_hex);
     		}
 
-    		if ($$self.$$.dirty[0] & /*movey_threshold*/ 1) {
+    		if ($$self.$$.dirty[0] & /*movey_threshold*/ 4) {
     			mThreshold = movey_threshold * movey_threshold;
     		}
     	};
 
     	return [
+    		colorA_hex,
+    		colorB_hex,
     		movey_threshold,
     		fps,
     		v_in,
@@ -3483,8 +3544,6 @@ var app = (function () {
     		poster_maxvalue,
     		init,
     		doTrade,
-    		colorA_hex,
-    		colorB_hex,
     		colorC_hex,
     		video_binding,
     		canvas0_binding,
@@ -3502,10 +3561,12 @@ var app = (function () {
     		slider5_sliderValue_binding,
     		input3_change_handler,
     		toggle_opt_binding,
+    		input4_input_handler,
+    		input5_input_handler,
     		slider6_sliderValue_binding,
-    		input4_change_handler,
+    		input6_change_handler,
     		slider7_sliderValue_binding,
-    		input5_change_handler,
+    		input7_change_handler,
     		slider8_sliderValue_binding,
     		slider9_sliderValue_binding
     	];
@@ -3522,8 +3583,8 @@ var app = (function () {
     			create_fragment$1,
     			safe_not_equal,
     			{
-    				colorA_hex: 28,
-    				colorB_hex: 29,
+    				colorA_hex: 0,
+    				colorB_hex: 1,
     				colorC_hex: 30
     			},
     			null,

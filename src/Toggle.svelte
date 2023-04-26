@@ -4,17 +4,22 @@
 
 </script>
 
-<backdrop>
-    <h4 class="label">{id}</h4>
+<div class="backdrop">
+    <h3 class="label">{id}</h3>
 
     <label class="switch">
         <input type="checkbox" bind:checked={opt}>
         <span class="slider"></span>
     </label>
 
-</backdrop>
+</div>
 
 <style>
+
+    .backdrop {
+        /* background-color: aqua; */
+        height: 7.5rem;
+    }
 
     .label {
         color: var(--header-brown-dark);
