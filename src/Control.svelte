@@ -6,6 +6,7 @@
     
 import Slider from "./Slider.svelte";
 import RadioOptions from "./RadioOptions.svelte";
+import Toggle from "./Toggle.svelte";
 
 const wt = 320;
 const ht = 240;
@@ -406,6 +407,9 @@ function distSq(x1, y1, z1, x2, y2, z2) {
         <label class="tgl-btn" for="tgl-movey"
             data-tg-off="movey" data-tg-on="movey!"></label>
         <div class="effect-inner">
+            <Toggle
+                id="block"
+                bind:opt={movey_block}/>
             <Slider 
                 bind:sliderValue={movey_threshold}
                 id="eff-movey-threshold"
