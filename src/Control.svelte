@@ -78,6 +78,7 @@ let chroma_A = false;
 let chroma_threshold = 1;
 
 let movey_A = false;
+let movey_block = false;
 let movey_threshold = 40;
 $: mThreshold = movey_threshold * movey_threshold;
 let prev;
@@ -222,7 +223,7 @@ function computeFrame() {
                 g = colorA_rgb.g;
                 b = colorA_rgb.b;
             }
-            else {
+            else if (movey_block) {
                 r = colorB_rgb.r;
                 g = colorB_rgb.g;
                 b = colorB_rgb.b;
