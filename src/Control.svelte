@@ -83,9 +83,9 @@ $: mThreshold = movey_threshold * movey_threshold;
 let prev;
 let avg = 0;
 
-let poster_A = true;
-let poster_threshold = 1;
-let poster_maxvalue = 1;
+let poster_A = false;
+let poster_threshold = 120;
+let poster_maxvalue = 150;
 
 // -----------------
 // Queue
@@ -178,23 +178,6 @@ function computeFrame() {
         let r = frame.data[i * 4 + 0];
         let g = frame.data[i * 4 + 1];
         let b = frame.data[i * 4 + 2];
-
-        if (movey_A) {
-            if ( (distSq(r,g,b,
-                        prev.data[i * 4 + 0], 
-                        prev.data[i * 4 + 1],
-                        prev.data[i * 4 + 2]) > mThreshold)) {
-                
-                r = colorA_rgb.r;
-                g = colorA_rgb.g;
-                b = colorA_rgb.b;
-            }
-            else {
-                r = colorB_rgb.r;
-                g = colorB_rgb.g;
-                b = colorB_rgb.b;
-            }
-        }
         
         if (filter_A) {
 
@@ -227,6 +210,23 @@ function computeFrame() {
             g += bright_amt;
             b += bright_amt;
 
+        }
+
+        if (movey_A) {
+            if ( (distSq(r,g,b,
+                        prev.data[i * 4 + 0], 
+                        prev.data[i * 4 + 1],
+                        prev.data[i * 4 + 2]) > mThreshold)) {
+                
+                r = colorA_rgb.r;
+                g = colorA_rgb.g;
+                b = colorA_rgb.b;
+            }
+            else {
+                r = colorB_rgb.r;
+                g = colorB_rgb.g;
+                b = colorB_rgb.b;
+            }
         }
 
         frame.data[i * 4 + 0] = r;
@@ -443,14 +443,14 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                 label="threshold"
                 minval={30}
                 maxval={250}
-                defval={200}/>
+                defval={120}/>
             <Slider 
                 bind:sliderValue={poster_maxvalue}
                 id="eff-poster-maxvalue"
                 label="opacity"
                 minval={0}
                 maxval={255}
-                defval={255}/>
+                defval={150}/>
         </div>
     </div>
 

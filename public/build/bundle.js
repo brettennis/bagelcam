@@ -1690,7 +1690,7 @@ var app = (function () {
     		c: function create() {
     			h3 = element("h3");
     			h3.textContent = "loading...";
-    			add_location(h3, file$1, 281, 8, 6986);
+    			add_location(h3, file$1, 281, 8, 6991);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h3, anchor);
@@ -1722,7 +1722,7 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "start";
     			attr_dev(button, "class", "button2");
-    			add_location(button, file$1, 285, 8, 7062);
+    			add_location(button, file$1, 285, 8, 7067);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, button, anchor);
@@ -1768,7 +1768,7 @@ var app = (function () {
     			: "display:block");
 
     			attr_dev(canvas, "class", "svelte-804h0z");
-    			add_location(canvas, file$1, 300, 8, 7571);
+    			add_location(canvas, file$1, 300, 8, 7576);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, canvas, anchor);
@@ -1810,7 +1810,7 @@ var app = (function () {
     			t0 = text("FPS: ");
     			t1 = text(/*fps*/ ctx[1]);
     			attr_dev(p, "class", "fps svelte-804h0z");
-    			add_location(p, file$1, 319, 12, 8179);
+    			add_location(p, file$1, 319, 12, 8184);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -2120,7 +2120,7 @@ var app = (function () {
     		label: "threshold",
     		minval: 30,
     		maxval: 250,
-    		defval: 200
+    		defval: 120
     	};
 
     	if (/*poster_threshold*/ ctx[23] !== void 0) {
@@ -2139,7 +2139,7 @@ var app = (function () {
     		label: "opacity",
     		minval: 0,
     		maxval: 255,
-    		defval: 255
+    		defval: 150
     	};
 
     	if (/*poster_maxvalue*/ ctx[24] !== void 0) {
@@ -2244,7 +2244,7 @@ var app = (function () {
     			? "display:block"
     			: "display:none");
 
-    			add_location(video, file$1, 289, 8, 7194);
+    			add_location(video, file$1, 289, 8, 7199);
     			attr_dev(canvas0, "id", "v_out");
     			attr_dev(canvas0, "width", wt);
     			attr_dev(canvas0, "height", ht);
@@ -2253,114 +2253,114 @@ var app = (function () {
     			? "display:none"
     			: "display:block");
 
-    			add_location(canvas0, file$1, 294, 8, 7375);
+    			add_location(canvas0, file$1, 294, 8, 7380);
     			attr_dev(canvas1, "width", wt);
     			attr_dev(canvas1, "height", ht);
     			set_style(canvas1, "display", "none");
-    			add_location(canvas1, file$1, 306, 8, 7774);
+    			add_location(canvas1, file$1, 306, 8, 7779);
     			attr_dev(button0, "class", "button1-1");
-    			add_location(button0, file$1, 314, 16, 7981);
+    			add_location(button0, file$1, 314, 16, 7986);
     			attr_dev(button1, "class", "button1-2");
-    			add_location(button1, file$1, 315, 16, 8059);
+    			add_location(button1, file$1, 315, 16, 8064);
     			attr_dev(div0, "class", "button-controller svelte-804h0z");
-    			add_location(div0, file$1, 313, 12, 7933);
+    			add_location(div0, file$1, 313, 12, 7938);
     			attr_dev(div1, "class", "controller svelte-804h0z");
-    			add_location(div1, file$1, 311, 8, 7895);
+    			add_location(div1, file$1, 311, 8, 7900);
     			attr_dev(div2, "class", "viewport svelte-804h0z");
     			set_style(div2, "grid-area", "1 / 1 / 2 / 3");
-    			add_location(div2, file$1, 279, 4, 6900);
+    			add_location(div2, file$1, 279, 4, 6905);
     			attr_dev(input0, "class", "effect-toggle svelte-804h0z");
     			attr_dev(input0, "type", "checkbox");
     			attr_dev(input0, "id", "tgl-filter");
-    			add_location(input0, file$1, 326, 8, 8337);
+    			add_location(input0, file$1, 326, 8, 8342);
     			attr_dev(label0, "class", "tgl-btn svelte-804h0z");
     			attr_dev(label0, "for", "tgl-filter");
     			attr_dev(label0, "data-tg-off", "filter");
     			attr_dev(label0, "data-tg-on", "filter!");
-    			add_location(label0, file$1, 328, 8, 8448);
+    			add_location(label0, file$1, 328, 8, 8453);
     			attr_dev(div3, "class", "effect-inner svelte-804h0z");
-    			add_location(div3, file$1, 330, 8, 8559);
+    			add_location(div3, file$1, 330, 8, 8564);
     			attr_dev(div4, "class", "effect svelte-804h0z");
     			attr_dev(div4, "id", "eff-filter");
     			set_style(div4, "grid-area", "2 / 1 / 3 / 3");
-    			add_location(div4, file$1, 325, 4, 8259);
+    			add_location(div4, file$1, 325, 4, 8264);
     			attr_dev(input1, "class", "effect-toggle svelte-804h0z");
     			attr_dev(input1, "type", "checkbox");
     			attr_dev(input1, "id", "tgl-ghost");
-    			add_location(input1, file$1, 356, 8, 9372);
+    			add_location(input1, file$1, 356, 8, 9377);
     			attr_dev(label1, "class", "tgl-btn svelte-804h0z");
     			attr_dev(label1, "for", "tgl-ghost");
     			attr_dev(label1, "data-tg-off", "ghost");
     			attr_dev(label1, "data-tg-on", "ghost!");
-    			add_location(label1, file$1, 358, 8, 9481);
+    			add_location(label1, file$1, 358, 8, 9486);
     			attr_dev(div5, "class", "effect-inner svelte-804h0z");
-    			add_location(div5, file$1, 360, 8, 9589);
+    			add_location(div5, file$1, 360, 8, 9594);
     			attr_dev(div6, "class", "effect svelte-804h0z");
     			attr_dev(div6, "id", "eff-ghost");
     			set_style(div6, "grid-area", "1 / 3 / 2 / 5");
-    			add_location(div6, file$1, 355, 4, 9295);
+    			add_location(div6, file$1, 355, 4, 9300);
     			attr_dev(input2, "class", "effect-toggle svelte-804h0z");
     			attr_dev(input2, "type", "checkbox");
     			attr_dev(input2, "id", "tgl-chroma");
-    			add_location(input2, file$1, 386, 8, 10405);
+    			add_location(input2, file$1, 386, 8, 10410);
     			attr_dev(label2, "class", "tgl-btn svelte-804h0z");
     			attr_dev(label2, "for", "tgl-chroma");
     			attr_dev(label2, "data-tg-off", "chroma");
     			attr_dev(label2, "data-tg-on", "chroma!");
-    			add_location(label2, file$1, 388, 8, 10516);
+    			add_location(label2, file$1, 388, 8, 10521);
     			attr_dev(div7, "class", "effect-inner svelte-804h0z");
-    			add_location(div7, file$1, 390, 8, 10627);
+    			add_location(div7, file$1, 390, 8, 10632);
     			attr_dev(div8, "class", "effect svelte-804h0z");
     			attr_dev(div8, "id", "eff-chroma");
     			set_style(div8, "grid-area", "2 / 3 / 3 / 4");
-    			add_location(div8, file$1, 385, 4, 10327);
+    			add_location(div8, file$1, 385, 4, 10332);
     			attr_dev(input3, "class", "effect-toggle svelte-804h0z");
     			attr_dev(input3, "type", "checkbox");
     			attr_dev(input3, "id", "tgl-movey");
-    			add_location(input3, file$1, 402, 8, 10997);
+    			add_location(input3, file$1, 402, 8, 11002);
     			attr_dev(label3, "class", "tgl-btn svelte-804h0z");
     			attr_dev(label3, "for", "tgl-movey");
     			attr_dev(label3, "data-tg-off", "movey");
     			attr_dev(label3, "data-tg-on", "movey!");
-    			add_location(label3, file$1, 404, 8, 11106);
+    			add_location(label3, file$1, 404, 8, 11111);
     			attr_dev(div9, "class", "effect-inner svelte-804h0z");
-    			add_location(div9, file$1, 406, 8, 11214);
+    			add_location(div9, file$1, 406, 8, 11219);
     			attr_dev(div10, "class", "effect svelte-804h0z");
     			attr_dev(div10, "id", "eff-movey");
     			set_style(div10, "grid-area", "2 / 4 / 3 / 5");
-    			add_location(div10, file$1, 401, 4, 10920);
+    			add_location(div10, file$1, 401, 4, 10925);
     			attr_dev(input4, "class", "effect-toggle svelte-804h0z");
     			attr_dev(input4, "type", "checkbox");
     			attr_dev(input4, "id", "tgl-pixel");
-    			add_location(input4, file$1, 418, 8, 11583);
+    			add_location(input4, file$1, 418, 8, 11588);
     			attr_dev(label4, "class", "tgl-btn svelte-804h0z");
     			attr_dev(label4, "for", "tgl-pixel");
     			attr_dev(label4, "data-tg-off", "pixel");
     			attr_dev(label4, "data-tg-on", "pixel!");
-    			add_location(label4, file$1, 420, 8, 11692);
+    			add_location(label4, file$1, 420, 8, 11697);
     			attr_dev(div11, "class", "effect-inner svelte-804h0z");
-    			add_location(div11, file$1, 422, 8, 11800);
+    			add_location(div11, file$1, 422, 8, 11805);
     			attr_dev(div12, "class", "effect svelte-804h0z");
     			attr_dev(div12, "id", "eff-pixel");
     			set_style(div12, "grid-area", "1 / 5 / 2 / 6");
-    			add_location(div12, file$1, 417, 4, 11506);
+    			add_location(div12, file$1, 417, 4, 11511);
     			attr_dev(input5, "class", "effect-toggle svelte-804h0z");
     			attr_dev(input5, "type", "checkbox");
     			attr_dev(input5, "id", "tgl-poster");
-    			add_location(input5, file$1, 434, 8, 12169);
+    			add_location(input5, file$1, 434, 8, 12174);
     			attr_dev(label5, "class", "tgl-btn svelte-804h0z");
     			attr_dev(label5, "for", "tgl-poster");
     			attr_dev(label5, "data-tg-off", "poster");
     			attr_dev(label5, "data-tg-on", "poster!");
-    			add_location(label5, file$1, 436, 8, 12280);
+    			add_location(label5, file$1, 436, 8, 12285);
     			attr_dev(div13, "class", "effect-inner svelte-804h0z");
-    			add_location(div13, file$1, 438, 8, 12391);
+    			add_location(div13, file$1, 438, 8, 12396);
     			attr_dev(div14, "class", "effect svelte-804h0z");
     			attr_dev(div14, "id", "eff-poster");
     			set_style(div14, "grid-area", "2 / 5 / 3 / 6");
-    			add_location(div14, file$1, 433, 4, 12091);
+    			add_location(div14, file$1, 433, 4, 12096);
     			attr_dev(div15, "class", "backdrop svelte-804h0z");
-    			add_location(div15, file$1, 277, 0, 6872);
+    			add_location(div15, file$1, 277, 0, 6877);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2816,9 +2816,9 @@ var app = (function () {
     	let movey_threshold = 40;
     	let prev;
     	let avg = 0;
-    	let poster_A = true;
-    	let poster_threshold = 1;
-    	let poster_maxvalue = 1;
+    	let poster_A = false;
+    	let poster_threshold = 120;
+    	let poster_maxvalue = 150;
 
     	// -----------------
     	// Queue
@@ -2911,18 +2911,6 @@ var app = (function () {
     			let g = frame.data[i * 4 + 1];
     			let b = frame.data[i * 4 + 2];
 
-    			if (movey_A) {
-    				if (distSq(r, g, b, prev.data[i * 4 + 0], prev.data[i * 4 + 1], prev.data[i * 4 + 2]) > mThreshold) {
-    					r = colorA_rgb.r;
-    					g = colorA_rgb.g;
-    					b = colorA_rgb.b;
-    				} else {
-    					r = colorB_rgb.r;
-    					g = colorB_rgb.g;
-    					b = colorB_rgb.b;
-    				}
-    			}
-
     			if (filter_A) {
     				// find min and max values
     				let min = r;
@@ -2950,6 +2938,18 @@ var app = (function () {
     				r += bright_amt;
     				g += bright_amt;
     				b += bright_amt;
+    			}
+
+    			if (movey_A) {
+    				if (distSq(r, g, b, prev.data[i * 4 + 0], prev.data[i * 4 + 1], prev.data[i * 4 + 2]) > mThreshold) {
+    					r = colorA_rgb.r;
+    					g = colorA_rgb.g;
+    					b = colorA_rgb.b;
+    				} else {
+    					r = colorB_rgb.r;
+    					g = colorB_rgb.g;
+    					b = colorB_rgb.b;
+    				}
     			}
 
     			frame.data[i * 4 + 0] = r;
