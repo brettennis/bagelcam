@@ -5,7 +5,7 @@
 </script>
 
 <backdrop>
-    <h4>{id}</h4>
+    <h3 class="label" >{id}</h3>
 
     <label class="switch">
         <input type="checkbox" bind:checked={opt}>
@@ -15,11 +15,18 @@
 </backdrop>
 
 <style>
+
+    .label {
+        text-align: center;
+        color: var(--header-brown)
+    }
+
     .switch {
         position: relative;
         display: inline-block;
         width: 3.75rem;
         height: 2.125rem;
+        transform: rotate(-90deg);
     }
 
     /* hide default checkbox */

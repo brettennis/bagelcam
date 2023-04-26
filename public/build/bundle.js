@@ -1685,7 +1685,7 @@ var app = (function () {
 
     function create_fragment$2(ctx) {
     	let backdrop;
-    	let h4;
+    	let h3;
     	let t0;
     	let t1;
     	let label;
@@ -1698,21 +1698,22 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			backdrop = element("backdrop");
-    			h4 = element("h4");
+    			h3 = element("h3");
     			t0 = text(/*id*/ ctx[1]);
     			t1 = space();
     			label = element("label");
     			input = element("input");
     			t2 = space();
     			span = element("span");
-    			add_location(h4, file$2, 7, 4, 75);
+    			attr_dev(h3, "class", "label svelte-1q7edph");
+    			add_location(h3, file$2, 7, 4, 75);
     			attr_dev(input, "type", "checkbox");
-    			attr_dev(input, "class", "svelte-1mtkpuo");
-    			add_location(input, file$2, 10, 8, 125);
-    			attr_dev(span, "class", "slider svelte-1mtkpuo");
-    			add_location(span, file$2, 11, 8, 176);
-    			attr_dev(label, "class", "switch svelte-1mtkpuo");
-    			add_location(label, file$2, 9, 4, 94);
+    			attr_dev(input, "class", "svelte-1q7edph");
+    			add_location(input, file$2, 10, 8, 140);
+    			attr_dev(span, "class", "slider svelte-1q7edph");
+    			add_location(span, file$2, 11, 8, 191);
+    			attr_dev(label, "class", "switch svelte-1q7edph");
+    			add_location(label, file$2, 9, 4, 109);
     			add_location(backdrop, file$2, 6, 0, 60);
     		},
     		l: function claim(nodes) {
@@ -1720,8 +1721,8 @@ var app = (function () {
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, backdrop, anchor);
-    			append_dev(backdrop, h4);
-    			append_dev(h4, t0);
+    			append_dev(backdrop, h3);
+    			append_dev(h3, t0);
     			append_dev(backdrop, t1);
     			append_dev(backdrop, label);
     			append_dev(label, input);
@@ -2238,7 +2239,7 @@ var app = (function () {
     		/*toggle_opt_binding*/ ctx[46](value);
     	}
 
-    	let toggle_props = { id: "Block" };
+    	let toggle_props = { id: "block" };
 
     	if (/*movey_block*/ ctx[22] !== void 0) {
     		toggle_props.opt = /*movey_block*/ ctx[22];
