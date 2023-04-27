@@ -407,9 +407,25 @@ function distSq(x1, y1, z1, x2, y2, z2) {
         <label class="tgl-btn" for="tgl-movey"
             data-tg-off="movey" data-tg-on="movey!"></label>
         <div class="effect-inner">
-            <Toggle
-                id="block"
-                bind:opt={movey_block}/>
+            <div class="movey-container">
+                <div class="color-container">
+                    <input
+                        bind:value={colorA_hex}
+                        type="color"
+                        id="colorpickerA">
+                </div>
+                <div style="height:2.5rem;"></div>
+                <Toggle
+                    id="block"
+                    showID={true}
+                    bind:opt={movey_block}/>
+                <div class="color-container">
+                    <input
+                        bind:value={colorB_hex}
+                        type="color"
+                        id="colorpickerA">
+                </div>
+            </div>
             <Slider 
                 bind:sliderValue={movey_threshold}
                 id="eff-movey-threshold"
@@ -566,6 +582,28 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     transform: rotateY(20deg);
 }
 
+
+.movey-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+.color-container {
+    color: var(--header-brown-dark);
+    text-align: center;
+    /* display: flex; */
+    height: 2rem;
+    width: 3rem;
+    margin-top: 1rem;
+}
+input[type="color"] {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    background-color: var(--bagel-yellow-light);
+}
 
 
 
