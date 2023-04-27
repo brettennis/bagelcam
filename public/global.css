@@ -68,6 +68,16 @@ body, .content {
 	padding-bottom: 3%;
 }
 
+.button3 {
+	background-color: var(--bagel-yellow-light);
+    width: 8rem;
+    height: 5rem;
+    margin-top: 2rem;
+    border: 0;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
 .buttonSave {
 	-webkit-appearance: none;
 	appearance: none;

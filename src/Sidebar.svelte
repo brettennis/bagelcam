@@ -50,19 +50,19 @@
         <p class="preset-console">{presetConsole}</p>
     </div>
 
-    <button on:click={()=>{
+    <button class="button-preset" on:click={()=>{
         let mypreset = {"ghost_A":false,"ghost_fg":true,"ghost_bg":false,"ghost_capture":false,"ghost_threshold":30,"ghost_fg_hex":"#ffffff","ghost_bg_hex":"#000000","pixel_A":true,"pixel_chunkSize":6,"filter_A":true,"filter_temp":51,"filter_saturate":63,"filter_bright":58,"movey_A":false,"movey_fg":true,"movey_bg":false,"movey_trail":false,"movey_length":10,"movey_threshold":40,"movey_fg_hex":"#ffffff","movey_bg_hex":"#000000","poster_A":true,"poster_threshold":143,"poster_maxvalue":100};
         inputString = JSON.stringify(mypreset);
         doLoad(); 
     }}>sprite</button>
 
-    <button on:click={()=>{
+    <button class="button-preset" on:click={()=>{
         let mypreset = {"ghost_A":false,"ghost_fg":true,"ghost_bg":false,"ghost_capture":false,"ghost_threshold":30,"ghost_fg_hex":"#ffffff","ghost_bg_hex":"#000000","pixel_A":false,"pixel_chunkSize":3,"filter_A":false,"filter_temp":50,"filter_saturate":50,"filter_bright":50,"movey_A":true,"movey_fg":true,"movey_bg":true,"movey_trail":true,"movey_length":10,"movey_threshold":40,"movey_fg_hex":"#af65ec","movey_bg_hex":"#d8d2da","poster_A":false,"poster_threshold":120,"poster_maxvalue":150};
         inputString = JSON.stringify(mypreset);
         doLoad(); 
     }}>purple haze</button>
 
-    <button on:click={()=>{ 
+    <button class="button-preset" on:click={()=>{ 
         let mypreset = {"ghost_A":true,"ghost_fg":false,"ghost_bg":true,"ghost_capture":false,"ghost_threshold":43,"ghost_fg_hex":"#ffffff","ghost_bg_hex":"#610000","pixel_A":false,"pixel_chunkSize":10,"filter_A":true,"filter_temp":36,"filter_saturate":67,"filter_bright":32,"movey_A":false,"movey_fg":false,"movey_bg":false,"movey_trail":false,"movey_length":10,"movey_threshold":40,"movey_fg_hex":"#ffffff","movey_bg_hex":"#000000","poster_A":true,"poster_threshold":112,"poster_maxvalue":93};
         inputString = JSON.stringify(mypreset);
         doLoad(); 
@@ -129,6 +129,16 @@
 
 h1 {
     font-size: 1.7rem;
+}
+
+.button-preset {
+    background-color: var(--bagel-yellow-light);
+    width: 8rem;
+    height: 5rem;
+    margin-bottom: 2rem;
+    border: 0;
+    border-radius: 1rem;
+    cursor: pointer;
 }
 
 .preset-input {

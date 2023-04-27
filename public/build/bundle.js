@@ -607,23 +607,26 @@ var app = (function () {
     			t12 = space();
     			button4 = element("button");
     			button4.textContent = "the void";
-    			attr_dev(h1, "class", "svelte-12jnm1k");
+    			attr_dev(h1, "class", "svelte-nx48n1");
     			add_location(h1, file$5, 41, 8, 1182);
-    			attr_dev(input, "class", "preset-input svelte-12jnm1k");
+    			attr_dev(input, "class", "preset-input svelte-nx48n1");
     			attr_dev(input, "type", "text");
     			add_location(input, file$5, 43, 8, 1207);
     			attr_dev(button0, "class", "buttonSave");
     			add_location(button0, file$5, 47, 8, 1387);
     			attr_dev(button1, "class", "buttonSave");
     			add_location(button1, file$5, 48, 8, 1454);
-    			attr_dev(p, "class", "preset-console svelte-12jnm1k");
+    			attr_dev(p, "class", "preset-console svelte-nx48n1");
     			add_location(p, file$5, 49, 8, 1521);
     			attr_dev(div0, "class", "presets-container");
     			add_location(div0, file$5, 40, 4, 1142);
+    			attr_dev(button2, "class", "button-preset svelte-nx48n1");
     			add_location(button2, file$5, 52, 4, 1583);
-    			add_location(button3, file$5, 58, 4, 2197);
-    			add_location(button4, file$5, 64, 4, 2816);
-    			attr_dev(div1, "class", "backdrop svelte-12jnm1k");
+    			attr_dev(button3, "class", "button-preset svelte-nx48n1");
+    			add_location(button3, file$5, 58, 4, 2219);
+    			attr_dev(button4, "class", "button-preset svelte-nx48n1");
+    			add_location(button4, file$5, 64, 4, 2860);
+    			attr_dev(div1, "class", "backdrop svelte-nx48n1");
     			add_location(div1, file$5, 38, 0, 1110);
     		},
     		l: function claim(nodes) {
