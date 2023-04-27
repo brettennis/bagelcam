@@ -9,7 +9,7 @@
     {#if showID}
     <h3 class="label">{id}</h3>
     {:else}
-    <div style="height:2.5rem;"></div>
+    <div style="height:1.2rem;"></div>
     {/if}
     
     <label class="switch">
@@ -23,7 +23,7 @@
 
     .backdrop {
         /* background-color: aqua; */
-        height: 7rem;
+        height: 5rem;
     }
 
     .label {
@@ -36,7 +36,7 @@
         display: inline-block;
         width: 3.75rem;
         height: 2.125rem;
-        transform: rotate(-90deg);
+        /* transform: rotate(-90deg); */
     }
 
     /* hide default checkbox */
@@ -55,8 +55,8 @@
         right: 0;
         bottom: 0;
         background-color: var(--bagel-yellow-light);
-        -webkit-transition: .4s;
-        transition: .4s;
+        -webkit-transition: .3s;
+        transition: .3s;
     }
 
     .slider:before {
@@ -68,8 +68,8 @@
         left: 0.25rem;
         bottom: 0.25rem;
         background-color: var(--bagel-red);
-        -webkit-transition: .4s;
-        transition: .4s;
+        -webkit-transition: .3s;
+        transition: .3s;
     }
 
     input:checked + .slider {

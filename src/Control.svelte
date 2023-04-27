@@ -25,6 +25,8 @@ let v_temp_ctx;
 let ocv_mat_src;
 let ocv_mat_tmp1;
 let ocv_mat_dst;
+let ocv_mask;
+let ocv_fgbg;
 let frame;
 
 let loading = false;
@@ -57,39 +59,6 @@ function hextorgb(hexval) {
 }
 
 // -----------------
-// effect parameters
-// -----------------
-
-let ghost_A = false;
-let ghost_mode = 1;
-let ghost_amount = 0;
-let ghost_delay = 0;
-let ghost_accum = [];
-
-let pixel_A = false;
-let pixel_chunkSize = 3;
-let pixel_corner = [];
-
-let filter_A = false;
-let filter_temp = 50;
-let filter_saturate = 50;
-let filter_bright = 50; 
-
-let chroma_A = false;
-let chroma_threshold = 1;
-
-let movey_A = false;
-let movey_block = false;
-let movey_threshold = 40;
-$: mThreshold = movey_threshold * movey_threshold;
-let prev;
-let avg = 0;
-
-let poster_A = false;
-let poster_threshold = 120;
-let poster_maxvalue = 150;
-
-// -----------------
 // Queue
 // 
 // FIFO queue for use in ghost effect
@@ -113,7 +82,41 @@ class Queue {
     }
 }
 
-let queue = new Queue()
+// -----------------
+// effect parameters
+// -----------------
+
+let ghost_A = true;
+let ghost_mode = 1;
+let ghost_amount = 1;
+let ghost_delay = 1;
+let ghost_accum = new Queue();
+
+let pixel_A = false;
+let pixel_chunkSize = 3;
+let pixel_corner = [];
+
+let filter_A = false;
+let filter_temp = 50;
+let filter_saturate = 50;
+let filter_bright = 50; 
+
+let chroma_A = false;
+let chroma_threshold = 1;
+
+let movey_A = false;
+let movey_fg = true;
+let movey_bg = false;
+let movey_trail = false;
+let movey_threshold = 40;
+let movey_length = 0;
+$: mThreshold = movey_threshold * movey_threshold;
+let prev;
+let movey_motion = Array(wt * ht).fill(0);
+
+let poster_A = false;
+let poster_threshold = 120;
+let poster_maxvalue = 150;
 
 // -----------------
 // init
@@ -124,12 +127,14 @@ let queue = new Queue()
 const init = async () => {
 
     // try {
-        v_out_ctx = v_out.getContext('2d');
-        v_out_ctx_ocv = v_out.getContext('2d');
-        v_temp_ctx = v_temp.getContext('2d', {willReadFrequently: true});
-        ocv_mat_src = new cv.Mat(ht, wt, cv.CV_8UC4);
-        ocv_mat_tmp1 = new cv.Mat(ht, wt, cv.CV_8UC1);
-        ocv_mat_dst = new cv.Mat(ht, wt, cv.CV_8UC1);
+        v_out_ctx       = v_out.getContext('2d');
+        v_out_ctx_ocv   = v_out.getContext('2d');
+        v_temp_ctx      = v_temp.getContext('2d', {willReadFrequently: true});
+        ocv_mat_src     = new cv.Mat(ht, wt, cv.CV_8UC4);
+        ocv_mat_tmp1    = new cv.Mat(ht, wt, cv.CV_8UC1);
+        ocv_mat_dst     = new cv.Mat(ht, wt, cv.CV_8UC1);
+        ocv_mask = new cv.Mat(ht, wt, cv.CV_8UC1);
+        ocv_fgbg = new cv.BackgroundSubtractorMOG2(500, 16, false);
         streaming = true;
         loading = true;
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -139,8 +144,8 @@ const init = async () => {
         v_in.play();
         loading = false;
 
-        frame = v_temp_ctx.getImageData(0, 0, wt, ht);
-        prev = v_temp_ctx.getImageData(0, 0, wt, ht);
+        frame   = v_temp_ctx.getImageData(0, 0, wt, ht);
+        prev    = v_temp_ctx.getImageData(0, 0, wt, ht);
 
         v_in.addEventListener("play", computeFrame);
     // } catch (error) {
@@ -180,6 +185,38 @@ function computeFrame() {
         let r = frame.data[i * 4 + 0];
         let g = frame.data[i * 4 + 1];
         let b = frame.data[i * 4 + 2];
+
+        if (movey_A) {
+
+            if (movey_motion[i * 4 + 0] > 0) {
+                if (movey_fg) {
+                    r = colorA_rgb.r;
+                    g = colorA_rgb.g;
+                    b = colorA_rgb.b;
+                }
+            }
+            else if ( (distSq(r,g,b,
+                        prev.data[i * 4 + 0], 
+                        prev.data[i * 4 + 1],
+                        prev.data[i * 4 + 2]) > mThreshold)) {
+
+                if (movey_fg) {
+                    r = colorA_rgb.r;
+                    g = colorA_rgb.g;
+                    b = colorA_rgb.b;
+                }
+                if (movey_trail)
+                    movey_motion[i * 4 + 0] = movey_length;
+            }
+            else if (movey_bg) {
+                r = colorB_rgb.r;
+                g = colorB_rgb.g;
+                b = colorB_rgb.b;
+            }
+
+            // decrement current pixel in motion array
+            movey_motion[i * 4 + 0]--;
+        }
         
         if (filter_A) {
 
@@ -212,23 +249,6 @@ function computeFrame() {
             g += bright_amt;
             b += bright_amt;
 
-        }
-
-        if (movey_A) {
-            if ( (distSq(r,g,b,
-                        prev.data[i * 4 + 0], 
-                        prev.data[i * 4 + 1],
-                        prev.data[i * 4 + 2]) > mThreshold)) {
-                
-                r = colorA_rgb.r;
-                g = colorA_rgb.g;
-                b = colorA_rgb.b;
-            }
-            else if (movey_block) {
-                r = colorB_rgb.r;
-                g = colorB_rgb.g;
-                b = colorB_rgb.b;
-            }
         }
 
         frame.data[i * 4 + 0] = r;
@@ -373,15 +393,15 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                 id="eff-ghost-amount"
                 label="amount"
                 minval={0}
-                maxval={100}
-                defval={50}/>
+                maxval={30}
+                defval={1}/>
             <Slider 
                 bind:sliderValue={ghost_delay}
                 id="eff-ghost-delay"
                 label="delay"
                 minval={0}
-                maxval={100}
-                defval={50}/>
+                maxval={30}
+                defval={1}/>
         </div>
     </div>
 
@@ -408,22 +428,25 @@ function distSq(x1, y1, z1, x2, y2, z2) {
             data-tg-off="movey" data-tg-on="movey!"></label>
         <div class="effect-inner">
             <div class="movey-container">
+                <Toggle
+                    id="bg"
+                    showID={true}
+                    bind:opt={movey_bg}/>
                 <div class="color-container">
                     <input
                         bind:value={colorA_hex}
                         type="color"
                         id="colorpickerA">
                 </div>
-                <div style="height:2.5rem;"></div>
                 <Toggle
-                    id="block"
+                    id="fg"
                     showID={true}
-                    bind:opt={movey_block}/>
+                    bind:opt={movey_fg}/>
                 <div class="color-container">
                     <input
                         bind:value={colorB_hex}
                         type="color"
-                        id="colorpickerA">
+                        id="colorpickerB">
                 </div>
             </div>
             <Slider 
@@ -596,7 +619,7 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     /* display: flex; */
     height: 2rem;
     width: 3rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 input[type="color"] {
     width: 100%;
