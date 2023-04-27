@@ -8,8 +8,8 @@ import Slider from "./Slider.svelte";
 import RadioOptions from "./RadioOptions.svelte";
 import Toggle from "./Toggle.svelte";
 
-const wt = 320;
-const ht = 240;
+const wt = 320*1.2;
+const ht = 240*1.2;
 
 let fps = 30;
 let delay = 0;
@@ -34,13 +34,6 @@ let streaming = false;
 
 // changed by trade button, defaults to show output
 let viewport_showInput = false;
-
-export let colorA_hex;
-export let colorB_hex;
-export let colorC_hex;
-$: colorA_rgb = hextorgb(colorA_hex);
-$: colorB_rgb = hextorgb(colorB_hex);
-$: colorC_rgb = hextorgb(colorC_hex);
 
 // -----------------
 // hextorgb
@@ -86,10 +79,20 @@ class Queue {
 // effect parameters
 // -----------------
 
-let ghost_A = true;
-let ghost_mode = 1;
+let ghost_A = false;
+let ghost_fg = true;
+let ghost_bg = false;
 let ghost_amount = 1;
 let ghost_delay = 1;
+let ghost_capture = false;
+function ghost_doCapture() {ghost_capture = true;}
+let ghost_threshold = 30;
+$: gThreshold = ghost_threshold * ghost_threshold;
+let ghost_fg_hex = "#ffffff";
+let ghost_bg_hex = "#000000";
+$: ghost_fg_rgb = hextorgb(ghost_fg_hex);
+$: ghost_bg_rgb = hextorgb(ghost_bg_hex);
+let ghost_frame;
 let ghost_accum = new Queue();
 
 let pixel_A = false;
@@ -105,9 +108,13 @@ let movey_A = false;
 let movey_fg = true;
 let movey_bg = false;
 let movey_trail = false;
-let movey_threshold = 40;
 let movey_length = 10;
+let movey_threshold = 40;
 $: mThreshold = movey_threshold * movey_threshold;
+let movey_fg_hex = "#ffffff";
+let movey_bg_hex = "#000000";
+$: movey_fg_rgb = hextorgb(movey_fg_hex);
+$: movey_bg_rgb = hextorgb(movey_bg_hex);
 let prev;
 let movey_motion = Array(wt * ht).fill(0);
 
@@ -141,8 +148,9 @@ const init = async () => {
         v_in.play();
         loading = false;
 
-        frame   = v_temp_ctx.getImageData(0, 0, wt, ht);
-        prev    = v_temp_ctx.getImageData(0, 0, wt, ht);
+        frame       = v_temp_ctx.getImageData(0, 0, wt, ht);
+        prev        = v_temp_ctx.getImageData(0, 0, wt, ht);
+        ghost_frame = v_temp_ctx.getImageData(0, 0, wt, ht);
 
         v_in.addEventListener("play", computeFrame);
     // } catch (error) {
@@ -183,13 +191,32 @@ function computeFrame() {
         let g = frame.data[i * 4 + 1];
         let b = frame.data[i * 4 + 2];
 
+        if (ghost_A) {
+            if ( (distSq(r,g,b,
+                    ghost_frame.data[i * 4 + 0], 
+                    ghost_frame.data[i * 4 + 1],
+                    ghost_frame.data[i * 4 + 2]) > gThreshold)) {
+
+                if (ghost_fg) {
+                    r = ghost_fg_rgb.r;
+                    g = ghost_fg_rgb.g;
+                    b = ghost_fg_rgb.b;
+                }
+            }
+            else if (ghost_bg){
+                r = ghost_bg_rgb.r;
+                g = ghost_bg_rgb.g;
+                b = ghost_bg_rgb.b;
+            }
+        }
+
         if (movey_A) {
 
             if (movey_motion[i * 4 + 0] > 0) {
                 if (movey_fg) {
-                    r = colorA_rgb.r;
-                    g = colorA_rgb.g;
-                    b = colorA_rgb.b;
+                    r = movey_fg_rgb.r;
+                    g = movey_fg_rgb.g;
+                    b = movey_fg_rgb.b;
                 }
             }
             else if ( (distSq(r,g,b,
@@ -198,17 +225,17 @@ function computeFrame() {
                         prev.data[i * 4 + 2]) > mThreshold)) {
 
                 if (movey_fg) {
-                    r = colorA_rgb.r;
-                    g = colorA_rgb.g;
-                    b = colorA_rgb.b;
+                    r = movey_fg_rgb.r;
+                    g = movey_fg_rgb.g;
+                    b = movey_fg_rgb.b;
                 }
                 if (movey_trail)
                     movey_motion[i * 4 + 0] = movey_length;
             }
             else if (movey_bg) {
-                r = colorB_rgb.r;
-                g = colorB_rgb.g;
-                b = colorB_rgb.b;
+                r = movey_bg_rgb.r;
+                g = movey_bg_rgb.g;
+                b = movey_bg_rgb.b;
             }
 
             // decrement current pixel in motion array
@@ -254,6 +281,11 @@ function computeFrame() {
     }
 
     if (movey_A) prev = v_temp_ctx.getImageData(0, 0, wt, ht);
+
+    if (ghost_capture) {
+        ghost_frame = v_temp_ctx.getImageData(0, 0, wt, ht);
+        ghost_capture = false;
+    }
 
     v_out_ctx.putImageData(frame, 0, 0);
 
@@ -378,14 +410,38 @@ function distSq(x1, y1, z1, x2, y2, z2) {
         <label class="tgl-btn" for="tgl-ghost"
             data-tg-off="ghost" data-tg-on="ghost!"></label>
         <div class="effect-inner">
-            <RadioOptions 
-                bind:optionChosen={ghost_mode}
-                id="ghost mode"
-                opt1="RedGreenBlue"
-                opt2="Brighter"
-                opt3="Darker"
-                opt4="Solid"/>
+            <button class="button3" on:click={ghost_doCapture}>capture</button>
+
+            <div class="divider"></div>
+
+            <div class="ghost-container">
+                <Toggle
+                    id="fg"
+                    showID={true}
+                    bind:opt={ghost_fg}/>
+                <div class="color-container">
+                    <input
+                        bind:value={ghost_fg_hex}
+                        type="color">
+                </div>
+                <Toggle
+                    id="bg"
+                    showID={true}
+                    bind:opt={ghost_bg}/>
+                <div class="color-container">
+                    <input
+                        bind:value={ghost_bg_hex}
+                        type="color">
+                </div>
+            </div>
             <Slider 
+                bind:sliderValue={ghost_threshold}
+                id="eff-ghost-threshold"
+                label="threshold"
+                minval={10}
+                maxval={120}
+                defval={30}/>
+            <!-- <Slider 
                 bind:sliderValue={ghost_amount}
                 id="eff-ghost-amount"
                 label="amount"
@@ -398,7 +454,7 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                 label="delay"
                 minval={0}
                 maxval={30}
-                defval={1}/>
+                defval={1}/> -->
         </div>
     </div>
 
@@ -408,10 +464,6 @@ function distSq(x1, y1, z1, x2, y2, z2) {
         <label class="tgl-btn" for="tgl-movey"
             data-tg-off="movey" data-tg-on="movey!"></label>
         <div class="effect-inner">
-            <Toggle
-                id="trail"
-                showID={true}
-                bind:opt={movey_trail}/>
             <Slider 
                 bind:sliderValue={movey_length}
                 id="eff-movey-length"
@@ -419,6 +471,12 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                 minval={1}
                 maxval={60}
                 defval={10}/>
+            <Toggle
+                id="trail"
+                showID={true}
+                bind:opt={movey_trail}/>
+
+            <div class="divider"></div>
             
             <div class="movey-container">
                 <Toggle
@@ -427,9 +485,8 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                     bind:opt={movey_fg}/>
                 <div class="color-container">
                     <input
-                        bind:value={colorA_hex}
-                        type="color"
-                        id="colorpickerA">
+                        bind:value={movey_fg_hex}
+                        type="color">
                 </div>
                 <Toggle
                     id="bg"
@@ -437,9 +494,8 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                     bind:opt={movey_bg}/>
                 <div class="color-container">
                     <input
-                        bind:value={colorB_hex}
-                        type="color"
-                        id="colorpickerB">
+                        bind:value={movey_bg_hex}
+                        type="color">
                 </div>
             </div>
             <Slider 
@@ -539,10 +595,17 @@ function distSq(x1, y1, z1, x2, y2, z2) {
 .effect-inner {
     /* background: aqua; */
     display: flex;
-    justify-content: space-around;
     align-items: flex-start;
     padding: 0;
     margin: 0;
+}
+
+.divider {
+    height: 85%; 
+    width: .7rem; 
+    margin: 1.5rem; 
+    background: var(--bagel-yellow-light);
+    border-radius: .7rem;
 }
 
 
@@ -598,7 +661,14 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     transform: rotateY(20deg);
 }
 
-
+.ghost-container {
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
 .movey-container {
     /* background-color: aqua; */
     display: flex;
