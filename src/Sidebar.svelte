@@ -1,26 +1,75 @@
 <script>
-    import RadioOptions from "./RadioOptions.svelte";
-    import Slider from "./Slider.svelte";
+    import { createEventDispatcher } from 'svelte'
 
-    export const colorA_hex = "#FFFFFF";
-    export const colorB_hex = "#000000";
-    export const colorC_hex = "#808080";
-    
-    let mod_source = 1;
+    const dispatch = createEventDispatcher()
 
-    let mod_intensity = 0;
-    let mod_wobbler = 50;
+    export let presetString = "";
+    export let presetSaving = false;
+
+    let inputObject;
+    let inputString = " paste preset here"
+    let presetConsole = "click save to copy preset to clipboard";
+
+    function doLoad() {
+        if (inputString[0] == '{') {
+            presetString = inputString;
+            presetConsole = "loaded from text input!";
+            setTimeout(() => { 
+                presetConsole = "click save to copy current preset to clipboard";
+            }, "3000");
+        } else {
+            presetConsole = "sorry, invalid format!";
+            setTimeout(() => { 
+                presetConsole = "click save to copy current preset to clipboard";
+            }, "3000");
+        }
+    }
+
+    function doSave() {
+        presetSaving = true;
+        presetConsole = "copied to clipboard!";
+        setTimeout(() => { 
+            presetSaving = false; 
+            presetConsole = "click save to copy current preset to clipboard";
+        }, "3000");
+    }
 
 </script>
 
 <div class="backdrop">
     
-    <div class="presets" style="display: none">
-        <h1>presets</h1>
-        <button class="button2">save</button>
-        <button class="button2">load</button>
+    <div class="presets-container">
+        <h1>preset</h1>
+
+        <input class="preset-input" type="text" 
+            bind:value={inputString} 
+            bind:this={inputObject}
+            on:focus={() => { inputObject.select(); } }>
+        <button class="buttonSave" on:click={doSave}>save</button>
+        <button class="buttonSave" on:click={doLoad}>load</button>
+        <p class="preset-console">{presetConsole}</p>
     </div>
 
+    <button on:click={()=>{
+        let mypreset = {"ghost_A":false,"ghost_fg":true,"ghost_bg":false,"ghost_capture":false,"ghost_threshold":30,"ghost_fg_hex":"#ffffff","ghost_bg_hex":"#000000","pixel_A":true,"pixel_chunkSize":6,"filter_A":true,"filter_temp":51,"filter_saturate":63,"filter_bright":58,"movey_A":false,"movey_fg":true,"movey_bg":false,"movey_trail":false,"movey_length":10,"movey_threshold":40,"movey_fg_hex":"#ffffff","movey_bg_hex":"#000000","poster_A":true,"poster_threshold":143,"poster_maxvalue":100};
+        inputString = JSON.stringify(mypreset);
+        doLoad(); 
+    }}>sprite</button>
+
+    <button on:click={()=>{
+        let mypreset = {"ghost_A":false,"ghost_fg":true,"ghost_bg":false,"ghost_capture":false,"ghost_threshold":30,"ghost_fg_hex":"#ffffff","ghost_bg_hex":"#000000","pixel_A":false,"pixel_chunkSize":3,"filter_A":false,"filter_temp":50,"filter_saturate":50,"filter_bright":50,"movey_A":true,"movey_fg":true,"movey_bg":true,"movey_trail":true,"movey_length":10,"movey_threshold":40,"movey_fg_hex":"#af65ec","movey_bg_hex":"#d8d2da","poster_A":false,"poster_threshold":120,"poster_maxvalue":150};
+        inputString = JSON.stringify(mypreset);
+        doLoad(); 
+    }}>purple haze</button>
+
+    <button on:click={()=>{ 
+        let mypreset = {"ghost_A":true,"ghost_fg":false,"ghost_bg":true,"ghost_capture":false,"ghost_threshold":43,"ghost_fg_hex":"#ffffff","ghost_bg_hex":"#610000","pixel_A":false,"pixel_chunkSize":10,"filter_A":true,"filter_temp":36,"filter_saturate":67,"filter_bright":32,"movey_A":false,"movey_fg":false,"movey_bg":false,"movey_trail":false,"movey_length":10,"movey_threshold":40,"movey_fg_hex":"#ffffff","movey_bg_hex":"#000000","poster_A":true,"poster_threshold":112,"poster_maxvalue":93};
+        inputString = JSON.stringify(mypreset);
+        doLoad(); 
+    }}>the void</button>
+
+
+    <!-- 
     <div class="modulation">
 
         <div class="mod-container">
@@ -58,14 +107,13 @@
                 opt4="Wobbler"/>
         </div>
         
-    </div>
+    </div> -->
 
 </div>
 
 <style>
 
 .backdrop {
-    /* background-color: var(--header-brown); */
     background-image: linear-gradient(to top, var(--header-brown) 90%, var(--header-brown-dark));
     color: var(--white);
     width: 15rem;
@@ -83,34 +131,19 @@ h1 {
     font-size: 1.7rem;
 }
 
-/* .color-label-container {
-    display: flex;
-    height: 1.3rem;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.color-container {
-    display: flex;
-    height: 2rem;
-    width: 10rem;
+.preset-input {
+    font-family: 'Courier New', Courier, monospace !important;
+    width: 90%;
+    height: 1.6rem;
+    background-color: var(--white);
+    color: var(--black);
+    border: 0;
+    border-radius: 0.25rem;
     margin-bottom: 1rem;
 }
 
-input[type="color"] {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    background-color: var(--header-brown);
-} */
-
-.mod-container {
-    display: flex;
-    /* background-color: blue; */
-}
-
-.mod-source {
-    margin-top: 1.5rem;
+.preset-console {
+    height: 5rem;
 }
 
 </style>

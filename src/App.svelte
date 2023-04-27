@@ -4,9 +4,8 @@ import Header from "./Header.svelte";
 import Sidebar from "./Sidebar.svelte";
 import Control from "./Control.svelte";
 
-let colorA;
-let colorB;
-let colorC;
+let preset;
+let presetSaving;
 
 </script>
 
@@ -17,15 +16,13 @@ let colorC;
 	<div class="container">
 
 		<Sidebar 
-			bind:colorA_hex={colorA}
-			bind:colorB_hex={colorB}
-			bind:colorC_hex={colorC}
+			bind:presetString={preset}
+			bind:presetSaving={presetSaving}
 			/>
 		
 		<Control 
-			bind:colorA_hex={colorA}
-			bind:colorB_hex={colorB}
-			bind:colorC_hex={colorC}/>
+			bind:presetString={preset}
+			bind:presetSaving={presetSaving}/>
 
 	</div>
 

@@ -68,10 +68,11 @@ body, .content {
 	padding-bottom: 3%;
 }
 
-.button2 {
+.buttonSave {
 	-webkit-appearance: none;
 	appearance: none;
     background: url("./icons/button2.svg");
+	/* background-color: aqua; */
 	background-repeat: no-repeat; 
 	background-position: center;
 	cursor: pointer;
@@ -79,4 +80,19 @@ body, .content {
 	height: 3rem;
 	border-width: 0;
 	font-size: 100%;
+}
+
+.buttonLoad {
+	-webkit-appearance: none;
+	appearance: none;
+    background: url("./icons/button2.svg");
+	/* background-color: aqua; */
+	color: var(--black);
+	background-repeat: no-repeat; 
+	background-position: center;
+	cursor: pointer;
+	width: 5rem;
+	height: 3rem;
+	font-size: 1rem;
+    display: inline-block;
 }

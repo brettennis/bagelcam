@@ -8,6 +8,11 @@ import Slider from "./Slider.svelte";
 import RadioOptions from "./RadioOptions.svelte";
 import Toggle from "./Toggle.svelte";
 
+export let presetString;
+$: presetString && loadPreset();
+export let presetSaving;
+$: presetSaving && savePreset();
+
 const wt = 320*1.2;
 const ht = 240*1.2;
 
@@ -82,8 +87,6 @@ class Queue {
 let ghost_A = false;
 let ghost_fg = true;
 let ghost_bg = false;
-let ghost_amount = 1;
-let ghost_delay = 1;
 let ghost_capture = false;
 function ghost_doCapture() {ghost_capture = true;}
 let ghost_threshold = 30;
@@ -93,7 +96,7 @@ let ghost_bg_hex = "#000000";
 $: ghost_fg_rgb = hextorgb(ghost_fg_hex);
 $: ghost_bg_rgb = hextorgb(ghost_bg_hex);
 let ghost_frame;
-let ghost_accum = new Queue();
+// let ghost_accum = new Queue();
 
 let pixel_A = false;
 let pixel_chunkSize = 3;
@@ -121,6 +124,95 @@ let movey_motion = Array(wt * ht).fill(0);
 let poster_A = false;
 let poster_threshold = 120;
 let poster_maxvalue = 150;
+
+// -----------------
+// loadPreset
+// 
+// change all effect attributes based on json file
+// -----------------
+
+function loadPreset() {
+    // translate string to json object
+    try {
+        const preset = JSON.parse(presetString);
+
+        ghost_A = preset.ghost_A;
+        ghost_fg = preset.ghost_fg;
+        ghost_bg = preset.ghost_bg;
+        ghost_capture = preset.ghost_capture;
+        ghost_threshold = preset.ghost_threshold;
+        ghost_fg_hex = preset.ghost_fg_hex;
+        ghost_bg_hex = preset.ghost_bg_hex;
+
+        pixel_A = preset.pixel_A;
+        pixel_chunkSize = preset.pixel_chunkSize;
+
+        filter_A = preset.filter_A;
+        filter_temp = preset.filter_temp;
+        filter_saturate = preset.filter_saturate;
+        filter_bright = preset.filter_bright;
+
+        movey_A = preset.movey_A;
+        movey_fg = preset.movey_fg;
+        movey_bg = preset.movey_bg;
+        movey_trail = preset.movey_trail;
+        movey_length = preset.movey_length;
+        movey_threshold = preset.movey_threshold;
+        movey_fg_hex = preset.movey_fg_hex;
+        movey_bg_hex = preset.movey_bg_hex;
+
+        poster_A = preset.poster_A;
+        poster_threshold = preset.poster_threshold;
+        poster_maxvalue = preset.poster_maxvalue;
+
+    } catch (e) {
+        alert("Hey! That preset is of the wrong format. Try again.");
+    }
+}
+
+// -----------------
+// savePreset
+// 
+// parse all effect attributes into json string
+// -----------------
+
+function savePreset() {
+
+    let preset = {};
+
+    preset.ghost_A = ghost_A;
+    preset.ghost_fg = ghost_fg;
+    preset.ghost_bg = ghost_bg;
+    preset.ghost_capture = ghost_capture;
+    preset.ghost_threshold = ghost_threshold;
+    preset.ghost_fg_hex = ghost_fg_hex;
+    preset.ghost_bg_hex = ghost_bg_hex;
+
+    preset.pixel_A = pixel_A;
+    preset.pixel_chunkSize = pixel_chunkSize;
+
+    preset.filter_A = filter_A;
+    preset.filter_temp = filter_temp;
+    preset.filter_saturate = filter_saturate;
+    preset.filter_bright = filter_bright;
+
+    preset.movey_A = movey_A;
+    preset.movey_fg = movey_fg;
+    preset.movey_bg = movey_bg;
+    preset.movey_trail = movey_trail;
+    preset.movey_length = movey_length;
+    preset.movey_threshold = movey_threshold;
+    preset.movey_fg_hex = movey_fg_hex;
+    preset.movey_bg_hex = movey_bg_hex;
+
+    preset.poster_A = poster_A;
+    preset.poster_threshold = poster_threshold;
+    preset.poster_maxvalue = poster_maxvalue;
+
+    let savedPresetString = JSON.stringify(preset);
+
+    navigator.clipboard.writeText(savedPresetString);
+}
 
 // -----------------
 // init
@@ -363,8 +455,8 @@ function distSq(x1, y1, z1, x2, y2, z2) {
         <div class="controller">
 
             <div class="button-controller">
-                <button class="button1-1" on:click={doPopout}>Popout</button>
-                <button class="button1-2" on:click={doTrade}>Trade</button>
+                <!-- <button class="button1-1" on:click={doPopout}>Popout</button> -->
+                <button class="button1-2" on:click={doTrade}>Bypass</button>
             </div>
 
             {#if streaming}
