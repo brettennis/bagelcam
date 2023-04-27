@@ -101,15 +101,12 @@ let filter_temp = 50;
 let filter_saturate = 50;
 let filter_bright = 50; 
 
-let chroma_A = false;
-let chroma_threshold = 1;
-
 let movey_A = false;
 let movey_fg = true;
 let movey_bg = false;
 let movey_trail = false;
 let movey_threshold = 40;
-let movey_length = 0;
+let movey_length = 10;
 $: mThreshold = movey_threshold * movey_threshold;
 let prev;
 let movey_motion = Array(wt * ht).fill(0);
@@ -405,33 +402,29 @@ function distSq(x1, y1, z1, x2, y2, z2) {
         </div>
     </div>
 
-    <div class="effect" id="eff-chroma" style="grid-area: 2 / 3 / 3 / 4">
-        <input class="effect-toggle" bind:checked={chroma_A} 
-            type="checkbox"     id="tgl-chroma">
-        <label class="tgl-btn" for="tgl-chroma"
-            data-tg-off="chroma" data-tg-on="chroma!"></label>
-        <div class="effect-inner">
-            <Slider 
-                bind:sliderValue={chroma_threshold}
-                id="eff-chroma-threshold"
-                label="threshold"
-                minval={0}
-                maxval={100}
-                defval={50}/>
-        </div>
-    </div>
-
-    <div class="effect" id="eff-movey" style="grid-area: 2 / 4 / 3 / 5">
+    <div class="effect" id="eff-movey" style="grid-area: 2 / 3 / 3 / 5">
         <input class="effect-toggle" bind:checked={movey_A} 
             type="checkbox"     id="tgl-movey">
         <label class="tgl-btn" for="tgl-movey"
             data-tg-off="movey" data-tg-on="movey!"></label>
         <div class="effect-inner">
+            <Toggle
+                id="trail"
+                showID={true}
+                bind:opt={movey_trail}/>
+            <Slider 
+                bind:sliderValue={movey_length}
+                id="eff-movey-length"
+                label="length"
+                minval={1}
+                maxval={60}
+                defval={10}/>
+            
             <div class="movey-container">
                 <Toggle
-                    id="bg"
+                    id="fg"
                     showID={true}
-                    bind:opt={movey_bg}/>
+                    bind:opt={movey_fg}/>
                 <div class="color-container">
                     <input
                         bind:value={colorA_hex}
@@ -439,9 +432,9 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                         id="colorpickerA">
                 </div>
                 <Toggle
-                    id="fg"
+                    id="bg"
                     showID={true}
-                    bind:opt={movey_fg}/>
+                    bind:opt={movey_bg}/>
                 <div class="color-container">
                     <input
                         bind:value={colorB_hex}
@@ -607,6 +600,7 @@ function distSq(x1, y1, z1, x2, y2, z2) {
 
 
 .movey-container {
+    /* background-color: aqua; */
     display: flex;
     flex-direction: column;
     height: 100%;

@@ -23,12 +23,13 @@
 
     .backdrop {
         /* background-color: aqua; */
-        height: 5rem;
+        height: 4rem;
     }
 
     .label {
         color: var(--header-brown-dark);
         text-align: center;
+        margin-bottom: 0.5rem;
     }
 
     .switch {
