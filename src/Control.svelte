@@ -408,18 +408,18 @@ function distSq(x1, y1, z1, x2, y2, z2) {
             data-tg-off="movey" data-tg-on="movey!"></label>
         <div class="effect-inner">
             <div class="movey-container">
-                <Toggle
-                    id="block"
-                    bind:opt={movey_block}/>
                 <div class="color-container">
-                    <!-- <h3>a</h3> -->
                     <input
                         bind:value={colorA_hex}
                         type="color"
                         id="colorpickerA">
                 </div>
+                <div style="height:2.5rem;"></div>
+                <Toggle
+                    id="block"
+                    showID={true}
+                    bind:opt={movey_block}/>
                 <div class="color-container">
-                    <!-- <h3>b</h3> -->
                     <input
                         bind:value={colorB_hex}
                         type="color"
@@ -596,7 +596,7 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     /* display: flex; */
     height: 2rem;
     width: 3rem;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 input[type="color"] {
     width: 100%;

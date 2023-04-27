@@ -1,12 +1,17 @@
 <script>
     export let id;
+    export let showID = true;
     export let opt;
 
 </script>
 
 <div class="backdrop">
+    {#if showID}
     <h3 class="label">{id}</h3>
-
+    {:else}
+    <div style="height:2.5rem;"></div>
+    {/if}
+    
     <label class="switch">
         <input type="checkbox" bind:checked={opt}>
         <span class="slider"></span>
@@ -18,7 +23,7 @@
 
     .backdrop {
         /* background-color: aqua; */
-        height: 7.5rem;
+        height: 7rem;
     }
 
     .label {

@@ -1238,47 +1238,35 @@ var app = (function () {
     const file$3 = "src/Sidebar.svelte";
 
     function create_fragment$3(ctx) {
-    	let div9;
-    	let div2;
+    	let div7;
+    	let div0;
     	let h10;
     	let t1;
-    	let div0;
-    	let h30;
+    	let button0;
     	let t3;
-    	let h31;
+    	let button1;
     	let t5;
-    	let h32;
-    	let t7;
-    	let div1;
-    	let input0;
-    	let t8;
-    	let input1;
-    	let t9;
-    	let input2;
-    	let t10;
-    	let div8;
     	let div6;
-    	let div3;
+    	let div4;
+    	let div1;
     	let h11;
-    	let t12;
+    	let t7;
     	let slider0;
     	let updating_sliderValue;
-    	let t13;
-    	let div5;
-    	let div4;
-    	let t14;
+    	let t8;
+    	let div3;
+    	let div2;
+    	let t9;
     	let slider1;
     	let updating_sliderValue_1;
-    	let t15;
-    	let div7;
+    	let t10;
+    	let div5;
     	let radiooptions;
     	let updating_optionChosen;
     	let current;
-    	let mounted;
-    	let dispose;
 
     	function slider0_sliderValue_binding(value) {
-    		/*slider0_sliderValue_binding*/ ctx[9](value);
+    		/*slider0_sliderValue_binding*/ ctx[6](value);
     	}
 
     	let slider0_props = {
@@ -1290,15 +1278,15 @@ var app = (function () {
     		defval: 0
     	};
 
-    	if (/*mod_intensity*/ ctx[4] !== void 0) {
-    		slider0_props.sliderValue = /*mod_intensity*/ ctx[4];
+    	if (/*mod_intensity*/ ctx[1] !== void 0) {
+    		slider0_props.sliderValue = /*mod_intensity*/ ctx[1];
     	}
 
     	slider0 = new Slider({ props: slider0_props, $$inline: true });
     	binding_callbacks.push(() => bind(slider0, 'sliderValue', slider0_sliderValue_binding));
 
     	function slider1_sliderValue_binding(value) {
-    		/*slider1_sliderValue_binding*/ ctx[10](value);
+    		/*slider1_sliderValue_binding*/ ctx[7](value);
     	}
 
     	let slider1_props = {
@@ -1310,15 +1298,15 @@ var app = (function () {
     		defval: 50
     	};
 
-    	if (/*mod_wobbler*/ ctx[5] !== void 0) {
-    		slider1_props.sliderValue = /*mod_wobbler*/ ctx[5];
+    	if (/*mod_wobbler*/ ctx[2] !== void 0) {
+    		slider1_props.sliderValue = /*mod_wobbler*/ ctx[2];
     	}
 
     	slider1 = new Slider({ props: slider1_props, $$inline: true });
     	binding_callbacks.push(() => bind(slider1, 'sliderValue', slider1_sliderValue_binding));
 
     	function radiooptions_optionChosen_binding(value) {
-    		/*radiooptions_optionChosen_binding*/ ctx[11](value);
+    		/*radiooptions_optionChosen_binding*/ ctx[8](value);
     	}
 
     	let radiooptions_props = {
@@ -1329,8 +1317,8 @@ var app = (function () {
     		opt4: "Wobbler"
     	};
 
-    	if (/*mod_source*/ ctx[3] !== void 0) {
-    		radiooptions_props.optionChosen = /*mod_source*/ ctx[3];
+    	if (/*mod_source*/ ctx[0] !== void 0) {
+    		radiooptions_props.optionChosen = /*mod_source*/ ctx[0];
     	}
 
     	radiooptions = new RadioOptions({
@@ -1342,170 +1330,110 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div9 = element("div");
-    			div2 = element("div");
-    			h10 = element("h1");
-    			h10.textContent = "colors";
-    			t1 = space();
+    			div7 = element("div");
     			div0 = element("div");
-    			h30 = element("h3");
-    			h30.textContent = "a";
+    			h10 = element("h1");
+    			h10.textContent = "presets";
+    			t1 = space();
+    			button0 = element("button");
+    			button0.textContent = "save";
     			t3 = space();
-    			h31 = element("h3");
-    			h31.textContent = "b";
+    			button1 = element("button");
+    			button1.textContent = "load";
     			t5 = space();
-    			h32 = element("h3");
-    			h32.textContent = "c";
-    			t7 = space();
-    			div1 = element("div");
-    			input0 = element("input");
-    			t8 = space();
-    			input1 = element("input");
-    			t9 = space();
-    			input2 = element("input");
-    			t10 = space();
-    			div8 = element("div");
     			div6 = element("div");
-    			div3 = element("div");
+    			div4 = element("div");
+    			div1 = element("div");
     			h11 = element("h1");
     			h11.textContent = "mod";
-    			t12 = space();
+    			t7 = space();
     			create_component(slider0.$$.fragment);
-    			t13 = space();
-    			div5 = element("div");
-    			div4 = element("div");
-    			t14 = space();
+    			t8 = space();
+    			div3 = element("div");
+    			div2 = element("div");
+    			t9 = space();
     			create_component(slider1.$$.fragment);
-    			t15 = space();
-    			div7 = element("div");
+    			t10 = space();
+    			div5 = element("div");
     			create_component(radiooptions.$$.fragment);
-    			attr_dev(h10, "class", "svelte-1f14r3q");
-    			add_location(h10, file$3, 25, 8, 568);
-    			add_location(h30, file$3, 28, 12, 641);
-    			add_location(h31, file$3, 28, 23, 652);
-    			add_location(h32, file$3, 28, 34, 663);
-    			attr_dev(div0, "class", "color-label-container svelte-1f14r3q");
-    			add_location(div0, file$3, 27, 8, 593);
-    			attr_dev(input0, "type", "color");
-    			attr_dev(input0, "id", "colorpickerA");
-    			attr_dev(input0, "class", "svelte-1f14r3q");
-    			add_location(input0, file$3, 32, 12, 740);
-    			attr_dev(input1, "type", "color");
-    			attr_dev(input1, "id", "colorpickerB");
-    			attr_dev(input1, "class", "svelte-1f14r3q");
-    			add_location(input1, file$3, 36, 12, 863);
-    			attr_dev(input2, "type", "color");
-    			attr_dev(input2, "id", "colorpickerC");
-    			attr_dev(input2, "class", "svelte-1f14r3q");
-    			add_location(input2, file$3, 40, 12, 987);
-    			attr_dev(div1, "class", "color-container svelte-1f14r3q");
-    			add_location(div1, file$3, 31, 8, 698);
-    			attr_dev(div2, "class", "mycolors");
-    			add_location(div2, file$3, 23, 4, 536);
-    			attr_dev(h11, "class", "svelte-1f14r3q");
-    			add_location(h11, file$3, 52, 16, 1249);
-    			attr_dev(div3, "class", "mod-item-left");
-    			add_location(div3, file$3, 51, 12, 1205);
-    			set_style(div4, "height", "1.5rem");
-    			add_location(div4, file$3, 63, 16, 1624);
-    			attr_dev(div5, "class", "mod-item-right");
-    			add_location(div5, file$3, 62, 12, 1579);
-    			attr_dev(div6, "class", "mod-container svelte-1f14r3q");
-    			add_location(div6, file$3, 50, 8, 1165);
-    			attr_dev(div7, "class", "mod-source svelte-1f14r3q");
-    			add_location(div7, file$3, 75, 8, 1984);
-    			attr_dev(div8, "class", "modulation");
-    			add_location(div8, file$3, 48, 4, 1131);
-    			attr_dev(div9, "class", "backdrop svelte-1f14r3q");
-    			add_location(div9, file$3, 15, 0, 318);
+    			attr_dev(h10, "class", "svelte-ib0i95");
+    			add_location(h10, file$3, 18, 8, 408);
+    			attr_dev(button0, "class", "button2");
+    			add_location(button0, file$3, 19, 8, 433);
+    			attr_dev(button1, "class", "button2");
+    			add_location(button1, file$3, 20, 8, 479);
+    			attr_dev(div0, "class", "presets");
+    			set_style(div0, "display", "none");
+    			add_location(div0, file$3, 17, 4, 356);
+    			attr_dev(h11, "class", "svelte-ib0i95");
+    			add_location(h11, file$3, 27, 16, 651);
+    			attr_dev(div1, "class", "mod-item-left");
+    			add_location(div1, file$3, 26, 12, 607);
+    			set_style(div2, "height", "1.5rem");
+    			add_location(div2, file$3, 38, 16, 1026);
+    			attr_dev(div3, "class", "mod-item-right");
+    			add_location(div3, file$3, 37, 12, 981);
+    			attr_dev(div4, "class", "mod-container svelte-ib0i95");
+    			add_location(div4, file$3, 25, 8, 567);
+    			attr_dev(div5, "class", "mod-source svelte-ib0i95");
+    			add_location(div5, file$3, 50, 8, 1386);
+    			attr_dev(div6, "class", "modulation");
+    			add_location(div6, file$3, 23, 4, 533);
+    			attr_dev(div7, "class", "backdrop svelte-ib0i95");
+    			add_location(div7, file$3, 15, 0, 324);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div9, anchor);
-    			append_dev(div9, div2);
-    			append_dev(div2, h10);
-    			append_dev(div2, t1);
-    			append_dev(div2, div0);
-    			append_dev(div0, h30);
+    			insert_dev(target, div7, anchor);
+    			append_dev(div7, div0);
+    			append_dev(div0, h10);
+    			append_dev(div0, t1);
+    			append_dev(div0, button0);
     			append_dev(div0, t3);
-    			append_dev(div0, h31);
-    			append_dev(div0, t5);
-    			append_dev(div0, h32);
-    			append_dev(div2, t7);
-    			append_dev(div2, div1);
-    			append_dev(div1, input0);
-    			set_input_value(input0, /*colorA_hex*/ ctx[0]);
-    			append_dev(div1, t8);
-    			append_dev(div1, input1);
-    			set_input_value(input1, /*colorB_hex*/ ctx[1]);
-    			append_dev(div1, t9);
-    			append_dev(div1, input2);
-    			set_input_value(input2, /*colorC_hex*/ ctx[2]);
-    			append_dev(div9, t10);
-    			append_dev(div9, div8);
-    			append_dev(div8, div6);
-    			append_dev(div6, div3);
-    			append_dev(div3, h11);
-    			append_dev(div3, t12);
-    			mount_component(slider0, div3, null);
-    			append_dev(div6, t13);
+    			append_dev(div0, button1);
+    			append_dev(div7, t5);
+    			append_dev(div7, div6);
+    			append_dev(div6, div4);
+    			append_dev(div4, div1);
+    			append_dev(div1, h11);
+    			append_dev(div1, t7);
+    			mount_component(slider0, div1, null);
+    			append_dev(div4, t8);
+    			append_dev(div4, div3);
+    			append_dev(div3, div2);
+    			append_dev(div3, t9);
+    			mount_component(slider1, div3, null);
+    			append_dev(div6, t10);
     			append_dev(div6, div5);
-    			append_dev(div5, div4);
-    			append_dev(div5, t14);
-    			mount_component(slider1, div5, null);
-    			append_dev(div8, t15);
-    			append_dev(div8, div7);
-    			mount_component(radiooptions, div7, null);
+    			mount_component(radiooptions, div5, null);
     			current = true;
-
-    			if (!mounted) {
-    				dispose = [
-    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[6]),
-    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[7]),
-    					listen_dev(input2, "input", /*input2_input_handler*/ ctx[8])
-    				];
-
-    				mounted = true;
-    			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*colorA_hex*/ 1) {
-    				set_input_value(input0, /*colorA_hex*/ ctx[0]);
-    			}
-
-    			if (dirty & /*colorB_hex*/ 2) {
-    				set_input_value(input1, /*colorB_hex*/ ctx[1]);
-    			}
-
-    			if (dirty & /*colorC_hex*/ 4) {
-    				set_input_value(input2, /*colorC_hex*/ ctx[2]);
-    			}
-
     			const slider0_changes = {};
 
-    			if (!updating_sliderValue && dirty & /*mod_intensity*/ 16) {
+    			if (!updating_sliderValue && dirty & /*mod_intensity*/ 2) {
     				updating_sliderValue = true;
-    				slider0_changes.sliderValue = /*mod_intensity*/ ctx[4];
+    				slider0_changes.sliderValue = /*mod_intensity*/ ctx[1];
     				add_flush_callback(() => updating_sliderValue = false);
     			}
 
     			slider0.$set(slider0_changes);
     			const slider1_changes = {};
 
-    			if (!updating_sliderValue_1 && dirty & /*mod_wobbler*/ 32) {
+    			if (!updating_sliderValue_1 && dirty & /*mod_wobbler*/ 4) {
     				updating_sliderValue_1 = true;
-    				slider1_changes.sliderValue = /*mod_wobbler*/ ctx[5];
+    				slider1_changes.sliderValue = /*mod_wobbler*/ ctx[2];
     				add_flush_callback(() => updating_sliderValue_1 = false);
     			}
 
     			slider1.$set(slider1_changes);
     			const radiooptions_changes = {};
 
-    			if (!updating_optionChosen && dirty & /*mod_source*/ 8) {
+    			if (!updating_optionChosen && dirty & /*mod_source*/ 1) {
     				updating_optionChosen = true;
-    				radiooptions_changes.optionChosen = /*mod_source*/ ctx[3];
+    				radiooptions_changes.optionChosen = /*mod_source*/ ctx[0];
     				add_flush_callback(() => updating_optionChosen = false);
     			}
 
@@ -1525,12 +1453,10 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div9);
+    			if (detaching) detach_dev(div7);
     			destroy_component(slider0);
     			destroy_component(slider1);
     			destroy_component(radiooptions);
-    			mounted = false;
-    			run_all(dispose);
     		}
     	};
 
@@ -1548,53 +1474,32 @@ var app = (function () {
     function instance$3($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Sidebar', slots, []);
-    	let { colorA_hex = "#FFFFFF" } = $$props;
-    	let { colorB_hex = "#000000" } = $$props;
-    	let { colorC_hex = "#808080" } = $$props;
+    	const colorA_hex = "#FFFFFF";
+    	const colorB_hex = "#000000";
+    	const colorC_hex = "#808080";
     	let mod_source = 1;
     	let mod_intensity = 0;
     	let mod_wobbler = 50;
-    	const writable_props = ['colorA_hex', 'colorB_hex', 'colorC_hex'];
+    	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Sidebar> was created with unknown prop '${key}'`);
     	});
 
-    	function input0_input_handler() {
-    		colorA_hex = this.value;
-    		$$invalidate(0, colorA_hex);
-    	}
-
-    	function input1_input_handler() {
-    		colorB_hex = this.value;
-    		$$invalidate(1, colorB_hex);
-    	}
-
-    	function input2_input_handler() {
-    		colorC_hex = this.value;
-    		$$invalidate(2, colorC_hex);
-    	}
-
     	function slider0_sliderValue_binding(value) {
     		mod_intensity = value;
-    		$$invalidate(4, mod_intensity);
+    		$$invalidate(1, mod_intensity);
     	}
 
     	function slider1_sliderValue_binding(value) {
     		mod_wobbler = value;
-    		$$invalidate(5, mod_wobbler);
+    		$$invalidate(2, mod_wobbler);
     	}
 
     	function radiooptions_optionChosen_binding(value) {
     		mod_source = value;
-    		$$invalidate(3, mod_source);
+    		$$invalidate(0, mod_source);
     	}
-
-    	$$self.$$set = $$props => {
-    		if ('colorA_hex' in $$props) $$invalidate(0, colorA_hex = $$props.colorA_hex);
-    		if ('colorB_hex' in $$props) $$invalidate(1, colorB_hex = $$props.colorB_hex);
-    		if ('colorC_hex' in $$props) $$invalidate(2, colorC_hex = $$props.colorC_hex);
-    	};
 
     	$$self.$capture_state = () => ({
     		RadioOptions,
@@ -1608,12 +1513,9 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('colorA_hex' in $$props) $$invalidate(0, colorA_hex = $$props.colorA_hex);
-    		if ('colorB_hex' in $$props) $$invalidate(1, colorB_hex = $$props.colorB_hex);
-    		if ('colorC_hex' in $$props) $$invalidate(2, colorC_hex = $$props.colorC_hex);
-    		if ('mod_source' in $$props) $$invalidate(3, mod_source = $$props.mod_source);
-    		if ('mod_intensity' in $$props) $$invalidate(4, mod_intensity = $$props.mod_intensity);
-    		if ('mod_wobbler' in $$props) $$invalidate(5, mod_wobbler = $$props.mod_wobbler);
+    		if ('mod_source' in $$props) $$invalidate(0, mod_source = $$props.mod_source);
+    		if ('mod_intensity' in $$props) $$invalidate(1, mod_intensity = $$props.mod_intensity);
+    		if ('mod_wobbler' in $$props) $$invalidate(2, mod_wobbler = $$props.mod_wobbler);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -1621,15 +1523,12 @@ var app = (function () {
     	}
 
     	return [
-    		colorA_hex,
-    		colorB_hex,
-    		colorC_hex,
     		mod_source,
     		mod_intensity,
     		mod_wobbler,
-    		input0_input_handler,
-    		input1_input_handler,
-    		input2_input_handler,
+    		colorA_hex,
+    		colorB_hex,
+    		colorC_hex,
     		slider0_sliderValue_binding,
     		slider1_sliderValue_binding,
     		radiooptions_optionChosen_binding
@@ -1641,9 +1540,9 @@ var app = (function () {
     		super(options);
 
     		init(this, options, instance$3, create_fragment$3, safe_not_equal, {
-    			colorA_hex: 0,
-    			colorB_hex: 1,
-    			colorC_hex: 2
+    			colorA_hex: 3,
+    			colorB_hex: 4,
+    			colorC_hex: 5
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -1655,7 +1554,7 @@ var app = (function () {
     	}
 
     	get colorA_hex() {
-    		throw new Error("<Sidebar>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		return this.$$.ctx[3];
     	}
 
     	set colorA_hex(value) {
@@ -1663,7 +1562,7 @@ var app = (function () {
     	}
 
     	get colorB_hex() {
-    		throw new Error("<Sidebar>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		return this.$$.ctx[4];
     	}
 
     	set colorB_hex(value) {
@@ -1671,7 +1570,7 @@ var app = (function () {
     	}
 
     	get colorC_hex() {
-    		throw new Error("<Sidebar>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		return this.$$.ctx[5];
     	}
 
     	set colorC_hex(value) {
@@ -1683,61 +1582,138 @@ var app = (function () {
 
     const file$2 = "src/Toggle.svelte";
 
-    function create_fragment$2(ctx) {
+    // (11:4) {:else}
+    function create_else_block(ctx) {
     	let div;
-    	let h3;
-    	let t0;
-    	let t1;
-    	let label;
-    	let input;
-    	let t2;
-    	let span;
-    	let mounted;
-    	let dispose;
 
     	const block = {
     		c: function create() {
     			div = element("div");
+    			set_style(div, "height", "2.5rem");
+    			add_location(div, file$2, 11, 4, 178);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(div);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block.name,
+    		type: "else",
+    		source: "(11:4) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (9:4) {#if showID}
+    function create_if_block$1(ctx) {
+    	let h3;
+    	let t;
+
+    	const block = {
+    		c: function create() {
     			h3 = element("h3");
-    			t0 = text(/*id*/ ctx[1]);
-    			t1 = space();
+    			t = text(/*id*/ ctx[1]);
+    			attr_dev(h3, "class", "label svelte-1lv7q25");
+    			add_location(h3, file$2, 9, 4, 134);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h3, anchor);
+    			append_dev(h3, t);
+    		},
+    		p: function update(ctx, dirty) {
+    			if (dirty & /*id*/ 2) set_data_dev(t, /*id*/ ctx[1]);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h3);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_if_block$1.name,
+    		type: "if",
+    		source: "(9:4) {#if showID}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function create_fragment$2(ctx) {
+    	let div;
+    	let t0;
+    	let label;
+    	let input;
+    	let t1;
+    	let span;
+    	let mounted;
+    	let dispose;
+
+    	function select_block_type(ctx, dirty) {
+    		if (/*showID*/ ctx[2]) return create_if_block$1;
+    		return create_else_block;
+    	}
+
+    	let current_block_type = select_block_type(ctx);
+    	let if_block = current_block_type(ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			if_block.c();
+    			t0 = space();
     			label = element("label");
     			input = element("input");
-    			t2 = space();
+    			t1 = space();
     			span = element("span");
-    			attr_dev(h3, "class", "label svelte-1elcrwa");
-    			add_location(h3, file$2, 7, 4, 87);
     			attr_dev(input, "type", "checkbox");
-    			attr_dev(input, "class", "svelte-1elcrwa");
-    			add_location(input, file$2, 10, 8, 151);
-    			attr_dev(span, "class", "slider svelte-1elcrwa");
-    			add_location(span, file$2, 11, 8, 202);
-    			attr_dev(label, "class", "switch svelte-1elcrwa");
-    			add_location(label, file$2, 9, 4, 120);
-    			attr_dev(div, "class", "backdrop svelte-1elcrwa");
-    			add_location(div, file$2, 6, 0, 60);
+    			attr_dev(input, "class", "svelte-1lv7q25");
+    			add_location(input, file$2, 15, 8, 263);
+    			attr_dev(span, "class", "slider svelte-1lv7q25");
+    			add_location(span, file$2, 16, 8, 314);
+    			attr_dev(label, "class", "switch svelte-1lv7q25");
+    			add_location(label, file$2, 14, 4, 232);
+    			attr_dev(div, "class", "backdrop svelte-1lv7q25");
+    			add_location(div, file$2, 7, 0, 90);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
-    			append_dev(div, h3);
-    			append_dev(h3, t0);
-    			append_dev(div, t1);
+    			if_block.m(div, null);
+    			append_dev(div, t0);
     			append_dev(div, label);
     			append_dev(label, input);
     			input.checked = /*opt*/ ctx[0];
-    			append_dev(label, t2);
+    			append_dev(label, t1);
     			append_dev(label, span);
 
     			if (!mounted) {
-    				dispose = listen_dev(input, "change", /*input_change_handler*/ ctx[2]);
+    				dispose = listen_dev(input, "change", /*input_change_handler*/ ctx[3]);
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*id*/ 2) set_data_dev(t0, /*id*/ ctx[1]);
+    			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
+    				if_block.p(ctx, dirty);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(div, t0);
+    				}
+    			}
 
     			if (dirty & /*opt*/ 1) {
     				input.checked = /*opt*/ ctx[0];
@@ -1747,6 +1723,7 @@ var app = (function () {
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
+    			if_block.d();
     			mounted = false;
     			dispose();
     		}
@@ -1767,6 +1744,7 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Toggle', slots, []);
     	let { id } = $$props;
+    	let { showID = true } = $$props;
     	let { opt } = $$props;
 
     	$$self.$$.on_mount.push(function () {
@@ -1779,7 +1757,7 @@ var app = (function () {
     		}
     	});
 
-    	const writable_props = ['id', 'opt'];
+    	const writable_props = ['id', 'showID', 'opt'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Toggle> was created with unknown prop '${key}'`);
@@ -1792,13 +1770,15 @@ var app = (function () {
 
     	$$self.$$set = $$props => {
     		if ('id' in $$props) $$invalidate(1, id = $$props.id);
+    		if ('showID' in $$props) $$invalidate(2, showID = $$props.showID);
     		if ('opt' in $$props) $$invalidate(0, opt = $$props.opt);
     	};
 
-    	$$self.$capture_state = () => ({ id, opt });
+    	$$self.$capture_state = () => ({ id, showID, opt });
 
     	$$self.$inject_state = $$props => {
     		if ('id' in $$props) $$invalidate(1, id = $$props.id);
+    		if ('showID' in $$props) $$invalidate(2, showID = $$props.showID);
     		if ('opt' in $$props) $$invalidate(0, opt = $$props.opt);
     	};
 
@@ -1806,13 +1786,13 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [opt, id, input_change_handler];
+    	return [opt, id, showID, input_change_handler];
     }
 
     class Toggle extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, { id: 1, opt: 0 });
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, { id: 1, showID: 2, opt: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -1827,6 +1807,14 @@ var app = (function () {
     	}
 
     	set id(value) {
+    		throw new Error("<Toggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get showID() {
+    		throw new Error("<Toggle>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set showID(value) {
     		throw new Error("<Toggle>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -1927,7 +1915,7 @@ var app = (function () {
     			? "display:none"
     			: "display:block");
 
-    			attr_dev(canvas, "class", "svelte-17uyggc");
+    			attr_dev(canvas, "class", "svelte-ucmtvw");
     			add_location(canvas, file$1, 302, 8, 7656);
     		},
     		m: function mount(target, anchor) {
@@ -1969,7 +1957,7 @@ var app = (function () {
     			p = element("p");
     			t0 = text("FPS: ");
     			t1 = text(/*fps*/ ctx[3]);
-    			attr_dev(p, "class", "fps svelte-17uyggc");
+    			attr_dev(p, "class", "fps svelte-ucmtvw");
     			add_location(p, file$1, 321, 12, 8264);
     		},
     		m: function mount(target, anchor) {
@@ -2000,7 +1988,7 @@ var app = (function () {
     	let script;
     	let script_src_value;
     	let t0;
-    	let div18;
+    	let div19;
     	let div2;
     	let t1;
     	let t2;
@@ -2059,43 +2047,45 @@ var app = (function () {
     	let slider5;
     	let updating_sliderValue_5;
     	let t24;
-    	let div13;
+    	let div14;
     	let input3;
     	let t25;
     	let label3;
     	let t26;
+    	let div13;
     	let div12;
-    	let div11;
-    	let toggle;
-    	let updating_opt;
-    	let t27;
     	let div9;
     	let input4;
-    	let t28;
+    	let t27;
     	let div10;
-    	let input5;
+    	let t28;
+    	let toggle;
+    	let updating_opt;
     	let t29;
+    	let div11;
+    	let input5;
+    	let t30;
     	let slider6;
     	let updating_sliderValue_6;
-    	let t30;
-    	let div15;
-    	let input6;
     	let t31;
-    	let label4;
+    	let div16;
+    	let input6;
     	let t32;
-    	let div14;
+    	let label4;
+    	let t33;
+    	let div15;
     	let slider7;
     	let updating_sliderValue_7;
-    	let t33;
-    	let div17;
-    	let input7;
     	let t34;
-    	let label5;
+    	let div18;
+    	let input7;
     	let t35;
-    	let div16;
+    	let label5;
+    	let t36;
+    	let div17;
     	let slider8;
     	let updating_sliderValue_8;
-    	let t36;
+    	let t37;
     	let slider9;
     	let updating_sliderValue_9;
     	let current;
@@ -2244,10 +2234,10 @@ var app = (function () {
     	binding_callbacks.push(() => bind(slider5, 'sliderValue', slider5_sliderValue_binding));
 
     	function toggle_opt_binding(value) {
-    		/*toggle_opt_binding*/ ctx[46](value);
+    		/*toggle_opt_binding*/ ctx[47](value);
     	}
 
-    	let toggle_props = { id: "block" };
+    	let toggle_props = { id: "block", showID: true };
 
     	if (/*movey_block*/ ctx[24] !== void 0) {
     		toggle_props.opt = /*movey_block*/ ctx[24];
@@ -2336,7 +2326,7 @@ var app = (function () {
     		c: function create() {
     			script = element("script");
     			t0 = space();
-    			div18 = element("div");
+    			div19 = element("div");
     			div2 = element("div");
     			if (if_block0) if_block0.c();
     			t1 = space();
@@ -2392,39 +2382,41 @@ var app = (function () {
     			div7 = element("div");
     			create_component(slider5.$$.fragment);
     			t24 = space();
-    			div13 = element("div");
+    			div14 = element("div");
     			input3 = element("input");
     			t25 = space();
     			label3 = element("label");
     			t26 = space();
+    			div13 = element("div");
     			div12 = element("div");
-    			div11 = element("div");
-    			create_component(toggle.$$.fragment);
-    			t27 = space();
     			div9 = element("div");
     			input4 = element("input");
-    			t28 = space();
+    			t27 = space();
     			div10 = element("div");
-    			input5 = element("input");
+    			t28 = space();
+    			create_component(toggle.$$.fragment);
     			t29 = space();
-    			create_component(slider6.$$.fragment);
+    			div11 = element("div");
+    			input5 = element("input");
     			t30 = space();
-    			div15 = element("div");
-    			input6 = element("input");
+    			create_component(slider6.$$.fragment);
     			t31 = space();
-    			label4 = element("label");
-    			t32 = space();
-    			div14 = element("div");
-    			create_component(slider7.$$.fragment);
-    			t33 = space();
-    			div17 = element("div");
-    			input7 = element("input");
-    			t34 = space();
-    			label5 = element("label");
-    			t35 = space();
     			div16 = element("div");
-    			create_component(slider8.$$.fragment);
+    			input6 = element("input");
+    			t32 = space();
+    			label4 = element("label");
+    			t33 = space();
+    			div15 = element("div");
+    			create_component(slider7.$$.fragment);
+    			t34 = space();
+    			div18 = element("div");
+    			input7 = element("input");
+    			t35 = space();
+    			label5 = element("label");
     			t36 = space();
+    			div17 = element("div");
+    			create_component(slider8.$$.fragment);
+    			t37 = space();
     			create_component(slider9.$$.fragment);
     			if (!src_url_equal(script.src, script_src_value = "https://docs.opencv.org/3.4.0/opencv.js")) attr_dev(script, "src", script_src_value);
     			add_location(script, file$1, 1, 1, 15);
@@ -2454,119 +2446,121 @@ var app = (function () {
     			add_location(button0, file$1, 316, 16, 8066);
     			attr_dev(button1, "class", "button1-2");
     			add_location(button1, file$1, 317, 16, 8144);
-    			attr_dev(div0, "class", "button-controller svelte-17uyggc");
+    			attr_dev(div0, "class", "button-controller svelte-ucmtvw");
     			add_location(div0, file$1, 315, 12, 8018);
-    			attr_dev(div1, "class", "controller svelte-17uyggc");
+    			attr_dev(div1, "class", "controller svelte-ucmtvw");
     			add_location(div1, file$1, 313, 8, 7980);
-    			attr_dev(div2, "class", "viewport svelte-17uyggc");
+    			attr_dev(div2, "class", "viewport svelte-ucmtvw");
     			set_style(div2, "grid-area", "1 / 1 / 2 / 3");
     			add_location(div2, file$1, 281, 4, 6985);
-    			attr_dev(input0, "class", "effect-toggle svelte-17uyggc");
+    			attr_dev(input0, "class", "effect-toggle svelte-ucmtvw");
     			attr_dev(input0, "type", "checkbox");
     			attr_dev(input0, "id", "tgl-filter");
     			add_location(input0, file$1, 328, 8, 8422);
-    			attr_dev(label0, "class", "tgl-btn svelte-17uyggc");
+    			attr_dev(label0, "class", "tgl-btn svelte-ucmtvw");
     			attr_dev(label0, "for", "tgl-filter");
     			attr_dev(label0, "data-tg-off", "filter");
     			attr_dev(label0, "data-tg-on", "filter!");
     			add_location(label0, file$1, 330, 8, 8533);
-    			attr_dev(div3, "class", "effect-inner svelte-17uyggc");
+    			attr_dev(div3, "class", "effect-inner svelte-ucmtvw");
     			add_location(div3, file$1, 332, 8, 8644);
-    			attr_dev(div4, "class", "effect svelte-17uyggc");
+    			attr_dev(div4, "class", "effect svelte-ucmtvw");
     			attr_dev(div4, "id", "eff-filter");
     			set_style(div4, "grid-area", "2 / 1 / 3 / 3");
     			add_location(div4, file$1, 327, 4, 8344);
-    			attr_dev(input1, "class", "effect-toggle svelte-17uyggc");
+    			attr_dev(input1, "class", "effect-toggle svelte-ucmtvw");
     			attr_dev(input1, "type", "checkbox");
     			attr_dev(input1, "id", "tgl-ghost");
     			add_location(input1, file$1, 358, 8, 9457);
-    			attr_dev(label1, "class", "tgl-btn svelte-17uyggc");
+    			attr_dev(label1, "class", "tgl-btn svelte-ucmtvw");
     			attr_dev(label1, "for", "tgl-ghost");
     			attr_dev(label1, "data-tg-off", "ghost");
     			attr_dev(label1, "data-tg-on", "ghost!");
     			add_location(label1, file$1, 360, 8, 9566);
-    			attr_dev(div5, "class", "effect-inner svelte-17uyggc");
+    			attr_dev(div5, "class", "effect-inner svelte-ucmtvw");
     			add_location(div5, file$1, 362, 8, 9674);
-    			attr_dev(div6, "class", "effect svelte-17uyggc");
+    			attr_dev(div6, "class", "effect svelte-ucmtvw");
     			attr_dev(div6, "id", "eff-ghost");
     			set_style(div6, "grid-area", "1 / 3 / 2 / 5");
     			add_location(div6, file$1, 357, 4, 9380);
-    			attr_dev(input2, "class", "effect-toggle svelte-17uyggc");
+    			attr_dev(input2, "class", "effect-toggle svelte-ucmtvw");
     			attr_dev(input2, "type", "checkbox");
     			attr_dev(input2, "id", "tgl-chroma");
     			add_location(input2, file$1, 388, 8, 10490);
-    			attr_dev(label2, "class", "tgl-btn svelte-17uyggc");
+    			attr_dev(label2, "class", "tgl-btn svelte-ucmtvw");
     			attr_dev(label2, "for", "tgl-chroma");
     			attr_dev(label2, "data-tg-off", "chroma");
     			attr_dev(label2, "data-tg-on", "chroma!");
     			add_location(label2, file$1, 390, 8, 10601);
-    			attr_dev(div7, "class", "effect-inner svelte-17uyggc");
+    			attr_dev(div7, "class", "effect-inner svelte-ucmtvw");
     			add_location(div7, file$1, 392, 8, 10712);
-    			attr_dev(div8, "class", "effect svelte-17uyggc");
+    			attr_dev(div8, "class", "effect svelte-ucmtvw");
     			attr_dev(div8, "id", "eff-chroma");
     			set_style(div8, "grid-area", "2 / 3 / 3 / 4");
     			add_location(div8, file$1, 387, 4, 10412);
-    			attr_dev(input3, "class", "effect-toggle svelte-17uyggc");
+    			attr_dev(input3, "class", "effect-toggle svelte-ucmtvw");
     			attr_dev(input3, "type", "checkbox");
     			attr_dev(input3, "id", "tgl-movey");
     			add_location(input3, file$1, 404, 8, 11082);
-    			attr_dev(label3, "class", "tgl-btn svelte-17uyggc");
+    			attr_dev(label3, "class", "tgl-btn svelte-ucmtvw");
     			attr_dev(label3, "for", "tgl-movey");
     			attr_dev(label3, "data-tg-off", "movey");
     			attr_dev(label3, "data-tg-on", "movey!");
     			add_location(label3, file$1, 406, 8, 11191);
     			attr_dev(input4, "type", "color");
     			attr_dev(input4, "id", "colorpickerA");
-    			attr_dev(input4, "class", "svelte-17uyggc");
-    			add_location(input4, file$1, 415, 20, 11574);
-    			attr_dev(div9, "class", "color-container svelte-17uyggc");
-    			add_location(div9, file$1, 413, 16, 11484);
+    			attr_dev(input4, "class", "svelte-ucmtvw");
+    			add_location(input4, file$1, 411, 20, 11434);
+    			attr_dev(div9, "class", "color-container svelte-ucmtvw");
+    			add_location(div9, file$1, 410, 16, 11384);
+    			set_style(div10, "height", "2.5rem");
+    			add_location(div10, file$1, 416, 16, 11608);
     			attr_dev(input5, "type", "color");
     			attr_dev(input5, "id", "colorpickerA");
-    			attr_dev(input5, "class", "svelte-17uyggc");
-    			add_location(input5, file$1, 422, 20, 11838);
-    			attr_dev(div10, "class", "color-container svelte-17uyggc");
-    			add_location(div10, file$1, 420, 16, 11748);
-    			attr_dev(div11, "class", "movey-container svelte-17uyggc");
-    			add_location(div11, file$1, 409, 12, 11338);
-    			attr_dev(div12, "class", "effect-inner svelte-17uyggc");
-    			add_location(div12, file$1, 408, 8, 11299);
-    			attr_dev(div13, "class", "effect svelte-17uyggc");
-    			attr_dev(div13, "id", "eff-movey");
-    			set_style(div13, "grid-area", "2 / 4 / 3 / 5");
-    			add_location(div13, file$1, 403, 4, 11005);
-    			attr_dev(input6, "class", "effect-toggle svelte-17uyggc");
+    			attr_dev(input5, "class", "svelte-ucmtvw");
+    			add_location(input5, file$1, 422, 20, 11843);
+    			attr_dev(div11, "class", "color-container svelte-ucmtvw");
+    			add_location(div11, file$1, 421, 16, 11793);
+    			attr_dev(div12, "class", "movey-container svelte-ucmtvw");
+    			add_location(div12, file$1, 409, 12, 11338);
+    			attr_dev(div13, "class", "effect-inner svelte-ucmtvw");
+    			add_location(div13, file$1, 408, 8, 11299);
+    			attr_dev(div14, "class", "effect svelte-ucmtvw");
+    			attr_dev(div14, "id", "eff-movey");
+    			set_style(div14, "grid-area", "2 / 4 / 3 / 5");
+    			add_location(div14, file$1, 403, 4, 11005);
+    			attr_dev(input6, "class", "effect-toggle svelte-ucmtvw");
     			attr_dev(input6, "type", "checkbox");
     			attr_dev(input6, "id", "tgl-pixel");
-    			add_location(input6, file$1, 439, 8, 12357);
-    			attr_dev(label4, "class", "tgl-btn svelte-17uyggc");
+    			add_location(input6, file$1, 439, 8, 12362);
+    			attr_dev(label4, "class", "tgl-btn svelte-ucmtvw");
     			attr_dev(label4, "for", "tgl-pixel");
     			attr_dev(label4, "data-tg-off", "pixel");
     			attr_dev(label4, "data-tg-on", "pixel!");
-    			add_location(label4, file$1, 441, 8, 12466);
-    			attr_dev(div14, "class", "effect-inner svelte-17uyggc");
-    			add_location(div14, file$1, 443, 8, 12574);
-    			attr_dev(div15, "class", "effect svelte-17uyggc");
-    			attr_dev(div15, "id", "eff-pixel");
-    			set_style(div15, "grid-area", "1 / 5 / 2 / 6");
-    			add_location(div15, file$1, 438, 4, 12280);
-    			attr_dev(input7, "class", "effect-toggle svelte-17uyggc");
+    			add_location(label4, file$1, 441, 8, 12471);
+    			attr_dev(div15, "class", "effect-inner svelte-ucmtvw");
+    			add_location(div15, file$1, 443, 8, 12579);
+    			attr_dev(div16, "class", "effect svelte-ucmtvw");
+    			attr_dev(div16, "id", "eff-pixel");
+    			set_style(div16, "grid-area", "1 / 5 / 2 / 6");
+    			add_location(div16, file$1, 438, 4, 12285);
+    			attr_dev(input7, "class", "effect-toggle svelte-ucmtvw");
     			attr_dev(input7, "type", "checkbox");
     			attr_dev(input7, "id", "tgl-poster");
-    			add_location(input7, file$1, 455, 8, 12943);
-    			attr_dev(label5, "class", "tgl-btn svelte-17uyggc");
+    			add_location(input7, file$1, 455, 8, 12948);
+    			attr_dev(label5, "class", "tgl-btn svelte-ucmtvw");
     			attr_dev(label5, "for", "tgl-poster");
     			attr_dev(label5, "data-tg-off", "poster");
     			attr_dev(label5, "data-tg-on", "poster!");
-    			add_location(label5, file$1, 457, 8, 13054);
-    			attr_dev(div16, "class", "effect-inner svelte-17uyggc");
-    			add_location(div16, file$1, 459, 8, 13165);
-    			attr_dev(div17, "class", "effect svelte-17uyggc");
-    			attr_dev(div17, "id", "eff-poster");
-    			set_style(div17, "grid-area", "2 / 5 / 3 / 6");
-    			add_location(div17, file$1, 454, 4, 12865);
-    			attr_dev(div18, "class", "backdrop svelte-17uyggc");
-    			add_location(div18, file$1, 279, 0, 6957);
+    			add_location(label5, file$1, 457, 8, 13059);
+    			attr_dev(div17, "class", "effect-inner svelte-ucmtvw");
+    			add_location(div17, file$1, 459, 8, 13170);
+    			attr_dev(div18, "class", "effect svelte-ucmtvw");
+    			attr_dev(div18, "id", "eff-poster");
+    			set_style(div18, "grid-area", "2 / 5 / 3 / 6");
+    			add_location(div18, file$1, 454, 4, 12870);
+    			attr_dev(div19, "class", "backdrop svelte-ucmtvw");
+    			add_location(div19, file$1, 279, 0, 6957);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2574,8 +2568,8 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			append_dev(document.head, script);
     			insert_dev(target, t0, anchor);
-    			insert_dev(target, div18, anchor);
-    			append_dev(div18, div2);
+    			insert_dev(target, div19, anchor);
+    			append_dev(div19, div2);
     			if (if_block0) if_block0.m(div2, null);
     			append_dev(div2, t1);
     			if (if_block1) if_block1.m(div2, null);
@@ -2598,8 +2592,8 @@ var app = (function () {
     			append_dev(div0, button1);
     			append_dev(div1, t10);
     			if (if_block3) if_block3.m(div1, null);
-    			append_dev(div18, t11);
-    			append_dev(div18, div4);
+    			append_dev(div19, t11);
+    			append_dev(div19, div4);
     			append_dev(div4, input0);
     			input0.checked = /*filter_A*/ ctx[17];
     			append_dev(div4, t12);
@@ -2611,8 +2605,8 @@ var app = (function () {
     			mount_component(slider1, div3, null);
     			append_dev(div3, t15);
     			mount_component(slider2, div3, null);
-    			append_dev(div18, t16);
-    			append_dev(div18, div6);
+    			append_dev(div19, t16);
+    			append_dev(div19, div6);
     			append_dev(div6, input1);
     			input1.checked = /*ghost_A*/ ctx[11];
     			append_dev(div6, t17);
@@ -2624,8 +2618,8 @@ var app = (function () {
     			mount_component(slider3, div5, null);
     			append_dev(div5, t20);
     			mount_component(slider4, div5, null);
-    			append_dev(div18, t21);
-    			append_dev(div18, div8);
+    			append_dev(div19, t21);
+    			append_dev(div19, div8);
     			append_dev(div8, input2);
     			input2.checked = /*chroma_A*/ ctx[21];
     			append_dev(div8, t22);
@@ -2633,46 +2627,48 @@ var app = (function () {
     			append_dev(div8, t23);
     			append_dev(div8, div7);
     			mount_component(slider5, div7, null);
-    			append_dev(div18, t24);
-    			append_dev(div18, div13);
-    			append_dev(div13, input3);
+    			append_dev(div19, t24);
+    			append_dev(div19, div14);
+    			append_dev(div14, input3);
     			input3.checked = /*movey_A*/ ctx[23];
-    			append_dev(div13, t25);
-    			append_dev(div13, label3);
-    			append_dev(div13, t26);
+    			append_dev(div14, t25);
+    			append_dev(div14, label3);
+    			append_dev(div14, t26);
+    			append_dev(div14, div13);
     			append_dev(div13, div12);
-    			append_dev(div12, div11);
-    			mount_component(toggle, div11, null);
-    			append_dev(div11, t27);
-    			append_dev(div11, div9);
+    			append_dev(div12, div9);
     			append_dev(div9, input4);
     			set_input_value(input4, /*colorA_hex*/ ctx[0]);
-    			append_dev(div11, t28);
-    			append_dev(div11, div10);
-    			append_dev(div10, input5);
-    			set_input_value(input5, /*colorB_hex*/ ctx[1]);
+    			append_dev(div12, t27);
+    			append_dev(div12, div10);
+    			append_dev(div12, t28);
+    			mount_component(toggle, div12, null);
     			append_dev(div12, t29);
-    			mount_component(slider6, div12, null);
-    			append_dev(div18, t30);
-    			append_dev(div18, div15);
-    			append_dev(div15, input6);
+    			append_dev(div12, div11);
+    			append_dev(div11, input5);
+    			set_input_value(input5, /*colorB_hex*/ ctx[1]);
+    			append_dev(div13, t30);
+    			mount_component(slider6, div13, null);
+    			append_dev(div19, t31);
+    			append_dev(div19, div16);
+    			append_dev(div16, input6);
     			input6.checked = /*pixel_A*/ ctx[15];
-    			append_dev(div15, t31);
-    			append_dev(div15, label4);
-    			append_dev(div15, t32);
-    			append_dev(div15, div14);
-    			mount_component(slider7, div14, null);
-    			append_dev(div18, t33);
-    			append_dev(div18, div17);
-    			append_dev(div17, input7);
+    			append_dev(div16, t32);
+    			append_dev(div16, label4);
+    			append_dev(div16, t33);
+    			append_dev(div16, div15);
+    			mount_component(slider7, div15, null);
+    			append_dev(div19, t34);
+    			append_dev(div19, div18);
+    			append_dev(div18, input7);
     			input7.checked = /*poster_A*/ ctx[25];
-    			append_dev(div17, t34);
-    			append_dev(div17, label5);
-    			append_dev(div17, t35);
-    			append_dev(div17, div16);
-    			mount_component(slider8, div16, null);
-    			append_dev(div16, t36);
-    			mount_component(slider9, div16, null);
+    			append_dev(div18, t35);
+    			append_dev(div18, label5);
+    			append_dev(div18, t36);
+    			append_dev(div18, div17);
+    			mount_component(slider8, div17, null);
+    			append_dev(div17, t37);
+    			mount_component(slider9, div17, null);
     			current = true;
 
     			if (!mounted) {
@@ -2684,7 +2680,7 @@ var app = (function () {
     					listen_dev(input1, "change", /*input1_change_handler*/ ctx[39]),
     					listen_dev(input2, "change", /*input2_change_handler*/ ctx[43]),
     					listen_dev(input3, "change", /*input3_change_handler*/ ctx[45]),
-    					listen_dev(input4, "input", /*input4_input_handler*/ ctx[47]),
+    					listen_dev(input4, "input", /*input4_input_handler*/ ctx[46]),
     					listen_dev(input5, "input", /*input5_input_handler*/ ctx[48]),
     					listen_dev(input6, "change", /*input6_change_handler*/ ctx[50]),
     					listen_dev(input7, "change", /*input7_change_handler*/ ctx[52])
@@ -2838,6 +2834,10 @@ var app = (function () {
     				input3.checked = /*movey_A*/ ctx[23];
     			}
 
+    			if (dirty[0] & /*colorA_hex*/ 1) {
+    				set_input_value(input4, /*colorA_hex*/ ctx[0]);
+    			}
+
     			const toggle_changes = {};
 
     			if (!updating_opt && dirty[0] & /*movey_block*/ 16777216) {
@@ -2847,10 +2847,6 @@ var app = (function () {
     			}
 
     			toggle.$set(toggle_changes);
-
-    			if (dirty[0] & /*colorA_hex*/ 1) {
-    				set_input_value(input4, /*colorA_hex*/ ctx[0]);
-    			}
 
     			if (dirty[0] & /*colorB_hex*/ 2) {
     				set_input_value(input5, /*colorB_hex*/ ctx[1]);
@@ -2937,7 +2933,7 @@ var app = (function () {
     		d: function destroy(detaching) {
     			detach_dev(script);
     			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(div18);
+    			if (detaching) detach_dev(div19);
     			if (if_block0) if_block0.d();
     			if (if_block1) if_block1.d();
     			/*video_binding*/ ctx[31](null);
@@ -3328,14 +3324,14 @@ var app = (function () {
     		$$invalidate(23, movey_A);
     	}
 
-    	function toggle_opt_binding(value) {
-    		movey_block = value;
-    		$$invalidate(24, movey_block);
-    	}
-
     	function input4_input_handler() {
     		colorA_hex = this.value;
     		$$invalidate(0, colorA_hex);
+    	}
+
+    	function toggle_opt_binding(value) {
+    		movey_block = value;
+    		$$invalidate(24, movey_block);
     	}
 
     	function input5_input_handler() {
@@ -3560,8 +3556,8 @@ var app = (function () {
     		input2_change_handler,
     		slider5_sliderValue_binding,
     		input3_change_handler,
-    		toggle_opt_binding,
     		input4_input_handler,
+    		toggle_opt_binding,
     		input5_input_handler,
     		slider6_sliderValue_binding,
     		input6_change_handler,
