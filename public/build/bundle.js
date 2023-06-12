@@ -510,22 +510,23 @@ var app = (function () {
 
     function create_fragment$6(ctx) {
     	let div1;
+    	let img;
+    	let img_src_value;
+    	let t0;
     	let div0;
-    	let h1;
-    	let t1;
     	let input;
-    	let t2;
+    	let t1;
     	let button0;
-    	let t4;
+    	let t3;
     	let button1;
-    	let t6;
+    	let t5;
     	let p;
+    	let t6;
     	let t7;
-    	let t8;
     	let button2;
-    	let t10;
+    	let t9;
     	let button3;
-    	let t12;
+    	let t11;
     	let button4;
     	let mounted;
     	let dispose;
@@ -533,74 +534,76 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			div1 = element("div");
+    			img = element("img");
+    			t0 = space();
     			div0 = element("div");
-    			h1 = element("h1");
-    			h1.textContent = "preset";
-    			t1 = space();
     			input = element("input");
-    			t2 = space();
+    			t1 = space();
     			button0 = element("button");
     			button0.textContent = "save";
-    			t4 = space();
+    			t3 = space();
     			button1 = element("button");
     			button1.textContent = "load";
-    			t6 = space();
+    			t5 = space();
     			p = element("p");
-    			t7 = text(/*presetConsole*/ ctx[2]);
-    			t8 = space();
+    			t6 = text(/*presetConsole*/ ctx[2]);
+    			t7 = space();
     			button2 = element("button");
     			button2.textContent = "sprite";
-    			t10 = space();
+    			t9 = space();
     			button3 = element("button");
     			button3.textContent = "purple haze";
-    			t12 = space();
+    			t11 = space();
     			button4 = element("button");
     			button4.textContent = "the void";
-    			attr_dev(h1, "class", "svelte-nx48n1");
-    			add_location(h1, file$6, 41, 8, 1182);
-    			attr_dev(input, "class", "preset-input svelte-nx48n1");
+    			attr_dev(img, "class", "logo svelte-g15710");
+    			attr_dev(img, "alt", "");
+    			if (!src_url_equal(img.src, img_src_value = "images/bagel_long.PNG")) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "width", "200px");
+    			add_location(img, file$6, 41, 4, 1111);
+    			attr_dev(input, "class", "preset-input svelte-g15710");
     			attr_dev(input, "type", "text");
-    			add_location(input, file$6, 43, 8, 1207);
+    			add_location(input, file$6, 44, 8, 1229);
     			attr_dev(button0, "class", "buttonSave");
-    			add_location(button0, file$6, 47, 8, 1387);
+    			add_location(button0, file$6, 48, 8, 1409);
     			attr_dev(button1, "class", "buttonSave");
-    			add_location(button1, file$6, 48, 8, 1454);
-    			attr_dev(p, "class", "preset-console svelte-nx48n1");
-    			add_location(p, file$6, 49, 8, 1521);
+    			add_location(button1, file$6, 49, 8, 1476);
+    			attr_dev(p, "class", "preset-console svelte-g15710");
+    			add_location(p, file$6, 50, 8, 1543);
     			attr_dev(div0, "class", "presets-container");
-    			add_location(div0, file$6, 40, 4, 1142);
-    			attr_dev(button2, "class", "button-preset svelte-nx48n1");
-    			add_location(button2, file$6, 52, 4, 1583);
-    			attr_dev(button3, "class", "button-preset svelte-nx48n1");
-    			add_location(button3, file$6, 58, 4, 2219);
-    			attr_dev(button4, "class", "button-preset svelte-nx48n1");
-    			add_location(button4, file$6, 64, 4, 2860);
-    			attr_dev(div1, "class", "backdrop svelte-nx48n1");
-    			add_location(div1, file$6, 38, 0, 1110);
+    			add_location(div0, file$6, 43, 4, 1189);
+    			attr_dev(button2, "class", "button-preset svelte-g15710");
+    			add_location(button2, file$6, 53, 4, 1605);
+    			attr_dev(button3, "class", "button-preset svelte-g15710");
+    			add_location(button3, file$6, 59, 4, 2241);
+    			attr_dev(button4, "class", "button-preset svelte-g15710");
+    			add_location(button4, file$6, 65, 4, 2882);
+    			attr_dev(div1, "class", "backdrop svelte-g15710");
+    			add_location(div1, file$6, 39, 0, 1083);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
+    			append_dev(div1, img);
+    			append_dev(div1, t0);
     			append_dev(div1, div0);
-    			append_dev(div0, h1);
-    			append_dev(div0, t1);
     			append_dev(div0, input);
     			set_input_value(input, /*inputString*/ ctx[1]);
     			/*input_binding*/ ctx[8](input);
-    			append_dev(div0, t2);
+    			append_dev(div0, t1);
     			append_dev(div0, button0);
-    			append_dev(div0, t4);
+    			append_dev(div0, t3);
     			append_dev(div0, button1);
-    			append_dev(div0, t6);
+    			append_dev(div0, t5);
     			append_dev(div0, p);
-    			append_dev(p, t7);
-    			append_dev(div1, t8);
+    			append_dev(p, t6);
+    			append_dev(div1, t7);
     			append_dev(div1, button2);
-    			append_dev(div1, t10);
+    			append_dev(div1, t9);
     			append_dev(div1, button3);
-    			append_dev(div1, t12);
+    			append_dev(div1, t11);
     			append_dev(div1, button4);
 
     			if (!mounted) {
@@ -622,7 +625,7 @@ var app = (function () {
     				set_input_value(input, /*inputString*/ ctx[1]);
     			}
 
-    			if (dirty & /*presetConsole*/ 4) set_data_dev(t7, /*presetConsole*/ ctx[2]);
+    			if (dirty & /*presetConsole*/ 4) set_data_dev(t6, /*presetConsole*/ ctx[2]);
     		},
     		i: noop,
     		o: noop,
@@ -653,7 +656,8 @@ var app = (function () {
     	let { presetSaving = false } = $$props;
     	let inputObject;
     	let inputString = " paste preset here";
-    	let presetConsole = "click save to copy preset to clipboard";
+    	let defaultConsole = "click save to copy preset to clipboard";
+    	let presetConsole = defaultConsole;
 
     	function doLoad() {
     		if (inputString[0] == '{') {
@@ -662,7 +666,7 @@ var app = (function () {
 
     			setTimeout(
     				() => {
-    					$$invalidate(2, presetConsole = "click save to copy current preset to clipboard");
+    					$$invalidate(2, presetConsole = defaultConsole);
     				},
     				"3000"
     			);
@@ -671,7 +675,7 @@ var app = (function () {
 
     			setTimeout(
     				() => {
-    					$$invalidate(2, presetConsole = "click save to copy current preset to clipboard");
+    					$$invalidate(2, presetConsole = defaultConsole);
     				},
     				"3000"
     			);
@@ -821,6 +825,7 @@ var app = (function () {
     		presetSaving,
     		inputObject,
     		inputString,
+    		defaultConsole,
     		presetConsole,
     		doLoad,
     		doSave
@@ -831,6 +836,7 @@ var app = (function () {
     		if ('presetSaving' in $$props) $$invalidate(6, presetSaving = $$props.presetSaving);
     		if ('inputObject' in $$props) $$invalidate(0, inputObject = $$props.inputObject);
     		if ('inputString' in $$props) $$invalidate(1, inputString = $$props.inputString);
+    		if ('defaultConsole' in $$props) defaultConsole = $$props.defaultConsole;
     		if ('presetConsole' in $$props) $$invalidate(2, presetConsole = $$props.presetConsole);
     	};
 
@@ -3868,9 +3874,9 @@ var app = (function () {
     			p = element("p");
     			p.textContent = "Click anywhere to dismiss";
     			add_location(p, file$1, 8, 8, 190);
-    			attr_dev(div0, "class", "modal svelte-1gvw7uu");
+    			attr_dev(div0, "class", "modal svelte-1nylt74");
     			add_location(div0, file$1, 7, 4, 162);
-    			attr_dev(div1, "class", "backdrop svelte-1gvw7uu");
+    			attr_dev(div1, "class", "backdrop svelte-1nylt74");
     			add_location(div1, file$1, 6, 0, 126);
     		},
     		m: function mount(target, anchor) {
@@ -4085,9 +4091,9 @@ var app = (function () {
     			create_component(sidebar.$$.fragment);
     			t3 = space();
     			create_component(control.$$.fragment);
-    			attr_dev(button, "class", "showModal svelte-1p3oi12");
+    			attr_dev(button, "class", "showModal svelte-j8w88h");
     			add_location(button, file, 24, 2, 349);
-    			attr_dev(div0, "class", "container svelte-1p3oi12");
+    			attr_dev(div0, "class", "container svelte-j8w88h");
     			add_location(div0, file, 22, 1, 322);
     			add_location(div1, file, 18, 0, 291);
     		},

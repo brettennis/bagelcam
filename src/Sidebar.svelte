@@ -8,19 +8,20 @@
 
     let inputObject;
     let inputString = " paste preset here"
-    let presetConsole = "click save to copy preset to clipboard";
+    let defaultConsole = "click save to copy preset to clipboard";
+    let presetConsole = defaultConsole;
 
     function doLoad() {
         if (inputString[0] == '{') {
             presetString = inputString;
             presetConsole = "loaded from text input!";
             setTimeout(() => { 
-                presetConsole = "click save to copy current preset to clipboard";
+                presetConsole = defaultConsole;
             }, "3000");
         } else {
             presetConsole = "sorry, invalid format!";
             setTimeout(() => { 
-                presetConsole = "click save to copy current preset to clipboard";
+                presetConsole = defaultConsole;
             }, "3000");
         }
     }
@@ -37,10 +38,10 @@
 </script>
 
 <div class="backdrop">
+
+    <img class="logo" alt="" src="images/bagel_long.PNG" width="200px"/>
     
     <div class="presets-container">
-        <h1>preset</h1>
-
         <input class="preset-input" type="text" 
             bind:value={inputString} 
             bind:this={inputObject}
@@ -118,13 +119,17 @@
     color: var(--white);
     width: 15rem;
     height: 100vh;
-    padding: .5rem;
+    padding: 1.5rem;
     margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     text-align: center;
+}
+
+.logo {
+    margin-bottom: 2rem;
 }
 
 h1 {

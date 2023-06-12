@@ -38,6 +38,7 @@ const toggleModal = () => {
 </div>
 
 <style>
+
 	.container {
 		display: flex;
 		width: 100%;
@@ -50,6 +51,7 @@ const toggleModal = () => {
 		-webkit-appearance: none;
 		appearance: none;
 		background-color: var(--white);
+		color: var(--black);
 		position: absolute;
 		bottom: 1rem;
 		left: 1rem;
@@ -59,4 +61,5 @@ const toggleModal = () => {
 		cursor: pointer;
 		font-size: 160%;
 	}
+
 </style>
