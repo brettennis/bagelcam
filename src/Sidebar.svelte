@@ -31,7 +31,7 @@
         presetConsole = "copied to clipboard!";
         setTimeout(() => { 
             presetSaving = false; 
-            presetConsole = "click save to copy current preset to clipboard";
+            presetConsole = defaultConsole;
         }, "3000");
     }
 
@@ -130,10 +130,6 @@
 
 .logo {
     margin-bottom: 2rem;
-}
-
-h1 {
-    font-size: 1.7rem;
 }
 
 .button-preset {

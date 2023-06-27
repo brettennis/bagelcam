@@ -424,10 +424,6 @@ function distSq(x1, y1, z1, x2, y2, z2) {
         {#if loading}
         <h3>loading...</h3>
         {/if}
-        
-        {#if !streaming}
-        <button class="button2" on:click={init}>start</button>
-        {/if}
 
         <!-- svelte-ignore a11y-media-has-caption -->
         <video  
@@ -502,7 +498,10 @@ function distSq(x1, y1, z1, x2, y2, z2) {
         <label class="tgl-btn" for="tgl-ghost"
             data-tg-off="ghost" data-tg-on="ghost!"></label>
         <div class="effect-inner">
-            <button class="button3" on:click={ghost_doCapture}>capture</button>
+            <div class="ghost-container-1">
+                <button class="button3" on:click={ghost_doCapture}>capture</button>
+                <p>move out of frame, click capture, then reenter frame</p>
+            </div>
 
             <div class="divider"></div>
 
@@ -753,6 +752,15 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     transform: rotateY(20deg);
 }
 
+.ghost-container-1 {
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    margin-left: 1.5rem;
+    text-align: center;
+}
 .ghost-container {
     /* background-color: aqua; */
     display: flex;
