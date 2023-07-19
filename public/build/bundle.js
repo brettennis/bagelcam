@@ -3814,126 +3814,139 @@ var app = (function () {
 
     // (6:0) {#if showModal}
     function create_if_block(ctx) {
+    	let div7;
     	let div6;
-    	let div5;
-    	let div0;
+    	let div1;
     	let h1;
     	let t1;
+    	let div0;
     	let h30;
     	let t3;
     	let button;
     	let t5;
+    	let div5;
     	let div2;
-    	let div1;
     	let h31;
+    	let t6;
     	let t7;
     	let input0;
     	let t8;
-    	let label;
-    	let t9;
-    	let div4;
     	let div3;
-    	let input1;
-    	let t10;
     	let h32;
+    	let t10;
+    	let input1;
     	let t11;
+    	let label;
+    	let t12;
+    	let div4;
+    	let h33;
     	let mounted;
     	let dispose;
 
     	const block = {
     		c: function create() {
+    			div7 = element("div");
     			div6 = element("div");
-    			div5 = element("div");
-    			div0 = element("div");
+    			div1 = element("div");
     			h1 = element("h1");
     			h1.textContent = "Welcome to bagelcam.";
     			t1 = space();
+    			div0 = element("div");
     			h30 = element("h3");
-    			h30.textContent = "This app requires access to \n                your device's built-in webcam.";
+    			h30.textContent = "This app requires access to \n                    your device's built-in webcam.";
     			t3 = space();
     			button = element("button");
     			button.textContent = "I'm ready!";
     			t5 = space();
+    			div5 = element("div");
     			div2 = element("div");
-    			div1 = element("div");
     			h31 = element("h3");
-    			h31.textContent = "click an effect's name to enable it.";
+    			t6 = text("use color pickers to choose your favorite color.");
     			t7 = space();
     			input0 = element("input");
     			t8 = space();
-    			label = element("label");
-    			t9 = space();
-    			div4 = element("div");
     			div3 = element("div");
-    			input1 = element("input");
-    			t10 = space();
     			h32 = element("h3");
-    			t11 = text("use color pickers to choose your favorite color.");
-    			add_location(h1, file$1, 10, 12, 244);
-    			add_location(h30, file$1, 11, 12, 286);
-    			attr_dev(button, "class", "button-start svelte-1m48zav");
-    			add_location(button, file$1, 15, 12, 413);
-    			attr_dev(div0, "class", "welcome svelte-1m48zav");
-    			add_location(div0, file$1, 9, 8, 210);
-    			set_style(h31, "width", "13rem");
-    			add_location(h31, file$1, 19, 16, 570);
-    			attr_dev(input0, "class", "effect-toggle svelte-1m48zav");
-    			attr_dev(input0, "type", "checkbox");
-    			attr_dev(input0, "id", "tgl-tut");
-    			add_location(input0, file$1, 22, 16, 690);
-    			attr_dev(label, "class", "tgl-btn svelte-1m48zav");
+    			h32.textContent = "click an effect's name to enable it.";
+    			t10 = space();
+    			input1 = element("input");
+    			t11 = space();
+    			label = element("label");
+    			t12 = space();
+    			div4 = element("div");
+    			h33 = element("h3");
+    			h33.textContent = "choose a preset or make your own.";
+    			add_location(h1, file$1, 10, 12, 256);
+    			set_style(h30, "width", "60%");
+    			add_location(h30, file$1, 12, 16, 346);
+    			attr_dev(button, "class", "button-start svelte-17690rq");
+    			add_location(button, file$1, 16, 16, 507);
+    			attr_dev(div0, "class", "button-start-flex svelte-17690rq");
+    			add_location(div0, file$1, 11, 12, 298);
+    			attr_dev(div1, "class", "welcome svelte-17690rq");
+    			add_location(div1, file$1, 9, 8, 222);
+    			set_style(h31, "color", /*tutorial_text_color*/ ctx[1]);
+    			add_location(h31, file$1, 21, 16, 677);
+    			attr_dev(input0, "type", "color");
+    			attr_dev(input0, "class", "svelte-17690rq");
+    			add_location(input0, file$1, 24, 16, 825);
+    			attr_dev(div2, "class", "info-row svelte-17690rq");
+    			add_location(div2, file$1, 20, 12, 638);
+    			add_location(h32, file$1, 27, 16, 949);
+    			attr_dev(input1, "class", "effect-toggle svelte-17690rq");
+    			attr_dev(input1, "type", "checkbox");
+    			attr_dev(input1, "id", "tgl-tut");
+    			add_location(input1, file$1, 30, 16, 1049);
+    			attr_dev(label, "class", "tgl-btn svelte-17690rq");
     			attr_dev(label, "for", "tgl-tut");
     			attr_dev(label, "data-tg-off", "disabled");
     			attr_dev(label, "data-tg-on", "enabled!");
-    			add_location(label, file$1, 24, 16, 790);
-    			attr_dev(div1, "class", "left-container svelte-1m48zav");
-    			add_location(div1, file$1, 18, 12, 525);
-    			attr_dev(div2, "class", "left svelte-1m48zav");
-    			add_location(div2, file$1, 17, 8, 494);
-    			attr_dev(input1, "type", "color");
-    			attr_dev(input1, "class", "svelte-1m48zav");
-    			add_location(input1, file$1, 30, 16, 1021);
-    			set_style(h32, "color", /*tutorial_text_color*/ ctx[1]);
-    			add_location(h32, file$1, 31, 16, 1091);
-    			attr_dev(div3, "class", "right-container svelte-1m48zav");
-    			add_location(div3, file$1, 29, 12, 975);
-    			attr_dev(div4, "class", "right svelte-1m48zav");
-    			add_location(div4, file$1, 28, 8, 943);
-    			attr_dev(div5, "class", "modal svelte-1m48zav");
-    			add_location(div5, file$1, 8, 4, 182);
-    			attr_dev(div6, "class", "backdrop svelte-1m48zav");
-    			add_location(div6, file$1, 7, 0, 155);
+    			add_location(label, file$1, 33, 16, 1170);
+    			attr_dev(div3, "class", "info-row svelte-17690rq");
+    			add_location(div3, file$1, 26, 12, 910);
+    			add_location(h33, file$1, 39, 16, 1393);
+    			attr_dev(div4, "class", "info-row svelte-17690rq");
+    			add_location(div4, file$1, 38, 12, 1354);
+    			attr_dev(div5, "class", "info svelte-17690rq");
+    			add_location(div5, file$1, 19, 8, 607);
+    			attr_dev(div6, "class", "modal svelte-17690rq");
+    			add_location(div6, file$1, 8, 4, 194);
+    			attr_dev(div7, "class", "backdrop svelte-17690rq");
+    			add_location(div7, file$1, 7, 0, 167);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div6, anchor);
-    			append_dev(div6, div5);
-    			append_dev(div5, div0);
-    			append_dev(div0, h1);
-    			append_dev(div0, t1);
+    			insert_dev(target, div7, anchor);
+    			append_dev(div7, div6);
+    			append_dev(div6, div1);
+    			append_dev(div1, h1);
+    			append_dev(div1, t1);
+    			append_dev(div1, div0);
     			append_dev(div0, h30);
     			append_dev(div0, t3);
     			append_dev(div0, button);
-    			append_dev(div5, t5);
+    			append_dev(div6, t5);
+    			append_dev(div6, div5);
     			append_dev(div5, div2);
-    			append_dev(div2, div1);
-    			append_dev(div1, h31);
-    			append_dev(div1, t7);
-    			append_dev(div1, input0);
-    			append_dev(div1, t8);
-    			append_dev(div1, label);
-    			append_dev(div5, t9);
-    			append_dev(div5, div4);
-    			append_dev(div4, div3);
-    			append_dev(div3, input1);
-    			set_input_value(input1, /*tutorial_text_color*/ ctx[1]);
-    			append_dev(div3, t10);
+    			append_dev(div2, h31);
+    			append_dev(h31, t6);
+    			append_dev(div2, t7);
+    			append_dev(div2, input0);
+    			set_input_value(input0, /*tutorial_text_color*/ ctx[1]);
+    			append_dev(div5, t8);
+    			append_dev(div5, div3);
     			append_dev(div3, h32);
-    			append_dev(h32, t11);
+    			append_dev(div3, t10);
+    			append_dev(div3, input1);
+    			append_dev(div3, t11);
+    			append_dev(div3, label);
+    			append_dev(div5, t12);
+    			append_dev(div5, div4);
+    			append_dev(div4, h33);
 
     			if (!mounted) {
     				dispose = [
     					listen_dev(button, "click", /*click_handler*/ ctx[2], false, false, false, false),
-    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[3])
+    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[3])
     				];
 
     				mounted = true;
@@ -3941,15 +3954,15 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (dirty & /*tutorial_text_color*/ 2) {
-    				set_input_value(input1, /*tutorial_text_color*/ ctx[1]);
+    				set_style(h31, "color", /*tutorial_text_color*/ ctx[1]);
     			}
 
     			if (dirty & /*tutorial_text_color*/ 2) {
-    				set_style(h32, "color", /*tutorial_text_color*/ ctx[1]);
+    				set_input_value(input0, /*tutorial_text_color*/ ctx[1]);
     			}
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div6);
+    			if (detaching) detach_dev(div7);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -4019,7 +4032,7 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Modal', slots, []);
     	let { showModal = true } = $$props;
-    	let tutorial_text_color;
+    	let tutorial_text_color = "#c43b33";
     	const writable_props = ['showModal'];
 
     	Object.keys($$props).forEach(key => {
@@ -4030,7 +4043,7 @@ var app = (function () {
     		bubble.call(this, $$self, event);
     	}
 
-    	function input1_input_handler() {
+    	function input0_input_handler() {
     		tutorial_text_color = this.value;
     		$$invalidate(1, tutorial_text_color);
     	}
@@ -4050,7 +4063,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [showModal, tutorial_text_color, click_handler, input1_input_handler];
+    	return [showModal, tutorial_text_color, click_handler, input0_input_handler];
     }
 
     class Modal extends SvelteComponentDev {
