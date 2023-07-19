@@ -1,6 +1,6 @@
 <script>
     export let showModal = true;
-    let tutorial_text_color;
+    let tutorial_text_color = "#c43b33";
 </script>
 
 {#if showModal}
@@ -9,29 +9,38 @@
     <div class="modal">
         <div class="welcome">
             <h1>Welcome to bagelcam.</h1>
-            <h3>
-                This app requires access to 
-                your device's built-in webcam.
-            </h3>
-            <button class="button-start" on:click>I'm ready!</button>
-        </div>
-        <div class="left">
-            <div class="left-container">
-                <h3 style="width:13rem">
-                    click an effect's name to enable it.
+            <div class="button-start-flex">
+                <h3 style="width:60%">
+                    This app requires access to 
+                    your device's built-in webcam.
                 </h3>
-                <input class="effect-toggle" 
-                    type="checkbox"     id="tgl-tut">
-                <label class="tgl-btn" for="tgl-tut"
-                    data-tg-off="disabled" data-tg-on="enabled!"></label>
+                <button class="button-start" on:click>I'm ready!</button>
             </div>
         </div>
-        <div class="right">
-            <div class="right-container">
-                <input type="color" bind:value={tutorial_text_color}>
+        <div class="info">
+            <div class="info-row">
                 <h3 style="color:{tutorial_text_color}">
                     use color pickers to choose your favorite color.
                 </h3>
+                <input type="color" bind:value={tutorial_text_color}>
+            </div>
+            <div class="info-row">
+                <h3>
+                    click an effect's name to enable it.
+                </h3>
+                <input class="effect-toggle" 
+                    type="checkbox"     
+                    id="tgl-tut">
+                <label class="tgl-btn" 
+                    for="tgl-tut"
+                    data-tg-off="disabled" 
+                    data-tg-on="enabled!"></label>
+            </div>
+            <div class="info-row">
+                <h3>
+                    choose a preset or make your own.
+                </h3>
+                <!-- <button class="button-preset">like this</button> -->
             </div>
         </div>
     </div>
@@ -52,40 +61,36 @@
 }
 
 .modal {
-    height: 40rem;
-    width: 54rem;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 2rem;
-    grid-row-gap: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .welcome {
-    width: 54rem;
-    height: 19rem;
-    grid-area: 1 / 1 / 2 / 3;
+    height: 14rem;
+    width: 42rem;
+    margin-bottom: 1rem;
+    padding: 1.2rem;
     border-radius: 1rem;
     background-color: var(--bagel-yellow);
-    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.left {
-    width: 26rem;
-    height: 19rem;
-    grid-area: 2 / 1 / 3 / 2;
+.info {
+    height: 16rem;
+    width: 42rem;
     border-radius: 1rem;
     background-color: var(--bagel-yellow);
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.right {
-    width: 26rem;
-    height: 19rem;
-    grid-area: 2 / 2 / 3 / 3;
-    border-radius: 1rem;
-    background-color: var(--bagel-yellow);
-    padding: 1rem;
+.info-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .button-start {
@@ -100,16 +105,9 @@
     cursor: pointer;
 }
 
-.left-container {
+.button-start-flex {
     display: flex;
-    padding: 0.7rem;
-}
-
-.right-container {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    padding: 1rem;
+    justify-content: center;
 }
 
 input[type="color"] {
@@ -119,15 +117,19 @@ input[type="color"] {
     background-color: var(--bagel-yellow-light);
 }
 
+.effect-toggle {
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
 .effect-toggle + .tgl-btn {
-    margin-left: 13.2rem;
-    margin-top: 0.8rem;
     padding: 2px;
     transition: all 0.2s ease;
     font-family: sans-serif;
     font-size: 2rem;
     perspective: 400px;
-    position: absolute;
     width: 10rem;
     height: 2rem;
     cursor: pointer;
@@ -163,7 +165,7 @@ input[type="color"] {
 }
 .effect-toggle:checked + .tgl-btn:after {
     transform: rotateY(0);
-    left: 0;
+    /* left: 0; */
     background: var(--white);
 }
 .effect-toggle:checked + .tgl-btn:active:after {
