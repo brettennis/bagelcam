@@ -5,7 +5,6 @@
 <script>
     
 import Slider from "./Slider.svelte";
-import RadioOptions from "./RadioOptions.svelte";
 import Toggle from "./Toggle.svelte";
 
 export let presetString;
@@ -59,7 +58,7 @@ function hextorgb(hexval) {
 // -----------------
 // Queue
 // 
-// FIFO queue for use in ghost effect
+// FIFO queue for use in ghost effect (unused)
 // -----------------
 
 class Queue {
@@ -84,46 +83,93 @@ class Queue {
 // effect parameters
 // -----------------
 
-let ghost_A = false;
-let ghost_fg = true;
-let ghost_bg = false;
-let ghost_capture = false;
-function ghost_doCapture() {ghost_capture = true;}
-let ghost_threshold = 30;
-$: gThreshold = ghost_threshold * ghost_threshold;
-let ghost_fg_hex = "#ffffff";
-let ghost_bg_hex = "#000000";
-$: ghost_fg_rgb = hextorgb(ghost_fg_hex);
-$: ghost_bg_rgb = hextorgb(ghost_bg_hex);
-let ghost_frame;
+// let ghost_A = false;
+// let ghost_fg = true;
+// let ghost_bg = false;
+// let ghost_capture = false;
+// function ghost_doCapture() {ghost_capture = true;}
+// let ghost_threshold = 30;
+// $: gThreshold = ghost_threshold * ghost_threshold;
+// let ghost_fg_hex = "#ffffff";
+// let ghost_bg_hex = "#000000";
+// $: ghost_fg_rgb = hextorgb(ghost_fg_hex);
+// $: ghost_bg_rgb = hextorgb(ghost_bg_hex);
+// let ghost_frame;
 // let ghost_accum = new Queue();
 
-let pixel_A = false;
-let pixel_chunkSize = 3;
-let pixel_corner = [];
+let params_ghost = {
+    active: false,
+    fg: true,
+    bg: false,
+    capture: false,
+    threshold: 30,
+    fg_hex: "#ffffff",
+    bg_hex: "#000000"
+}
+function ghost_doCapture() {params_ghost.capture = true;}
+$: ghost_threshold = params_ghost.threshold * params_ghost.threshold;
+$: ghost_fg_rgb = hextorgb(params_ghost.fg_hex);
+$: ghost_bg_rgb = hextorgb(params_ghost.bg_hex);
+let ghost_frame;
 
-let filter_A = false;
-let filter_temp = 50;
-let filter_saturate = 50;
-let filter_bright = 50; 
+// let pixel_A = false;
+// let pixel_chunkSize = 3;
+// let pixel_corner = [];
 
-let movey_A = false;
-let movey_fg = true;
-let movey_bg = false;
-let movey_trail = false;
-let movey_length = 10;
-let movey_threshold = 40;
-$: mThreshold = movey_threshold * movey_threshold;
-let movey_fg_hex = "#ffffff";
-let movey_bg_hex = "#000000";
-$: movey_fg_rgb = hextorgb(movey_fg_hex);
-$: movey_bg_rgb = hextorgb(movey_bg_hex);
+let params_pixel = {
+    active: false,
+    chunkSize: 3,
+    corner: []
+}
+
+// let filter_A = false;
+// let filter_temp = 50;
+// let filter_saturate = 50;
+// let filter_bright = 50; 
+
+let params_filter = {
+    active: false,
+    temp: 50,
+    saturate: 50,
+    bright: 50
+}
+
+// let movey_A = false;
+// let movey_fg = true;
+// let movey_bg = false;
+// let movey_trail = false;
+// let movey_length = 10;
+// let movey_threshold = 40;
+// $: mThreshold = movey_threshold * movey_threshold;
+// let movey_fg_hex = "#ffffff";
+// let movey_bg_hex = "#000000";
+// $: movey_fg_rgb = hextorgb(movey_fg_hex);
+// $: movey_bg_rgb = hextorgb(movey_bg_hex);
+// let prev;
+// let movey_motion = Array(wt * ht).fill(0);
+
+let params_movey = {
+    active: false,
+    fg: true,
+    bg: false,
+    trail: false,
+    length: 10,
+    threshold: 40,
+    fg_hex: "#ffffff",
+    bg_hex: "#000000",
+    motion: null
+}
+params_movey.motion = Array(wt * ht).fill(0);
+$: movey_threshold = params_movey.threshold * params_movey.threshold;
+$: movey_fg_rgb = hextorgb(params_movey.fg_hex);
+$: movey_bg_rgb = hextorgb(params_movey.bg_hex);
 let prev;
-let movey_motion = Array(wt * ht).fill(0);
 
-let poster_A = false;
-let poster_threshold = 120;
-let poster_maxvalue = 150;
+let params_poster = {
+    active: false,
+    threshold: 120,
+    maxvalue: 150
+}
 
 // -----------------
 // loadPreset
@@ -136,34 +182,34 @@ function loadPreset() {
     try {
         const preset = JSON.parse(presetString);
 
-        ghost_A = preset.ghost_A;
-        ghost_fg = preset.ghost_fg;
-        ghost_bg = preset.ghost_bg;
-        ghost_capture = preset.ghost_capture;
-        ghost_threshold = preset.ghost_threshold;
-        ghost_fg_hex = preset.ghost_fg_hex;
-        ghost_bg_hex = preset.ghost_bg_hex;
+        params_ghost.active = preset.ghost_A;
+        params_ghost.fg = preset.ghost_fg;
+        params_ghost.bg = preset.ghost_bg;
+        params_ghost.capture = preset.ghost_capture;
+        params_ghost.threshold = preset.ghost_threshold;
+        params_ghost.fg_hex = preset.ghost_fg_hex;
+        params_ghost.bg_hex = preset.ghost_bg_hex;
 
-        pixel_A = preset.pixel_A;
-        pixel_chunkSize = preset.pixel_chunkSize;
+        params_pixel.active = preset.pixel_A;
+        params_pixel.chunkSize = preset.pixel_chunkSize;
 
-        filter_A = preset.filter_A;
-        filter_temp = preset.filter_temp;
-        filter_saturate = preset.filter_saturate;
-        filter_bright = preset.filter_bright;
+        params_filter.active = preset.filter_A;
+        params_filter.temp = preset.filter_temp;
+        params_filter.saturate = preset.filter_saturate;
+        params_filter.bright = preset.filter_bright;
 
-        movey_A = preset.movey_A;
-        movey_fg = preset.movey_fg;
-        movey_bg = preset.movey_bg;
-        movey_trail = preset.movey_trail;
-        movey_length = preset.movey_length;
-        movey_threshold = preset.movey_threshold;
-        movey_fg_hex = preset.movey_fg_hex;
-        movey_bg_hex = preset.movey_bg_hex;
+        params_movey.active = preset.movey_A;
+        params_movey.fg = preset.movey_fg;
+        params_movey.bg = preset.movey_bg;
+        params_movey.trail = preset.movey_trail;
+        params_movey.length = preset.movey_length;
+        params_movey.threshold = preset.movey_threshold;
+        params_movey.fg_hex = preset.movey_fg_hex;
+        params_movey.bg_hex = preset.movey_bg_hex;
 
-        poster_A = preset.poster_A;
-        poster_threshold = preset.poster_threshold;
-        poster_maxvalue = preset.poster_maxvalue;
+        params_poster.active = preset.poster_A;
+        params_poster.threshold = preset.poster_threshold;
+        params_poster.maxvalue = preset.poster_maxvalue;
 
     } catch (e) {
         alert("Hey! That preset is of the wrong format. Try again.");
@@ -180,34 +226,34 @@ function savePreset() {
 
     let preset = {};
 
-    preset.ghost_A = ghost_A;
-    preset.ghost_fg = ghost_fg;
-    preset.ghost_bg = ghost_bg;
-    preset.ghost_capture = ghost_capture;
-    preset.ghost_threshold = ghost_threshold;
-    preset.ghost_fg_hex = ghost_fg_hex;
-    preset.ghost_bg_hex = ghost_bg_hex;
+    preset.ghost_A = params_ghost.active;
+    preset.ghost_fg = params_ghost.fg;
+    preset.ghost_bg = params_ghost.bg;
+    preset.ghost_capture = params_ghost.capture;
+    preset.ghost_threshold = params_ghost.threshold;
+    preset.ghost_fg_hex = params_ghost.fg_hex;
+    preset.ghost_bg_hex = params_ghost.bg_hex;
 
-    preset.pixel_A = pixel_A;
-    preset.pixel_chunkSize = pixel_chunkSize;
+    preset.pixel_A = params_pixel.active;
+    preset.pixel_chunkSize = params_pixel.chunkSize;
 
-    preset.filter_A = filter_A;
-    preset.filter_temp = filter_temp;
-    preset.filter_saturate = filter_saturate;
-    preset.filter_bright = filter_bright;
+    preset.filter_A = params_filter.active;
+    preset.filter_temp = params_filter.temp;
+    preset.filter_saturate = params_filter.saturate;
+    preset.filter_bright = params_filter.bright;
 
-    preset.movey_A = movey_A;
-    preset.movey_fg = movey_fg;
-    preset.movey_bg = movey_bg;
-    preset.movey_trail = movey_trail;
-    preset.movey_length = movey_length;
-    preset.movey_threshold = movey_threshold;
-    preset.movey_fg_hex = movey_fg_hex;
-    preset.movey_bg_hex = movey_bg_hex;
+    preset.movey_A = params_movey.active;
+    preset.movey_fg = params_movey.fg;
+    preset.movey_bg = params_movey.bg;
+    preset.movey_trail = params_movey.trail;
+    preset.movey_length = params_movey.length;
+    preset.movey_threshold = params_movey.threshold;
+    preset.movey_fg_hex = params_movey.fg_hex;
+    preset.movey_bg_hex = params_movey.bg_hex;
 
-    preset.poster_A = poster_A;
-    preset.poster_threshold = poster_threshold;
-    preset.poster_maxvalue = poster_maxvalue;
+    preset.poster_A = params_poster.active;
+    preset.poster_threshold = params_poster.threshold;
+    preset.poster_maxvalue = params_poster.maxvalue;
 
     let savedPresetString = JSON.stringify(preset);
 
@@ -263,14 +309,14 @@ function computeFrame() {
 
     v_temp_ctx.drawImage(v_in, 0, 0, wt, ht);
 
-    if (pixel_A) {
+    if (params_pixel.active) {
         // for each row
-        for (let y = 0; y < ht; y += pixel_chunkSize){
+        for (let y = 0; y < ht; y += params_pixel.chunkSize){
             // for each col
-            for (let x = 0; x < wt; x += pixel_chunkSize) {
-                pixel_corner = v_temp_ctx.getImageData(x,y,1,1).data;
-                v_temp_ctx.fillStyle = "rgb("+pixel_corner[0]+","+pixel_corner[1]+","+pixel_corner[2]+")";
-                v_temp_ctx.fillRect(x,y,pixel_chunkSize,pixel_chunkSize);
+            for (let x = 0; x < wt; x += params_pixel.chunkSize) {
+                params_pixel.corner = v_temp_ctx.getImageData(x,y,1,1).data;
+                v_temp_ctx.fillStyle = "rgb("+params_pixel.corner[0]+","+params_pixel.corner[1]+","+params_pixel.corner[2]+")";
+                v_temp_ctx.fillRect(x,y,params_pixel.chunkSize,params_pixel.chunkSize);
             }
         }
     }
@@ -283,29 +329,28 @@ function computeFrame() {
         let g = frame.data[i * 4 + 1];
         let b = frame.data[i * 4 + 2];
 
-        if (ghost_A) {
+        if (params_ghost.active) {
             if ( (distSq(r,g,b,
                     ghost_frame.data[i * 4 + 0], 
                     ghost_frame.data[i * 4 + 1],
-                    ghost_frame.data[i * 4 + 2]) > gThreshold)) {
+                    ghost_frame.data[i * 4 + 2]) > ghost_threshold)) {
 
-                if (ghost_fg) {
+                if (params_ghost.fg) {
                     r = ghost_fg_rgb.r;
                     g = ghost_fg_rgb.g;
                     b = ghost_fg_rgb.b;
                 }
             }
-            else if (ghost_bg){
+            else if (params_ghost.bg){
                 r = ghost_bg_rgb.r;
                 g = ghost_bg_rgb.g;
                 b = ghost_bg_rgb.b;
             }
         }
 
-        if (movey_A) {
-
-            if (movey_motion[i * 4 + 0] > 0) {
-                if (movey_fg) {
+        if (params_movey.active) {
+            if (params_movey.motion[i * 4 + 0] > 0) {
+                if (params_movey.fg) {
                     r = movey_fg_rgb.r;
                     g = movey_fg_rgb.g;
                     b = movey_fg_rgb.b;
@@ -314,27 +359,27 @@ function computeFrame() {
             else if ( (distSq(r,g,b,
                         prev.data[i * 4 + 0], 
                         prev.data[i * 4 + 1],
-                        prev.data[i * 4 + 2]) > mThreshold)) {
+                        prev.data[i * 4 + 2]) > movey_threshold)) {
 
-                if (movey_fg) {
+                if (params_movey.fg) {
                     r = movey_fg_rgb.r;
                     g = movey_fg_rgb.g;
                     b = movey_fg_rgb.b;
                 }
-                if (movey_trail)
-                    movey_motion[i * 4 + 0] = movey_length;
+                if (params_movey.trail)
+                    params_movey.motion[i * 4 + 0] = params_movey.length;
             }
-            else if (movey_bg) {
+            else if (params_movey.bg) {
                 r = movey_bg_rgb.r;
                 g = movey_bg_rgb.g;
                 b = movey_bg_rgb.b;
             }
 
             // decrement current pixel in motion array
-            movey_motion[i * 4 + 0]--;
+            params_movey.motion[i * 4 + 0]--;
         }
         
-        if (filter_A) {
+        if (params_filter.active) {
 
             // find min and max values
             let min = r;
@@ -348,11 +393,11 @@ function computeFrame() {
                 if (min > mid) min = b;
             }
 
-            let temp_amt = filter_temp - 50;
+            let temp_amt = params_filter.temp - 50;
             if (temp_amt > 0) r += temp_amt;
             else              b += temp_amt;
 
-            let saturate_amt = filter_saturate - 50;
+            let saturate_amt = params_filter.saturate - 50;
             if      (r == max) r += saturate_amt;
             else if (g == max) g += saturate_amt;
             else if (b == max) b += saturate_amt;
@@ -360,7 +405,7 @@ function computeFrame() {
             else if (g == min) g -= saturate_amt;
             else if (b == min) b -= saturate_amt;
 
-            let bright_amt = filter_bright - 50;
+            let bright_amt = params_filter.bright - 50;
             r += bright_amt;
             g += bright_amt;
             b += bright_amt;
@@ -372,11 +417,11 @@ function computeFrame() {
         frame.data[i * 4 + 2] = b;
     }
 
-    if (movey_A) prev = v_temp_ctx.getImageData(0, 0, wt, ht);
+    if (params_movey.active) prev = v_temp_ctx.getImageData(0, 0, wt, ht);
 
-    if (ghost_capture) {
+    if (params_ghost.capture) {
         ghost_frame = v_temp_ctx.getImageData(0, 0, wt, ht);
-        ghost_capture = false;
+        params_ghost.capture = false;
     }
 
     v_out_ctx.putImageData(frame, 0, 0);
@@ -384,8 +429,8 @@ function computeFrame() {
     // #endregion
 
     ocv_mat_src.data.set(v_out_ctx_ocv.getImageData(0, 0, wt, ht).data);
-    if (poster_A) {
-        cv.threshold(ocv_mat_src, ocv_mat_dst, poster_threshold, poster_maxvalue, cv.THRESH_BINARY);
+    if (params_poster.active) {
+        cv.threshold(ocv_mat_src, ocv_mat_dst, params_poster.threshold, params_poster.maxvalue, cv.THRESH_BINARY);
         cv.imshow("v_out_ocv", ocv_mat_dst);
     }
 
@@ -436,7 +481,7 @@ function distSq(x1, y1, z1, x2, y2, z2) {
             width={wt} height={ht}
             style="{viewport_showInput ? "display:none" : "display:block"}"/>
 
-        {#if poster_A}
+        {#if params_poster.active}
         <canvas 
             bind:this={v_out_ocv} id="v_out_ocv" 
             width={wt} height={ht}
@@ -463,27 +508,27 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     </div>
 
     <div class="effect" id="eff-filter" style="grid-area: 2 / 1 / 3 / 3">
-        <input class="effect-toggle" bind:checked={filter_A} 
+        <input class="effect-toggle" bind:checked={params_filter.active} 
             type="checkbox"     id="tgl-filter">
         <label class="tgl-btn" for="tgl-filter"
             data-tg-off="filter" data-tg-on="filter!"></label>
         <div class="effect-inner">
             <Slider 
-                bind:sliderValue={filter_temp}
+                bind:sliderValue={params_filter.temp}
                 id="eff-filter-temp"
                 label="temp"
                 minval={0}
                 maxval={100}
                 defval={50}/>
             <Slider 
-                bind:sliderValue={filter_saturate}
+                bind:sliderValue={params_filter.saturate}
                 id="eff-filter-saturate"
                 label="saturate"
                 minval={0}
                 maxval={100}
                 defval={50}/>
             <Slider 
-                bind:sliderValue={filter_bright}
+                bind:sliderValue={params_filter.bright}
                 id="eff-filter-bright"
                 label="bright"
                 minval={0}
@@ -493,7 +538,7 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     </div>
 
     <div class="effect" id="eff-ghost" style="grid-area: 1 / 3 / 2 / 5">
-        <input class="effect-toggle" bind:checked={ghost_A} 
+        <input class="effect-toggle" bind:checked={params_ghost.active} 
             type="checkbox"     id="tgl-ghost">
         <label class="tgl-btn" for="tgl-ghost"
             data-tg-off="ghost" data-tg-on="ghost!"></label>
@@ -509,24 +554,24 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                 <Toggle
                     id="fg"
                     showID={true}
-                    bind:opt={ghost_fg}/>
+                    bind:opt={params_ghost.fg}/>
                 <div class="color-container">
                     <input
-                        bind:value={ghost_fg_hex}
+                        bind:value={params_ghost.fg_hex}
                         type="color">
                 </div>
                 <Toggle
                     id="bg"
                     showID={true}
-                    bind:opt={ghost_bg}/>
+                    bind:opt={params_ghost.bg}/>
                 <div class="color-container">
                     <input
-                        bind:value={ghost_bg_hex}
+                        bind:value={params_ghost.bg_hex}
                         type="color">
                 </div>
             </div>
             <Slider 
-                bind:sliderValue={ghost_threshold}
+                bind:sliderValue={params_ghost.threshold}
                 id="eff-ghost-threshold"
                 label="threshold"
                 minval={10}
@@ -550,13 +595,13 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     </div>
 
     <div class="effect" id="eff-movey" style="grid-area: 2 / 3 / 3 / 5">
-        <input class="effect-toggle" bind:checked={movey_A} 
+        <input class="effect-toggle" bind:checked={params_movey.active} 
             type="checkbox"     id="tgl-movey">
         <label class="tgl-btn" for="tgl-movey"
             data-tg-off="movey" data-tg-on="movey!"></label>
         <div class="effect-inner">
             <Slider 
-                bind:sliderValue={movey_length}
+                bind:sliderValue={params_movey.length}
                 id="eff-movey-length"
                 label="length"
                 minval={1}
@@ -565,7 +610,7 @@ function distSq(x1, y1, z1, x2, y2, z2) {
             <Toggle
                 id="trail"
                 showID={true}
-                bind:opt={movey_trail}/>
+                bind:opt={params_movey.trail}/>
 
             <div class="divider"></div>
             
@@ -573,24 +618,24 @@ function distSq(x1, y1, z1, x2, y2, z2) {
                 <Toggle
                     id="fg"
                     showID={true}
-                    bind:opt={movey_fg}/>
+                    bind:opt={params_movey.fg}/>
                 <div class="color-container">
                     <input
-                        bind:value={movey_fg_hex}
+                        bind:value={params_movey.fg_hex}
                         type="color">
                 </div>
                 <Toggle
                     id="bg"
                     showID={true}
-                    bind:opt={movey_bg}/>
+                    bind:opt={params_movey.bg}/>
                 <div class="color-container">
                     <input
-                        bind:value={movey_bg_hex}
+                        bind:value={params_movey.bg_hex}
                         type="color">
                 </div>
             </div>
             <Slider 
-                bind:sliderValue={movey_threshold}
+                bind:sliderValue={params_movey.threshold}
                 id="eff-movey-threshold"
                 label="threshold"
                 minval={10}
@@ -600,13 +645,13 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     </div>
 
     <div class="effect" id="eff-pixel" style="grid-area: 1 / 5 / 2 / 6">
-        <input class="effect-toggle" bind:checked={pixel_A} 
+        <input class="effect-toggle" bind:checked={params_pixel.active} 
             type="checkbox"     id="tgl-pixel">
         <label class="tgl-btn" for="tgl-pixel"
             data-tg-off="pixel" data-tg-on="pixel!"></label>
         <div class="effect-inner">
             <Slider 
-                bind:sliderValue={pixel_chunkSize}
+                bind:sliderValue={params_pixel.chunkSize}
                 id="eff-pixel-resolution"
                 label="resolution"
                 minval={3}
@@ -616,20 +661,20 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     </div>
 
     <div class="effect" id="eff-poster" style="grid-area: 2 / 5 / 3 / 6">
-        <input class="effect-toggle" bind:checked={poster_A} 
+        <input class="effect-toggle" bind:checked={params_poster.active} 
             type="checkbox"     id="tgl-poster">
         <label class="tgl-btn" for="tgl-poster"
             data-tg-off="poster" data-tg-on="poster!"></label>
         <div class="effect-inner">
             <Slider 
-                bind:sliderValue={poster_threshold}
+                bind:sliderValue={params_poster.threshold}
                 id="eff-poster-threshold"
                 label="threshold"
                 minval={30}
                 maxval={250}
                 defval={120}/>
             <Slider 
-                bind:sliderValue={poster_maxvalue}
+                bind:sliderValue={params_poster.maxvalue}
                 id="eff-poster-maxvalue"
                 label="opacity"
                 minval={0}
@@ -713,6 +758,9 @@ function distSq(x1, y1, z1, x2, y2, z2) {
     width: 10rem;
     height: 2rem;
     cursor: pointer;
+}
+.tgl-btn:hover {
+    transform: scale(1.05);
 }
 .effect-toggle + .tgl-btn:after, .effect-toggle + .tgl-btn:before {
     display: inline-block;

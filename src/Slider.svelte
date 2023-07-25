@@ -96,6 +96,10 @@
     cursor: pointer;
     height: 5rem; 	/* width  */
     width: 2.5rem;	/* height */
+    transition: transform 0.2s;
+}
+.slider1::-webkit-slider-thumb:hover {
+    transform: scale(1.06);
 }
 
 .backdrop2 {

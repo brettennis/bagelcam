@@ -39,7 +39,7 @@
 
 <div class="backdrop">
 
-    <img class="logo" alt="" src="images/bagel_long.PNG" width="200px"/>
+    <img class="logo" alt="" src="images/bagel_long.png" width="200px"/>
     
     <div class="presets-container">
         <input class="preset-input" type="text" 
@@ -50,6 +50,8 @@
         <button class="buttonSave" on:click={doLoad}>load</button>
         <p class="preset-console">{presetConsole}</p>
     </div>
+
+    <p>choose a preset below</p>
 
     <button class="button-preset" on:click={()=>{
         let mypreset = {"ghost_A":false,"ghost_fg":true,"ghost_bg":false,"ghost_capture":false,"ghost_threshold":30,"ghost_fg_hex":"#ffffff","ghost_bg_hex":"#000000","pixel_A":true,"pixel_chunkSize":6,"filter_A":true,"filter_temp":51,"filter_saturate":63,"filter_bright":58,"movey_A":false,"movey_fg":true,"movey_bg":false,"movey_trail":false,"movey_length":10,"movey_threshold":40,"movey_fg_hex":"#ffffff","movey_bg_hex":"#000000","poster_A":true,"poster_threshold":143,"poster_maxvalue":100};
@@ -68,7 +70,6 @@
         inputString = JSON.stringify(mypreset);
         doLoad(); 
     }}>the void</button>
-
 
     <!-- 
     <div class="modulation">
@@ -140,6 +141,9 @@
     border: 0;
     border-radius: 1rem;
     cursor: pointer;
+}
+.button-preset:hover {
+    filter: brightness(105%)
 }
 
 .preset-input {

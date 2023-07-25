@@ -20,25 +20,25 @@
         <div class="info">
             <div class="info-row">
                 <h3 style="color:{tutorial_text_color}">
-                    use color pickers to choose your favorite color.
+                    Use color pickers to choose your favorite color.
                 </h3>
                 <input type="color" bind:value={tutorial_text_color}>
             </div>
             <div class="info-row">
                 <h3>
-                    click an effect's name to enable it.
+                    Click an effect's name to enable it.
                 </h3>
                 <input class="effect-toggle" 
                     type="checkbox"     
                     id="tgl-tut">
                 <label class="tgl-btn" 
                     for="tgl-tut"
-                    data-tg-off="disabled" 
+                    data-tg-off="click me" 
                     data-tg-on="enabled!"></label>
             </div>
             <div class="info-row">
                 <h3>
-                    choose a preset or make your own.
+                    Choose a preset or make your own.
                 </h3>
                 <!-- <button class="button-preset">like this</button> -->
             </div>
@@ -81,7 +81,7 @@
     width: 42rem;
     border-radius: 1rem;
     background-color: var(--bagel-yellow);
-    padding: 1rem;
+    padding: 1.6rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -103,6 +103,10 @@
     border: 0;
     border-radius: 1rem;
     cursor: pointer;
+    transition: transform 0.2s;
+}
+.button-start:hover {
+	transform: scale(1.05);
 }
 
 .button-start-flex {
@@ -123,7 +127,9 @@ input[type="color"] {
   height: 0;
   width: 0;
 }
-
+.tgl-btn:hover {
+    transform: scale(1.05);
+}
 .effect-toggle + .tgl-btn {
     padding: 2px;
     transition: all 0.2s ease;

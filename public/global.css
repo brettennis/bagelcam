@@ -77,6 +77,9 @@ body, .content {
     border-radius: 1rem;
     cursor: pointer;
 }
+.button3:hover {
+	filter: brightness(105%);
+}
 
 .buttonSave {
 	-webkit-appearance: none;
@@ -90,6 +93,9 @@ body, .content {
 	height: 3rem;
 	border-width: 0;
 	font-size: 100%;
+}
+.buttonSave:hover {
+    filter: brightness(105%)
 }
 
 .buttonLoad {
@@ -105,4 +111,7 @@ body, .content {
 	height: 3rem;
 	font-size: 1rem;
     display: inline-block;
+}
+.buttonLoad:hover {
+    filter: brightness(105%)
 }
