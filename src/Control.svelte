@@ -83,20 +83,6 @@ class Queue {
 // effect parameters
 // -----------------
 
-// let ghost_A = false;
-// let ghost_fg = true;
-// let ghost_bg = false;
-// let ghost_capture = false;
-// function ghost_doCapture() {ghost_capture = true;}
-// let ghost_threshold = 30;
-// $: gThreshold = ghost_threshold * ghost_threshold;
-// let ghost_fg_hex = "#ffffff";
-// let ghost_bg_hex = "#000000";
-// $: ghost_fg_rgb = hextorgb(ghost_fg_hex);
-// $: ghost_bg_rgb = hextorgb(ghost_bg_hex);
-// let ghost_frame;
-// let ghost_accum = new Queue();
-
 let params_ghost = {
     active: false,
     fg: true,
@@ -112,20 +98,11 @@ $: ghost_fg_rgb = hextorgb(params_ghost.fg_hex);
 $: ghost_bg_rgb = hextorgb(params_ghost.bg_hex);
 let ghost_frame;
 
-// let pixel_A = false;
-// let pixel_chunkSize = 3;
-// let pixel_corner = [];
-
 let params_pixel = {
     active: false,
     chunkSize: 3,
     corner: []
 }
-
-// let filter_A = false;
-// let filter_temp = 50;
-// let filter_saturate = 50;
-// let filter_bright = 50; 
 
 let params_filter = {
     active: false,
@@ -133,20 +110,6 @@ let params_filter = {
     saturate: 50,
     bright: 50
 }
-
-// let movey_A = false;
-// let movey_fg = true;
-// let movey_bg = false;
-// let movey_trail = false;
-// let movey_length = 10;
-// let movey_threshold = 40;
-// $: mThreshold = movey_threshold * movey_threshold;
-// let movey_fg_hex = "#ffffff";
-// let movey_bg_hex = "#000000";
-// $: movey_fg_rgb = hextorgb(movey_fg_hex);
-// $: movey_bg_rgb = hextorgb(movey_bg_hex);
-// let prev;
-// let movey_motion = Array(wt * ht).fill(0);
 
 let params_movey = {
     active: false,
@@ -268,7 +231,7 @@ function savePreset() {
 
 const init = async () => {
 
-    // try {
+    try {
         v_out_ctx       = v_out.getContext('2d');
         v_out_ctx_ocv   = v_out.getContext('2d');
         v_temp_ctx      = v_temp.getContext('2d', {willReadFrequently: true});
@@ -291,9 +254,9 @@ const init = async () => {
         ghost_frame = v_temp_ctx.getImageData(0, 0, wt, ht);
 
         v_in.addEventListener("play", computeFrame);
-    // } catch (error) {
-    //     alert("An error occurred!\n" + error);
-    // }
+    } catch (error) {
+        alert("An error occurred!\n" + error);
+    }
 };
 
 // -----------------
@@ -449,7 +412,6 @@ function doPopout() {
 
 function doTrade() {
     viewport_showInput = !viewport_showInput;
-    // console.log(viewport_showInput);
 }
 
 // used for movey
