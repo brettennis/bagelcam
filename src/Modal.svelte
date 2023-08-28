@@ -43,6 +43,12 @@
                 <!-- <button class="button-preset">like this</button> -->
             </div>
         </div>
+        <div class="created-by">
+            <a href="https://github.com/brettennis">
+                <img class="logo" alt="https://github.com/brettennis" src="images/github-mark-white.png" width="40px"/>
+            </a>
+            Created by Brett Ennis
+        </div>
     </div>
 </div>
 {/if}
@@ -91,6 +97,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.created-by {
+    padding: 1rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
 }
 
 .button-start {

@@ -3410,8 +3410,8 @@ var app = (function () {
 
     // (6:0) {#if showModal}
     function create_if_block(ctx) {
+    	let div8;
     	let div7;
-    	let div6;
     	let div1;
     	let h1;
     	let t1;
@@ -3436,13 +3436,19 @@ var app = (function () {
     	let t12;
     	let div4;
     	let h33;
+    	let t14;
+    	let div6;
+    	let a;
+    	let img;
+    	let img_src_value;
+    	let t15;
     	let mounted;
     	let dispose;
 
     	const block = {
     		c: function create() {
+    			div8 = element("div");
     			div7 = element("div");
-    			div6 = element("div");
     			div1 = element("div");
     			h1 = element("h1");
     			h1.textContent = "Welcome to bagelcam.";
@@ -3472,56 +3478,70 @@ var app = (function () {
     			div4 = element("div");
     			h33 = element("h3");
     			h33.textContent = "Choose a preset or make your own.";
+    			t14 = space();
+    			div6 = element("div");
+    			a = element("a");
+    			img = element("img");
+    			t15 = text("\n            Created by Brett Ennis");
     			add_location(h1, file$1, 10, 12, 256);
     			set_style(h30, "width", "60%");
     			add_location(h30, file$1, 12, 16, 346);
-    			attr_dev(button, "class", "button-start svelte-7s3dbj");
+    			attr_dev(button, "class", "button-start svelte-b4jw4");
     			add_location(button, file$1, 16, 16, 507);
-    			attr_dev(div0, "class", "button-start-flex svelte-7s3dbj");
+    			attr_dev(div0, "class", "button-start-flex svelte-b4jw4");
     			add_location(div0, file$1, 11, 12, 298);
-    			attr_dev(div1, "class", "welcome svelte-7s3dbj");
+    			attr_dev(div1, "class", "welcome svelte-b4jw4");
     			add_location(div1, file$1, 9, 8, 222);
     			set_style(h31, "color", /*tutorial_text_color*/ ctx[1]);
     			add_location(h31, file$1, 21, 16, 677);
     			attr_dev(input0, "type", "color");
-    			attr_dev(input0, "class", "svelte-7s3dbj");
+    			attr_dev(input0, "class", "svelte-b4jw4");
     			add_location(input0, file$1, 24, 16, 825);
-    			attr_dev(div2, "class", "info-row svelte-7s3dbj");
+    			attr_dev(div2, "class", "info-row svelte-b4jw4");
     			add_location(div2, file$1, 20, 12, 638);
     			add_location(h32, file$1, 27, 16, 949);
-    			attr_dev(input1, "class", "effect-toggle svelte-7s3dbj");
+    			attr_dev(input1, "class", "effect-toggle svelte-b4jw4");
     			attr_dev(input1, "type", "checkbox");
     			attr_dev(input1, "id", "tgl-tut");
     			add_location(input1, file$1, 30, 16, 1049);
-    			attr_dev(label, "class", "tgl-btn svelte-7s3dbj");
+    			attr_dev(label, "class", "tgl-btn svelte-b4jw4");
     			attr_dev(label, "for", "tgl-tut");
     			attr_dev(label, "data-tg-off", "click me");
     			attr_dev(label, "data-tg-on", "enabled!");
     			add_location(label, file$1, 33, 16, 1170);
-    			attr_dev(div3, "class", "info-row svelte-7s3dbj");
+    			attr_dev(div3, "class", "info-row svelte-b4jw4");
     			add_location(div3, file$1, 26, 12, 910);
     			add_location(h33, file$1, 39, 16, 1393);
-    			attr_dev(div4, "class", "info-row svelte-7s3dbj");
+    			attr_dev(div4, "class", "info-row svelte-b4jw4");
     			add_location(div4, file$1, 38, 12, 1354);
-    			attr_dev(div5, "class", "info svelte-7s3dbj");
+    			attr_dev(div5, "class", "info svelte-b4jw4");
     			add_location(div5, file$1, 19, 8, 607);
-    			attr_dev(div6, "class", "modal svelte-7s3dbj");
-    			add_location(div6, file$1, 8, 4, 194);
-    			attr_dev(div7, "class", "backdrop svelte-7s3dbj");
-    			add_location(div7, file$1, 7, 0, 167);
+    			attr_dev(img, "class", "logo");
+    			attr_dev(img, "alt", "https://github.com/brettennis");
+    			if (!src_url_equal(img.src, img_src_value = "images/github-mark-white.png")) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "width", "40px");
+    			add_location(img, file$1, 47, 16, 1684);
+    			attr_dev(a, "href", "https://github.com/brettennis");
+    			add_location(a, file$1, 46, 12, 1627);
+    			attr_dev(div6, "class", "created-by svelte-b4jw4");
+    			add_location(div6, file$1, 45, 8, 1590);
+    			attr_dev(div7, "class", "modal svelte-b4jw4");
+    			add_location(div7, file$1, 8, 4, 194);
+    			attr_dev(div8, "class", "backdrop svelte-b4jw4");
+    			add_location(div8, file$1, 7, 0, 167);
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div7, anchor);
-    			append_dev(div7, div6);
-    			append_dev(div6, div1);
+    			insert_dev(target, div8, anchor);
+    			append_dev(div8, div7);
+    			append_dev(div7, div1);
     			append_dev(div1, h1);
     			append_dev(div1, t1);
     			append_dev(div1, div0);
     			append_dev(div0, h30);
     			append_dev(div0, t3);
     			append_dev(div0, button);
-    			append_dev(div6, t5);
-    			append_dev(div6, div5);
+    			append_dev(div7, t5);
+    			append_dev(div7, div5);
     			append_dev(div5, div2);
     			append_dev(div2, h31);
     			append_dev(h31, t6);
@@ -3538,6 +3558,11 @@ var app = (function () {
     			append_dev(div5, t12);
     			append_dev(div5, div4);
     			append_dev(div4, h33);
+    			append_dev(div7, t14);
+    			append_dev(div7, div6);
+    			append_dev(div6, a);
+    			append_dev(a, img);
+    			append_dev(div6, t15);
 
     			if (!mounted) {
     				dispose = [
@@ -3558,7 +3583,7 @@ var app = (function () {
     			}
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div7);
+    			if (detaching) detach_dev(div8);
     			mounted = false;
     			run_all(dispose);
     		}
